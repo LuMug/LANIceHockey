@@ -1,3 +1,4 @@
 https://paladinstudios.com/2013/07/10/how-to-create-an-online-multiplayer-game-with-unity/
 https://www.youtube.com/watch?v=V1kNrsdVqWs
 https://ubuntu.com/server/docs/service-domain-name-service-dns
+http://www.referencedesigner.com/ --> HTML--> canvas print
