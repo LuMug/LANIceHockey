@@ -1,0 +1,127 @@
+<html><head></head><body>
+
+<canvas id="myCanvas" width="716" height="366" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+//CONTORNO CAMPO
+ctx.beginPath();
+ctx.arc(658, 308, 50, 0, 0.5*Math.PI);
+ctx.arc(58, 308, 50, 0.5*Math.PI, 1*Math.PI);
+ctx.arc(58, 58, 50, 1*Math.PI, 1.5*Math.PI);
+ctx.arc(658, 58, 50, 1.5*Math.PI, 0);
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(658, 308, 51, 0, 0.5*Math.PI);
+ctx.arc(58, 308, 51, 0.5*Math.PI, 1*Math.PI);
+ctx.arc(58, 58, 51, 1*Math.PI, 1.5*Math.PI);
+ctx.arc(658, 58, 51, 1.5*Math.PI, 0);
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(658, 308, 52, 0, 0.5*Math.PI);
+ctx.arc(58, 308, 52, 0.5*Math.PI, 1*Math.PI);
+ctx.arc(58, 58, 52, 1*Math.PI, 1.5*Math.PI);
+ctx.arc(658, 58, 52, 1.5*Math.PI, 0);
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(658, 308, 53, 0, 0.5*Math.PI);
+ctx.arc(58, 308, 53, 0.5*Math.PI, 1*Math.PI);
+ctx.arc(58, 58, 53, 1*Math.PI, 1.5*Math.PI);
+ctx.arc(658, 58, 53, 1.5*Math.PI, 0);
+ctx.fillRect(707,58,5,250);
+//RIGA CENTRALE
+ctx.fillStyle = "RED";
+ctx.fillRect(355,8,6,350);
+//RIGHE DEI TERZI
+ctx.fillStyle = "BLUE";
+ctx.fillRect(205,8,6,350);
+ctx.fillRect(505,8,6,350);
+ctx.stroke();
+//CERCHIO E ZONA DI INGAGGIO CENTRALE
+ctx.beginPath();
+ctx.arc(358, 183, 50, 0, 2*Math.PI);
+ctx.arc(358, 183, 51, 0, 2*Math.PI);
+ctx.arc(358, 183, 52, 0, 2*Math.PI);
+ctx.arc(358, 183, 53, 0, 2*Math.PI);
+ctx.strokeStyle="BLUE";
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(358, 183, 8, 0, 2*Math.PI);
+//LINEE PORTE
+ctx.fillStyle = "RED";
+ctx.strokeStyle="RED";
+ctx.fillRect(58,8,4,350);
+ctx.fillRect(658,8,4,350);
+ctx.fill();
+ctx.stroke();
+//ZONE INGAGGIO LATERALI
+ctx.beginPath();
+ctx.arc(130, 100, 5, 0, 2*Math.PI);
+ctx.fill();
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(130, 100, 50, 0, 2*Math.PI);
+ctx.stroke();
+ctx.beginPath();
+ctx.beginPath();
+ctx.arc(280, 100, 5, 0, 2*Math.PI);
+ctx.fill();
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(430, 100, 5, 0, 2*Math.PI);
+ctx.fill();
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(580, 100, 5, 0, 2*Math.PI);
+ctx.fill();
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(580, 100, 50, 0, 2*Math.PI);
+ctx.stroke();
+ctx.beginPath();
+ctx.beginPath();
+ctx.arc(130, 266, 5, 0, 2*Math.PI);
+ctx.fill();
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(130, 266, 50, 0, 2*Math.PI);
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(280, 266, 5, 0, 2*Math.PI);
+ctx.fill();
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(430, 266, 5, 0, 2*Math.PI);
+ctx.fill();
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(580, 266, 5, 0, 2*Math.PI);
+ctx.fill();
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(580, 266, 50, 0, 2*Math.PI);
+ctx.stroke();
+//AREE
+ctx.fillStyle = "LIGHTBLUE";
+ctx.beginPath();
+ctx.arc(58, 183, 20,1.5*Math.PI, 0.5*Math.PI);
+ctx.fill();
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(662, 183, 20,0.5*Math.PI, 1.5*Math.PI);
+ctx.fill();
+ctx.stroke();
+//PORTE
+ctx.strokeStyle="BLACK";
+ctx.beginPath();
+ctx.arc(58, 183, 15,0.5*Math.PI, 1.5*Math.PI);
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(662, 183, 15,1.5*Math.PI, 0.5*Math.PI);
+ctx.stroke();
+
+</script> 
+
+</body></html>
