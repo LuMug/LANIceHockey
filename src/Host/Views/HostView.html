@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LAN IceHockey</title>
+	    <link rel="icon" href="LANIceHockey.ico" type="image/x-icon">
+	    <meta cahrset="UTF-8">
+	    <meta name="description" content="LANIceHockey">
+	    <meta name="keywords" contenent="HTML,CSS,XML,JavaScript">
+	    <meta name="author" content="Nathan Ferrari, Xavier Horisberger, Andrea Masciocchi">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  
+	    <!-- <link rel="stylesheet" href="./css.css">
+	    <script src="./Human.js"></script>
+		<script src="./script.js"></script>
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+        <script src="./playground.js"></script>
+        <link rel="stylesheet" href="./HostView.css">
+    </head>
+    <body onload="printPlayground()">
+        <div id="scoreBoard" class="centerH">
+            <h2>Score</h2>
+            <div class="centerText">
+                <span id="homeScore">3</span>
+                <span>-</span>
+                <span id="opponentScore">1</span>
+            </div>
+        </div>
+
+        <div id="leaderBoard">
+            <b>LeaderBoard</b>
+            <ol>
+                <li id="firstClassified">xa goals: 10</li>
+                <li id="secondClassified">io goals: 10</li>
+                <li id="thirdClassified">rtj goals: 10</li>
+                <li id="forthClassified">batnb goals: 10</li>
+                <li id="fifthClassified">bat goals: 10</li>
+                <li id="sixthClassified">abt goals: 10</li>
+                <li id="seventhClassified">yhmsu, goals: 10</li>
+                <li id="eighthClassified">atnb goals: 10</li>
+                <li id="ninthClassified">tan goals: 10</li>
+                <li id="tenthClassified">rutjzku, goals: 10</li>
+            </ol>
+        </div>
+
+        <div class="container">
+            <canvas id="playground" width="1469" height="626" class="centerHV"></canvas>
+        </div>
+    </body>
+</html>

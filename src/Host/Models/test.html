@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>test.html</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Test Classi">
+        <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+        <meta name="author" content="Xavier Horisberger">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--data creazione: 17.02.2022-->
+        <!--ultima modifica: 17.02.2022-->
+        <!--browser: chrome-->
+        <!--OS: windows 10-->
+        <script src="./Player.js"></script>
+        <script src="./Team.js"></script>
+        <script src="./Point.js"></script>
+        <script src="./Game.js"></script>
+        <script src="./Puck.js"></script>
+        <script>
+            var p1 = new Player("p1",0,0);
+            var p2 = new Player("p2",0,0);
+            var p3 = new Player("p3",0,0);
+            var p4 = new Player("p4",0,0);
+            var p5 = new Player("p5",0,0);
+            var p6 = new Player("p6",0,0);
+            var p7 = new Player("p7",0,0);
+            var p8 = new Player("p8",0,0);
+            var p9 = new Player("p9",0,0);
+            var p10 = new Player("p10",0,0);
+            var p11 = new Player("p11",0,0);
+            console.log("creati players");
+            console.log(" ");
+
+            var team1 = new Team("yellow");
+            var team2 = new Team("green");
+            console.log("creati teams");
+            console.log(" ");
+
+            team1.addPlayer(p1);
+            team1.addPlayer(p2);
+            team1.addPlayer(p3);
+            team1.addPlayer(p4);
+            team1.addPlayer(p5);
+            team2.addPlayer(p6);
+            team2.addPlayer(p7);
+            team2.addPlayer(p8);
+            team2.addPlayer(p9);
+            team2.addPlayer(p10);
+            team2.addPlayer(p11);
+            console.log("asseganti bro");
+            console.log(" ");
+
+            var game = new Game(team1, team2);
+            console.log("Team1: " + game.teams[0].players.length);
+            console.log("Team2: " + game.teams[1].players.length);
+            console.log(" ");
+
+            console.log("Team1: ");
+            for(var i = 0;i < game.teams[0].players.length;i++){
+                console.log(game.teams[0].players[i].name);
+            }
+
+            console.log("Team2: ");
+            for(var i = 0;i < game.teams[1].players.length;i++){
+                console.log(game.teams[1].players[i].name);
+            }
+            console.log(" ");
+
+            game.switchTeam(game.teams[1].players[5]);
+            console.log("Switch fatto");
+
+            console.log(" ");
+            console.log("New");
+            console.log("Team1: ");
+            for(var i = 0;i < game.teams[0].players.length;i++){
+                console.log(game.teams[0].players[i].name);
+            }
+            console.log("Team2: ");
+            for(var i = 0;i < game.teams[1].players.length;i++){
+                console.log(game.teams[1].players[i].name);
+            }
+
+            console.log(" ");
+            console.log("Leaderboard:");
+            game.score(game.teams[0].players[0]);
+            game.score(game.teams[0].players[0]);
+            game.score(game.teams[0].players[1]);
+            game.score(game.teams[0].players[1]);
+            game.score(game.teams[0].players[1]);
+            game.score(game.teams[0].players[5]);
+            game.score(game.teams[0].players[5]);
+            game.score(game.teams[0].players[5]);
+            game.score(game.teams[0].players[5]);
+
+            for(var i = 0;i < game.leaderboard.length;i++){
+                console.log(game.leaderboard[i].name);
+            }
+        </script>
+    </head>
+    
+    <body id="body">
+        
+    </body>
+</html>
