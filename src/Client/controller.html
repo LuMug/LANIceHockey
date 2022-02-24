@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controller</title>
+
+    <script src="modules/node_modules/nipplejs/dist/nipplejs.js"></script>
+    <link rel="stylesheet" href="css/controller.css">
+</head>
+
+
+<body>
+    <input type="radio" name="changeTeamRadio" id="red" value="red">
+    <label for="red">Red Team</label>
+    <input type="text" name="" id="">
+    <div id="joyDiv"></div>
+    <button class="button">shoot</button>
+</body>
+
+<!--JoyStick-->
+<script>
+    var options = {
+        zone: document.getElementById('joyDiv'),
+        mode: "static",
+        color: "red",
+        position: {
+            left: '100px',
+            bottom: '100px'
+        },
+        size: 150,
+    };
+    var manager = nipplejs.create(options);
+</script>
+
+</html>
