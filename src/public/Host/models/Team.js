@@ -9,6 +9,7 @@ class Team{
 
     addPlayer(player){
         this.players.push(player);
+        player.team = this;
     }
 
     removePlayer(player){
@@ -26,3 +27,5 @@ class Team{
         return score;
     }
 }
+
+module.exports = Team;

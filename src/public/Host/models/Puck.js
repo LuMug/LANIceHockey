@@ -6,3 +6,5 @@ class Puck{
         currPos = new Point(x, y);
     }
 }
+
+module.exports = Puck;

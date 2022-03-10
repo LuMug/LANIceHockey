@@ -6,6 +6,8 @@ function printPlayground(){
     var raggioAngoli = 85;
     var h = c.height;
     var w = c.width;
+    ctx.strokeStyle="BLACK";
+    ctx.fillStyle="BLACK";
 
     //CONTORNO CAMPO
     // //OLD

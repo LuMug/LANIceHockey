@@ -54,3 +54,5 @@ class Game{
         this.updateLeaderboard();
     }
 }
+
+module.exports = Game;
