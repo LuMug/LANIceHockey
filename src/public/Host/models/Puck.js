@@ -1,4 +1,4 @@
-class Puck{
+export default class Puck{
 
     currPos;
 
@@ -6,5 +6,3 @@ class Puck{
         currPos = new Point(x, y);
     }
 }
-
-module.exports = Puck;

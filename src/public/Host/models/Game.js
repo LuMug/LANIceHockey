@@ -1,4 +1,4 @@
-class Game{
+export default class Game{
 
     leaderboard = new Array();
     teams;
@@ -54,5 +54,3 @@ class Game{
         this.updateLeaderboard();
     }
 }
-
-module.exports = Game;

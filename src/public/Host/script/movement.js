@@ -1,67 +1,68 @@
-import { Team } from "../models/Team.js";
-import { Player } from "../models/Player.js";
-import { Game } from "../models/Game.js";
+import  Team  from "../models/team.js";
+import  Player  from "../models/player.js";
 
-var movement;
+export default class Movement{
+    movement;
+    team;
+    player;
 
-
-
-var teamGreen = new Team("GREEN");
-var teamYellow = new Team("YELLOW");
-var player = new Player("Xavi",100,100);
-teamGreen.addPlayer(player);
-var game = new Game(teamGreen,teamYellow);
-
-function nippleMove(evt, data) {
-    console.log(data.angle.degree);
-
-    player.angle = data.angle.degree;
-    player.velocita = data.distance;
-}
-
-function move(){
-    if(angle < 22.5){
-        x++;
-    }else if(angle > 22.5 && angle < 67.5){
-        x++;
-        y--;
-    }else if(angle > 67.5 && angle < 112.5){
-        y--;
-    }else if(angle > 112.5 && angle < 157.5){
-        x--;
-        y--;
-    }else if(angle > 157.5 && angle < 202.5){
-        x--;
-    }else if(angle > 202.5 && angle < 247.5){
-        x--;
-        y++;
-    }else if(angle > 247.5 && angle < 292.5){
-        y++;
-    }else if (angle > 292.5 && angle < 337,5){  
-        x++;
-        y++;
+    constructor(){
+        this.team = new Team("GREEN");
+        this.player = new Player("Xavi",100,100);
+        this.team.addPlayer(this.player);
     }
 
-    var c = document.getElementById("playground");
-    var ctx = c.getContext("2d");
-    
-    var h = c.height;
-    var w = c.width;
+    nippleMove(evt, data) {
+        console.log(data.angle.degree);
 
-    ctx.clearRect(0, 0, w, h);
-    printPlayground();
-    ctx.strokeStyle= player.team.color;
-    ctx.fillStyle = player.team.color;
-    ctx.beginPath();
-    ctx.arc(player.pos.x, player.pos.y, player.dimension, 0, 2*Math.PI);
-    ctx.stroke();
-    ctx.fill();
-}
+        this.player.angle = data.angle.degree;
+        this.player.velocita = data.distance;
+    }
 
-function startMovement(){
-    movement = setInterval(move, 10);
-}
+    move(player){
+        if(player.angle < 22.5){
+            player.pos.x++;
+        }else if(player.angle > 22.5 && player.angle < 67.5){
+            player.pos.x++;
+            player.pos.y--;
+        }else if(player.angle > 67.5 && player.angle < 112.5){
+            player.pos.y--;
+        }else if(player.angle > 112.5 && player.angle < 157.5){
+            player.pos.x--;
+            player.pos.y--;
+        }else if(player.angle > 157.5 && player.angle < 202.5){
+            player.pos.x--;
+        }else if(player.angle > 202.5 && player.angle < 247.5){
+            player.pos.x--;
+            player.pos.y++;
+        }else if(player.angle > 247.5 && player.angle < 292.5){
+            player.pos.y++;
+        }else if (player.angle > 292.5 && player.angle < 337,5){  
+            player.pos.x++;
+            player.pos.y++;
+        }
 
-function endMovement(){
-    clearInterval(movement);
+        var c = document.getElementById("playground");
+        var ctx = c.getContext("2d");
+        
+        var h = c.height;
+        var w = c.width;
+
+        ctx.clearRect(0, 0, w, h);
+        printPlayground();
+        ctx.strokeStyle= this.player.team.color;
+        ctx.fillStyle = this.player.team.color;
+        ctx.beginPath();
+        ctx.arc(this.player.pos.x, this.player.pos.y, this.player.dimension, 0, 2*Math.PI);
+        ctx.stroke();
+        ctx.fill();
+    }
+
+    startMovement(){
+        this.movement = setInterval(this.move(this.player) , 100);
+    }
+
+    endMovement(){
+        clearInterval(this.movement);
+    }
 }

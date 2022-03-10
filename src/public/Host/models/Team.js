@@ -1,4 +1,4 @@
-class Team{
+export default class Team{
 
     players = new Array();
     color;
@@ -27,5 +27,3 @@ class Team{
         return score;
     }
 }
-
-module.exports = Team;

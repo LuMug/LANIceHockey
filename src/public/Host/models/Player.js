@@ -1,4 +1,5 @@
-class Player {
+import Point from "./point.js";
+export default class Player {
 
     name;
     scoredGoals = 0;
@@ -13,5 +14,3 @@ class Player {
         this.pos = new Point(posX, posY);
     }
 }
-
-module.exports = Player;
