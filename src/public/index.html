@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>LAN IceHockey_Index</title>
-	    <link rel="icon" href="Assets/LANIceHockey.ico" type="image/x-icon">
-	    <meta cahrset="UTF-8">
-	    <meta name="description" content="LANIceHockey_IndexView">
-	    <meta name="keywords" contenent="HTML,CSS,XML,JavaScript">
-	    <meta name="author" content="Nathan Ferrari, Xavier Horisberger, Andrea Masciocchi">
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="./index.css">
-        <script src="./redirect.js"></script>
-    </head>
-    <body>
-        <div class="image"></div>
-        <div>
-            <h1>Benvenuto in LAN IceHockey</h1>
-            <h2>Sarai l'host della partita oppure un giocatore?</h2>
+<head>
+    <title>LAN IceHockey_Index</title>
+    <link rel="icon" href="Assets/LANIceHockey.ico" type="image/x-icon">
+    <meta cahrset="UTF-8">
+    <meta name="description" content="LANIceHockey_IndexView">
+    <meta name="keywords" contenent="HTML,CSS,XML,JavaScript">
+    <meta name="author" content="Nathan Ferrari, Xavier Horisberger, Andrea Masciocchi">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-            <button id="giocatoreButton" role="button" onclick="redirectToHost()">Giocatore</button>
-            <button id="hostButton" role="button" onclick="redirectToPlayer()">Host</button>
-        </div>
-    </body>
+    <link rel="stylesheet" href="./index.css">
+    <script src="./redirect.js"></script>
+</head>
+
+<body>
+    <div class="image"></div>
+    <div>
+        <h1>Benvenuto in LAN IceHockey</h1>
+        <h2>Sarai l'host della partita oppure un giocatore?</h2>
+
+        <button id="giocatoreButton" role="button" onclick="redirectToPlayer()">Giocatore</button>
+        <button id="hostButton" role="button" onclick="redirectToHost()">Host</button>
+    </div>
+</body>
+
 </html>

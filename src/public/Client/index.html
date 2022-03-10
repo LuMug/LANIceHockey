@@ -4,9 +4,10 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controller</title>
-
+    <link rel="icon" href="./../Assets/LANIceHockey.ico" type="image/x-icon">
     <script src="modules/node_modules/nipplejs/dist/nipplejs.js"></script>
     <link rel="stylesheet" href="css/controller.css">
+    <script src="./script/connection.js" defer></script>
 </head>
 
 
@@ -40,31 +41,31 @@
         size: 150,
     };
     var manager = nipplejs.create(options);
-    manager.on('move', function (evt, data) {
+    manager.on('move', function(evt, data) {
         console.log(data.angle.degree);
     });
-        //formule spostamento
-        /* if(angle > 22.5 && angle < 67.5){
+    //formule spostamento
+    /* if(angle > 22.5 && angle < 67.5){
 
-        }else if(angle > 22.5 && angle < 67.5){
-            x++;
-            y--;
-        }else if(angle > 67.5 && angle < 112.5){
-            y--;
-        }else if(angle > 112.5 && angle < 157.5){
-            x--;
-            y--;
-        }else if(angle > 157.5 && angle < 202.5){
-            x--;
-        }else if(angle > 202.5 && angle < 247.5){
-            x--;
-            y++;
-        }else if(angle > 247.5 && angle < 292.5){
-            y++;
-        }else{  
-            x++;
-            y++;
-        } */
+    }else if(angle > 22.5 && angle < 67.5){
+        x++;
+        y--;
+    }else if(angle > 67.5 && angle < 112.5){
+        y--;
+    }else if(angle > 112.5 && angle < 157.5){
+        x--;
+        y--;
+    }else if(angle > 157.5 && angle < 202.5){
+        x--;
+    }else if(angle > 202.5 && angle < 247.5){
+        x--;
+        y++;
+    }else if(angle > 247.5 && angle < 292.5){
+        y++;
+    }else{  
+        x++;
+        y++;
+    } */
 </script>
 
 </html>
