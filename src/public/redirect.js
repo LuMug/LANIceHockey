@@ -1,7 +1,7 @@
 function redirectToHost() {
-    location.replace("https://www.w3schools.com")
+    location.replace("./Host/index.html")
 }
 
 function redirectToPlayer() {
-    location.replace("https://www.w3schools.com")
+    location.replace("./Client/index.html")
 }
