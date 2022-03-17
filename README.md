@@ -14,7 +14,7 @@
 ## Descrizione
 
 #### Mandato:
-- [Mandato](github.com/LuMug/LANIceHockey/blob/main/Documentazione/QdC_LM_LANIceHoceky.docx)	
+- [Mandato](/Documentazione/QdC_LM_LANIceHoceky.docx)	
 #### Struttura:
 - [Gantt preventivo](/Documentazione/GanttPreventivo-LANIceHockey.mpp)
 
