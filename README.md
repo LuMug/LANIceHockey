@@ -19,4 +19,4 @@
 - [Gantt preventivo](/Documentazione/GanttPreventivo-LANIceHockey.mpp)
 
 
-- [Diari di lavoro](Diari/)
+- [Diari di lavoro](Diario/)
