@@ -4,7 +4,7 @@
 ## Progetto
 |Titolo             |Autori             |Responsabile               |
 |:------------------|:------------------|:--------------------------|
-|EyeAsteroids   |<b>Nathan Ferrari,</b> <b>Andrea Masciocchi,</b>  <b>Xavier Horisberger</b> |Luca Muggiasca|
+|LANIceHockey   |<b>Nathan Ferrari,</b> <b>Andrea Masciocchi,</b>  <b>Xavier Horisberger</b> |Luca Muggiasca|
 
 ## Info
 **Inizio:** 27.01.2022
