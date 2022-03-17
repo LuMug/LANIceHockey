@@ -14,9 +14,13 @@ wss.on('connection', (ws, req) => {
             host = ws;
             console.log("Host connected");
         } else if (data.equals(Buffer.from("client"))) {
-            ws.send(Buffer.from(host));
+            if (host == "null") {
+                ws.send(host);
+            }
             clients.push(ws);
             console.log(clients.length);
+        } else {
+            host.send(data);
         }
     });
 

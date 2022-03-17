@@ -11,11 +11,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="./script/playground.js"></script>
+
     <!--<script src="./script/game.js"></script>-->
+
+    <script src="./script/hostConnection.js"></script>
+ 
     <link rel="stylesheet" href="./style/HostView.css">
-    <script src="modules/node_modules/nipplejs/dist/nipplejs.js"></script>
+    <!--<script src="modules/node_modules/nipplejs/dist/nipplejs.js"></script>
     <script type="module" src="./script/movement.js"></script>
-    
+
 </head>
 
 <body onload="printPlayground()">
@@ -48,8 +52,9 @@
         <canvas id="playground" width="1469" height="626" class="centerHV"></canvas>
     </div>
 
+
     <div id="joyDiv"></div>
-    <!--JoyStick-->
+    JoyStick-->
 <script type="module">
     import Movement from "./script/movement.js";
     var options = {
@@ -71,5 +76,29 @@
     manager.on('end', m.endMovement());
     manager.on('move', m.nippleMove());
 </script>
+
+    <!--<div id="joyDiv"></div>
+    <script>
+        var x = 100;
+        var y = 100;
+        var options = {
+            zone: document.getElementById('joyDiv'),
+            mode: "static",
+            color: "red",
+            multitouch: true,
+            position: {
+                left: '100px',
+                bottom: '100px'
+            },
+            size: 150,
+        };
+        var x = 100;
+        var y = 100;
+        var manager = nipplejs.create(options);
+        manager.on('move', nippleMove);
+        manager.on('start', startMovement);
+        manager.on('end', endMovement);
+    </script>-->
+
 </body>
 </html>
