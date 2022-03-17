@@ -1,5 +1,4 @@
-
-export default class Team{
+export default class Team {
 
     players = new Array();
     color;

@@ -3,5 +3,10 @@ function redirectToHost() {
 }
 
 function redirectToPlayer() {
-    location.replace("./Client/index.html")
+    if (document.getElementById("playerName").value != "") {
+        window.sessionStorage.setItem("nomeUtente", document.getElementById("playerName").value)
+        location.replace("./Client/index.html")
+    } else {
+        alert("Inserisci un nome");
+    }
 }

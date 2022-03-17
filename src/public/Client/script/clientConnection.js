@@ -3,8 +3,7 @@ const ws = new WebSocket("ws://10.90.1.117:2389");
 
 ws.addEventListener("open", () => {
     console.log("We are connected!");
-
-    ws.send("client");
+    ws.send("client;" + window.sessionStorage.getItem("nomeUtente"));
 
     ws.onmessage = function(message) {
         console.log(message.data);
@@ -13,6 +12,9 @@ ws.addEventListener("open", () => {
         }
     }
 });
+
+
+
 
 var x = 100;
 var y = 100;
@@ -30,5 +32,4 @@ var options = {
 var manager = nipplejs.create(options);
 manager.on('move', function(evt, data) {
     ws.send(data.angle.degree);
-    console.log(data.angle.degree);
 });

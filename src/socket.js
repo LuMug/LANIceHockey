@@ -13,14 +13,16 @@ wss.on('connection', (ws, req) => {
         if (data.equals(Buffer.from("host"))) {
             host = ws;
             console.log("Host connected");
-        } else if (data.equals(Buffer.from("client"))) {
+        } else if (data.toString().split(";")[0] == "client") {
+            //data.split(";")[0].equals("client")
             if (host == "null") {
                 ws.send(host);
             }
+            host.send("new;" + ws._socket.remoteAddress + ";" + data.toString().split(";")[1]);
             clients.push(ws);
             console.log(clients.length);
         } else {
-            host.send(data);
+            host.send(data + ";" + ws._socket.remoteAddress);
         }
     });
 

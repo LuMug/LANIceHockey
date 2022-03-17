@@ -1,19 +1,19 @@
 export default class Point {
 
-    x = 0;
-    y = 0;
+    x;
+    y;
 
-    constructor(x, y){
+    constructor(x, y) {
         this.x = x;
         this.y = y;
     }
 
-    moveBy(addX, addY){
-        this.x = x + addX;
-        this.y = y + addY;
+    moveBy(addX, addY) {
+        this.x += addX;
+        this.y += addY;
     }
 
-    move(x, y){
+    move(x, y) {
         this.x = x;
         this.y = y;
     }

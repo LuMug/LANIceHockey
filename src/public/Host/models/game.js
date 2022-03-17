@@ -1,12 +1,14 @@
+import Team from "./team.js";
+import Player from "../models/player.js";
 
-export default class Game{
+export default class Game {
 
 
     leaderboard = new Array();
     teams;
 
-    constructor(team1, team2) {
-        this.teams = new Array(team1, team2);
+    constructor() {
+        this.teams = new Array(new Team("Green"), new Team("Yellow"));
     }
 
     compare(a, b) {
@@ -54,5 +56,30 @@ export default class Game{
     score(player) {
         player.scoredGoals++;
         this.updateLeaderboard();
+    }
+
+    getPlayerByIp(ip) {
+        for (let i = 0; i < this.teams.length; i++) {
+            for (let j = 0; j < this.teams[i].players.length; j++) {
+                if (this.teams[i].players[j].ip == ip) {
+                    return this.teams[i].players[j];
+                }
+            }
+        }
+    }
+
+    repaintAllPlayer() {
+        var c = document.getElementById("playground");
+        var ctx = c.getContext("2d");
+
+        var h = c.height;
+        var w = c.width;
+
+        ctx.clearRect(0, 0, w, h);
+        for (let i = 0; i < this.teams.length; i++) {
+            for (let j = 0; j < this.teams[i].players.length; j++) {
+                this.teams[i].players[j].paint();
+            }
+        }
     }
 }

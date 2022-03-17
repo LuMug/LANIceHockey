@@ -14,10 +14,10 @@
 
     <!--<script src="./script/game.js"></script>-->
 
-    <script src="./script/hostConnection.js"></script>
- 
+    <script type="module" src="./script/hostConnection.js"></script>
+
     <link rel="stylesheet" href="./style/HostView.css">
-    <!--<script src="modules/node_modules/nipplejs/dist/nipplejs.js"></script>
+    <script src="modules/node_modules/nipplejs/dist/nipplejs.js"></script>
     <script type="module" src="./script/movement.js"></script>
 
 </head>
@@ -49,33 +49,16 @@
     </div>
 
     <div class="container">
+        <canvas id="campo" width="1469" height="626" class="centerHV"></canvas>
         <canvas id="playground" width="1469" height="626" class="centerHV"></canvas>
     </div>
 
 
-    <div id="joyDiv"></div>
-    JoyStick-->
-<script type="module">
-    import Movement from "./script/movement.js";
-    var options = {
-        zone: document.getElementById('joyDiv'),
-        mode: "static",
-        color: "red",
-        multitouch: true,
-        position: {
-            left: '100px',
-            bottom: '100px'
-        },
-        size: 150,
-    };
-    var manager = nipplejs.create(options);
-    
-    var m = new Movement();
-    
-    manager.on('start', m.startMovement());
-    manager.on('end', m.endMovement());
-    manager.on('move', m.nippleMove());
-</script>
+    <!--<div id="joyDiv"></div>
+    <script type="module">
+        import Movement from "./script/movement.js"; var options = { zone: document.getElementById('joyDiv'), mode: "static", color: "red", multitouch: true, position: { left: '100px', bottom: '100px' }, size: 150, }; var manager = nipplejs.create(options); var
+        m = new Movement(); manager.on('start', m.startMovement()); manager.on('end', m.endMovement()); manager.on('move', m.nippleMove());
+    </script>-->
 
     <!--<div id="joyDiv"></div>
     <script>
@@ -101,4 +84,5 @@
     </script>-->
 
 </body>
+
 </html>
