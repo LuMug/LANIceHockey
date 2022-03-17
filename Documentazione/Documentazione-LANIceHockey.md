@@ -59,13 +59,15 @@
 
 ### Abstract
 
-> *Have you ever wanted to play a simple game with your friends to have some fun, but didn't know what game to play? LANIceHockey enables you to play a simplefied version of ice hockey with your friends, and there are no limits to how many players can enter the match, everyone can play. You all connect yourselfs to the same network, a main computer with a sufficiantly big monitor will host the game, on it there will be the ice hockey field, meanwhile the controller to interact with your avatar will be on your phone. Now you and your friends can easily play together and have a good time.*
+> *Have you ever wanted to play a simple game with your friends to have some fun, but didn't know what game to play? LANIceHockey enables you to play a simplefied version of ice hockey with your 
+friends, and there are no limits to how many players can enter the match, everyone can play. You all connect yourselfs to the same network, a main computer with a sufficiantly big monitor will host 
+the game, on it there will be the ice hockey field, meanwhile the controller to interact with your avatar will be on your phone. Now you and your friends can easily play together and have a good time.*
 
 ### Scopo
 
-  Lo scopo del progetto (scopi didattici/scopi operativi). Dovrebbe
-  descrivere il mandato, ma non vanno ricopiate le informazioni del
-  quaderno dei compiti (che va invece allegato).
+Lo scopo di questo progetto è di creare un videogioco sull'hockey su ghiaccio, il gioco è in una LAN a se stante, per giocare bisogna quindi collegarsi al router apposito, il campo sarà sul monitor dalla macchina
+che ospita la partita, e il controller sarà sui telefoni delle persone che si uniscono alla partita. Non ci sono limiti su quanti giocatori possono entrare in partita, non ci sono presenti neanche le regole che sono normalmente
+presenti in una partita di hockey. Il controller permette all'utente di muoversi, tirare e cambiare squadra. È anche presente una classifica dove si vedono i 10 giocatori che hanno segnato più goal.
 
 ## Analisi
 
@@ -141,8 +143,103 @@
   |Req-14|Dovrà essere possibile la ricerca di allievi|1|1.0|...|
   
   
+|**ID: Req-001**|
+|-|
+|**Nome**      |Rappresentazione semi-reale di una partita di Hockey|
+|**Priorità**  | 1                                    |
+|**Versione**  | 1.0                                  |
+|**Note**      |  |
 
+|**ID: Req-002**|
+|-|
+|**Nome**      |La partita non ha un limite di giocatori|
+|**Priorità**  | 2                                   |
+|**Versione**  | 1.0                                  |
+|**Note**      |  |
 
+|**ID: Req-003**|
+|-|
+|**Nome**      |Gli utenti devono potersi collegare alla partita tramite telefono in LAN|
+|**Priorità**  | 1                                  |
+|**Versione**  | 1.0                                  |
+|**Note**      |  |
+
+|**ID: Req-004**|
+|-|
+|**Nome**      |Gli utenti devono poter muovere il loro giocatore telefono in LAN|
+|**Priorità**  | 1                                  |
+|**Versione**  | 1.0                                  |
+|**Note**      |  |
+
+|**ID: Req-005**|
+|-|
+|**Nome**      |Gli utenti devono poter tirare in porta|
+|**Priorità**  | 2                                  |
+|**Versione**  | 1.0                                  |
+|**Note**      |  |
+
+|**ID: Req-006**|
+|-|
+|**Nome**      |Devono esserci due squadre (verdi e gialli)|
+|**Priorità**  | 2                                  |
+|**Versione**  | 1.0                                  |
+|**Note**      |  |
+
+|**ID: Req-007**|
+|-|
+|**Nome**      |Gli utenti devono poter dare un nome al loro giocatore|
+|**Priorità**  | 2                                  |
+|**Versione**  | 1.0                                  |
+|**Note**      |  |
+
+|**ID: Req-008**|
+|-|
+|**Nome**      |Una volta assegnato il nome non può più essere cambiato|
+|**Priorità**  | 3                                  |
+|**Versione**  | 1.0                                  |
+|**Note**      |  |
+
+|**ID: Req-009**|
+|-|
+|**Nome**      |In alto a destra ci sarà una classifica con i 10 giocatori che hanno fatto più goal|
+|**Priorità**  | 2                                  |
+|**Versione**  | 1.0                                  |
+|**Note**      |  |
+
+|**ID: Req-010**|
+|-|
+|**Nome**      |I telefoni degli utenti agiranno solo da controller|
+|**Priorità**  | 1                                  |
+|**Versione**  | 1.0                                  |
+|**Note**      |  |
+
+|**ID: Req-011**|
+|-|
+|**Nome**      |Il campo di gioco viene visualizzato su un monitor a parte (non sugli schermi dei telefoni)|
+|**Priorità**  | 1                                  |
+|**Versione**  | 1.0                                  |
+|**Note**      |  |
+
+|**ID: Req-012**|
+|-|
+|**Nome**      |Il campo da gioco è visto dall’alto|
+|**Priorità**  | 2                                  |
+|**Versione**  | 1.0                                  |
+|**Note**      |  |
+
+|**ID: Req-013**|
+|-|
+|**Nome**      |La partita è infinita|
+|**Priorità**  | 3                                  |
+|**Versione**  | 1.0                                  |
+|**Note**      |  |
+
+|**ID: Req-014**|
+|-|
+|**Nome**      |Gli utenti devono potersi rubare il disco|
+|**Priorità**  | 2                                  |
+|**Versione**  | 1.0                                  |
+|**Note**      |  |
 
 **Spiegazione elementi tabella dei requisiti:**
 
@@ -165,28 +262,18 @@ vecchie dovranno essere inserite nei diari.
 **Note**: eventuali osservazioni importanti o riferimenti ad altri
 requisiti.
 
-**Sotto requisiti**: elementi che compongono il requisito.
-
 
 ### Use case
 
-I casi d’uso rappresentano l’interazione tra i vari attori e le
-funzionalità del prodotto.
+Ecco il nostro Use Case:
+![Use case](Assets/use-case.png)
+> Use case
 
 ### Pianificazione
 
-Prima di stabilire una pianificazione bisogna avere almeno una vaga idea
-del modello di sviluppo che si intende adottare. In questa sezione
-bisognerà inserire il modello concettuale di sviluppo che si seguirà
-durante il progetto. Gli elementi di riferimento per una buona
-pianificazione derivano da una scomposizione top-down della problematica
-del progetto.
-
-La pianificazione può essere rappresentata mediante un diagramma di
-Gantt.
-
-Se si usano altri metodi di pianificazione (es scrum), dovranno apparire
-in questo capitolo.
+Abbiamo scelto una pianificazione waterfall:
+![Gantt Preventivo](Assets/Img-GanttPreventivo.PNG)
+> Gantt preventivo
 
 ### Analisi dei mezzi
 
@@ -296,6 +383,8 @@ ripetibile alle stesse condizioni.
 |**Prerequisiti**|Store on local PC: Profile\_1.2.001.xml (appendix n\_n) and Cards\_1.2.001.txt (appendix n\_n) |
 |**Procedura**     | - Go to “Cards manager” menu, in main page click “Import Profiles” link, Select the “1.2.001.xml” file, Import the Profile - Go to “Cards manager” menu, in main page click “Import Cards” link, Select the “1.2.001.txt” file, Delete the cards, Select the “1.2.001.txt” file, Import the cards |
 |**Risultati attesi** |Keys visible in the DB (OtaCardKey) but not visible in the GUI (Card details) |
+
+
 
 
 ### Risultati test
