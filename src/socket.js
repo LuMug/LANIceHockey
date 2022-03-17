@@ -14,7 +14,6 @@ wss.on('connection', (ws, req) => {
             host = ws;
             console.log("Host connected");
         } else if (data.toString().split(";")[0] == "client") {
-            //data.split(";")[0].equals("client")
             if (host == "null") {
                 ws.send(host);
             }
@@ -28,6 +27,7 @@ wss.on('connection', (ws, req) => {
 
     ws.on("close", (ws) => {
         console.log("Client disconnected");
+        host.send("close;" + ws._socket.remoteAddress);
         clients.splice(clients.indexOf(ws), 1);
     });
 })

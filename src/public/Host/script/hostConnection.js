@@ -17,7 +17,8 @@ ws.addEventListener("open", () => {
         if (str[0] == "new") {
             console.log(str[2]);
             game.teams[0].addPlayer(new Player(str[2], 100, 100, str[1]));
-
+        } else if (str[0] == "close") {
+            game.getPlayerByIp(str[1]).team.removePlayer(getPlayerByIp(str[1]));
         } else {
             var num = Number(str[0]);
             var ip = str[1];
