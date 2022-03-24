@@ -211,6 +211,7 @@ vecchie dovranno essere inserite nei diari.
 ### Use case
 
 Ecco il nostro Use Case:
+
 ![Use case](Assets/use-case.PNG)
 > Use case
 
