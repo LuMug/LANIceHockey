@@ -1,5 +1,5 @@
 import Point from "./point.js";
-export default class Player {
+export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     name;
     scoredGoals = 0;

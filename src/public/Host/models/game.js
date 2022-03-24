@@ -1,6 +1,6 @@
 import Team from "./team.js";
 
-export default class Game {
+export default class Game extends Phaser.Scene {
 
 
 
@@ -8,10 +8,19 @@ export default class Game {
     teams;
 
     constructor() {
+        super({ key: 'Game' });
         this.teams = new Array(new Team("Green"), new Team("Yellow"));
         console.log("done");
 
         console.log(this.teams);
+    }
+
+    preload() {
+
+    }
+
+    create() {
+        var player1 = this.add.circle(200, 200, 80, 0x6666ff);
     }
 
     compare(a, b) {
@@ -79,7 +88,6 @@ export default class Game {
         var c = document.getElementById("playground");
         var ctx = c.getContext("2d");
 
-        console.log(this.teams);
         var h = c.height;
         var w = c.width;
 

@@ -7,35 +7,36 @@
     transform: translate(-50%, -50%);
 }
 
-.centerH{
+.centerH {
     position: absolute;
-    left: 50%; 
+    left: 50%;
     -ms-transform: translate(-50%);
     transform: translate(-50%);
 }
 
-.container { 
+.container {
     position: relative;
     height: 100%;
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
-.centerText{
+.centerText {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-  
-#leaderBoard{
-    position: absolute; 
-    top: 0%; 
+
+#leaderBoard {
+    position: absolute;
+    top: 0%;
     right: 0%;
     text-align: center;
 }
 
-ol{
+ol {
     text-align: left;
 }
