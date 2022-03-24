@@ -143,98 +143,98 @@ presenti in una partita di hockey. Il controller permette all'utente di muoversi
   |Req-14|Dovrà essere possibile la ricerca di allievi|1|1.0|...|
   
   
-|**ID: Req-001**|
+|**ID:** | **Req-001**|
 |-|-|
 |**Nome**      |Rappresentazione semi-reale di una partita di Hockey|
 |**Priorità**  | 1                                    |
 |**Versione**  | 1.0                                  |
 |**Note**      |  |
 
-|**ID: Req-002**|
+|**ID:** | **Req-002**|
 |-|-|
 |**Nome**      |La partita non ha un limite di giocatori|
 |**Priorità**  | 2                                   |
 |**Versione**  | 1.0                                  |
 |**Note**      |  |
 
-|**ID: Req-003**|
+|**ID:** | **Req-003**|
 |-|-|
 |**Nome**      |Gli utenti devono potersi collegare alla partita tramite telefono in LAN|
 |**Priorità**  | 1                                  |
 |**Versione**  | 1.0                                  |
 |**Note**      |  |
 
-|**ID: Req-004**|
+|**ID:** | **Req-004**|
 |-|-|
 |**Nome**      |Gli utenti devono poter muovere il loro giocatore telefono in LAN|
 |**Priorità**  | 1                                  |
 |**Versione**  | 1.0                                  |
 |**Note**      |  |
 
-|**ID: Req-005**|
+|**ID:** | **Req-005**|
 |-|-|
 |**Nome**      |Gli utenti devono poter tirare in porta|
 |**Priorità**  | 2                                  |
 |**Versione**  | 1.0                                  |
 |**Note**      |  |
 
-|**ID: Req-006**|
+|**ID:** | **Req-006**|
 |-|-|
 |**Nome**      |Devono esserci due squadre (verdi e gialli)|
 |**Priorità**  | 2                                  |
 |**Versione**  | 1.0                                  |
 |**Note**      |  |
 
-|**ID: Req-007**|
+|**ID:** | **Req-007**|
 |-|-|
 |**Nome**      |Gli utenti devono poter dare un nome al loro giocatore|
 |**Priorità**  | 2                                  |
 |**Versione**  | 1.0                                  |
 |**Note**      |  |
 
-|**ID: Req-008**|
+|**ID:** | **Req-008**|
 |-|-|
 |**Nome**      |Una volta assegnato il nome non può più essere cambiato|
 |**Priorità**  | 3                                  |
 |**Versione**  | 1.0                                  |
 |**Note**      |  |
 
-|**ID: Req-009**|
+|**ID:** | **Req-009**|
 |-|-|
 |**Nome**      |In alto a destra ci sarà una classifica con i 10 giocatori che hanno fatto più goal|
 |**Priorità**  | 2                                  |
 |**Versione**  | 1.0                                  |
 |**Note**      |  |
 
-|**ID: Req-010**|
+|**ID:** | **Req-010**|
 |-|-|
 |**Nome**      |I telefoni degli utenti agiranno solo da controller|
 |**Priorità**  | 1                                  |
 |**Versione**  | 1.0                                  |
 |**Note**      |  |
 
-|**ID: Req-011**|
+|**ID:** | **Req-011**|
 |-|-|
 |**Nome**      |Il campo di gioco viene visualizzato su un monitor a parte (non sugli schermi dei telefoni)|
 |**Priorità**  | 1                                  |
 |**Versione**  | 1.0                                  |
 |**Note**      |  |
 
-|**ID: Req-012**|
+|**ID:** | **Req-012**|
 |-|-|
 |**Nome**      |Il campo da gioco è visto dall’alto|
 |**Priorità**  | 2                                  |
 |**Versione**  | 1.0                                  |
 |**Note**      |  |
 
-|**ID: Req-013**|
+|**ID:** | **Req-013**|
 |-|-|
 |**Nome**      |La partita è infinita|
 |**Priorità**  | 3                                  |
 |**Versione**  | 1.0                                  |
 |**Note**      |  |
 
-|**ID: Req-014**|
+|**ID:** | **Req-014**|
 |-|-|
 |**Nome**      |Gli utenti devono potersi rubare il disco|
 |**Priorità**  | 2                                  |
