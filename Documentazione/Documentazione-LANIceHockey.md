@@ -148,98 +148,90 @@ presenti in una partita di hockey. Il controller permette all'utente di muoversi
 |**Nome**      |Rappresentazione semi-reale di una partita di Hockey|
 |**Priorità**  | 1                                    |
 |**Versione**  | 1.0                                  |
-|**Note**      |  |
 
 |**ID:** | **Req-002**|
 |-|-|
 |**Nome**      |La partita non ha un limite di giocatori|
 |**Priorità**  | 2                                   |
 |**Versione**  | 1.0                                  |
-|**Note**      |  |
 
 |**ID:** | **Req-003**|
 |-|-|
 |**Nome**      |Gli utenti devono potersi collegare alla partita tramite telefono in LAN|
 |**Priorità**  | 1                                  |
 |**Versione**  | 1.0                                  |
-|**Note**      |  |
 
 |**ID:** | **Req-004**|
 |-|-|
 |**Nome**      |Gli utenti devono poter muovere il loro giocatore telefono in LAN|
 |**Priorità**  | 1                                  |
 |**Versione**  | 1.0                                  |
-|**Note**      |  |
 
 |**ID:** | **Req-005**|
 |-|-|
 |**Nome**      |Gli utenti devono poter tirare in porta|
 |**Priorità**  | 2                                  |
 |**Versione**  | 1.0                                  |
-|**Note**      |  |
 
 |**ID:** | **Req-006**|
 |-|-|
 |**Nome**      |Devono esserci due squadre (verdi e gialli)|
 |**Priorità**  | 2                                  |
-|**Versione**  | 1.0                                  |
-|**Note**      |  |
+|**Versione**  | 1.0                                  ||
 
 |**ID:** | **Req-007**|
 |-|-|
 |**Nome**      |Gli utenti devono poter dare un nome al loro giocatore|
 |**Priorità**  | 2                                  |
 |**Versione**  | 1.0                                  |
-|**Note**      |  |
 
 |**ID:** | **Req-008**|
 |-|-|
 |**Nome**      |Una volta assegnato il nome non può più essere cambiato|
 |**Priorità**  | 3                                  |
 |**Versione**  | 1.0                                  |
-|**Note**      |  |
 
 |**ID:** | **Req-009**|
 |-|-|
 |**Nome**      |In alto a destra ci sarà una classifica con i 10 giocatori che hanno fatto più goal|
 |**Priorità**  | 2                                  |
 |**Versione**  | 1.0                                  |
-|**Note**      |  |
 
 |**ID:** | **Req-010**|
 |-|-|
 |**Nome**      |I telefoni degli utenti agiranno solo da controller|
 |**Priorità**  | 1                                  |
 |**Versione**  | 1.0                                  |
-|**Note**      |  |
 
 |**ID:** | **Req-011**|
 |-|-|
 |**Nome**      |Il campo di gioco viene visualizzato su un monitor a parte (non sugli schermi dei telefoni)|
 |**Priorità**  | 1                                  |
 |**Versione**  | 1.0                                  |
-|**Note**      |  |
 
 |**ID:** | **Req-012**|
 |-|-|
 |**Nome**      |Il campo da gioco è visto dall’alto|
 |**Priorità**  | 2                                  |
 |**Versione**  | 1.0                                  |
-|**Note**      |  |
 
 |**ID:** | **Req-013**|
 |-|-|
 |**Nome**      |La partita è infinita|
 |**Priorità**  | 3                                  |
 |**Versione**  | 1.0                                  |
-|**Note**      |  |
 
 |**ID:** | **Req-014**|
 |-|-|
 |**Nome**      |Gli utenti devono potersi rubare il disco|
 |**Priorità**  | 2                                  |
 |**Versione**  | 1.0                                  |
-|**Note**      |  |
+
+|**ID:** | **Req-015**|
+|-|-|
+|**Nome**      |Disco rimbalza contro le pareti|
+|**Priorità**  | 2                                  |
+|**Versione**  | 1.0                                  |
 
 **Spiegazione elementi tabella dei requisiti:**
 
@@ -259,14 +251,11 @@ requisito avrà una versione aggiornata.
 Sulla documentazione apparirà solamente l’ultima versione, mentre le
 vecchie dovranno essere inserite nei diari.
 
-**Note**: eventuali osservazioni importanti o riferimenti ad altri
-requisiti.
-
 
 ### Use case
 
 Ecco il nostro Use Case:
-![Use case](/Documentazione/Assets/use-case.PNG)
+![Use case](Assets/use-case.png)
 > Use case
 
 ### Pianificazione
@@ -369,23 +358,113 @@ Per eventuali dettagli si possono inserire riferimenti ai diari.
 
 ### Protocollo di test
 
-Definire in modo accurato tutti i test che devono essere realizzati per
-garantire l’adempimento delle richieste formulate nei requisiti. I test
-fungono da garanzia di qualità del prodotto. Ogni test deve essere
-ripetibile alle stesse condizioni.
-
-
 |Test Case      | TC-001                               |
 |---------------|--------------------------------------|
-|**Nome**       |Import a card, but not shown with the GUI |
-|**Riferimento**|REQ-012                               |
-|**Descrizione**|Import a card with KIC, KID and KIK keys with no obfuscation, but not shown with the GUI |
-|**Prerequisiti**|Store on local PC: Profile\_1.2.001.xml (appendix n\_n) and Cards\_1.2.001.txt (appendix n\_n) |
-|**Procedura**     | - Go to “Cards manager” menu, in main page click “Import Profiles” link, Select the “1.2.001.xml” file, Import the Profile - Go to “Cards manager” menu, in main page click “Import Cards” link, Select the “1.2.001.txt” file, Delete the cards, Select the “1.2.001.txt” file, Import the cards |
-|**Risultati attesi** |Keys visible in the DB (OtaCardKey) but not visible in the GUI (Card details) |
+|**Nome**       |Tutti gli elementi sommati creano una rappresentazione simile alla realtà|
+|**Riferimento**|REQ-001                               |
+|**Descrizione**|Provare il gioco e controllare che tutti gli elementi assieme generino una specie di partita di hockey.|
+|**Prerequisiti**| <ul><li>TC-003</li><li>TC-004 </li><li>TC-005</li><li>TC-006</li><li>TC-009</li></ul> |
+|**Procedura**     | Accedere al gioco in 4 o più e provare a fare una partita. |
+|**Risultati attesi** | Il gioco ricorda una partita di hockey. |
 
+|Test Case      | TC-002                               |
+|---------------|--------------------------------------|
+|**Nome**       |Nessun limite di giocatori|
+|**Riferimento**|REQ-002                              |
+|**Descrizione**|Bisogna provare a giocare con diversi dispositivi in maniera da controllare che non ci siano limiti nelle persone che giocano.|
+|**Prerequisiti**| TC-001 |
+|**Procedura**     |Collegheremo più dispostivi alla partita.|
+|**Risultati attesi** |Riusciremo a collegare tutti i dispositivi.|
 
+|Test Case      | TC-003                               |
+|---------------|--------------------------------------|
+|**Nome**       |Controllo collegamento in LAN|
+|**Riferimento**|REQ-003                              |
+|**Descrizione**|Bisogna controllare che i telefoni collegati alla LAN dove si hosta una partita riescano a collegarsi e a giocare.|
+|**Prerequisiti**| TC-001 |
+|**Procedura**     |Innanzitutto, bisogna collegarsi alla stessa rete, in seguito bisognerà accedere all’applicazione, bisognerà vedere sul PC host che si è aggiunto un nuovo giocatore e sul telefono saranno comparsi i controlli per muovere il giocatore.|
+|**Risultati attesi** |Sullo schermo sarà effettivamente comparso un giocatore nuovo.|
 
+|Test Case      | TC-004                               |
+|---------------|--------------------------------------|
+|**Nome**       |L’avatar risponde ai comandi del giocatore|
+|**Riferimento**|REQ-004                              |
+|**Descrizione**|Bisogna essere sicuri che l’avatar segua le istruzioni dell’utente e non si muova casualmente all’interno del campo o che non stia fermo.|
+|**Prerequisiti**| TC-003 |
+|**Procedura**     |Una volta collegati alla partita si proverà a fare un giro del campo magari facendo qualche zig zag per verificare che si muova correttamente.|
+|**Risultati attesi** |L’avatar segue i comandi del giocatore.|
+
+|Test Case      | TC-005                               |
+|---------------|--------------------------------------|
+|**Nome**       |Controllare che l’avatar possa tirare|
+|**Riferimento**|REQ-005                              |
+|**Descrizione**|Bisogna essere sicuri che l’avatar segua le istruzioni dell’utente e non si muova casualmente all’interno del campo o che non stia fermo.|
+|**Prerequisiti**| TC-004 |
+|**Procedura**     |Una volta fatto un giro di prova per controllare i comandi si recupera il disco e si preme il pulsante e il disco dovrebbe essere lanciato in avanti.|
+|**Risultati attesi** |Il disco parte effettivamente in avanti.|
+
+|Test Case      | TC-006                               |
+|---------------|--------------------------------------|
+|**Nome**       |Controllare che ci siano 2 squadre|
+|**Riferimento**|REQ-006                              |
+|**Descrizione**|Bisogna essere sicuri che l’avatar segua le istruzioni dell’utente e non si muova casualmente all’interno del campo o che non stia fermo.|
+|**Prerequisiti**| TC-004 |
+|**Procedura**     |Una volta fatto un giro di prova per controllare i comandi si recupera il disco e si preme il pulsante e il disco dovrebbe essere lanciato in avanti.|
+|**Risultati attesi** |Il disco parte effettivamente in avanti.|
+
+|Test Case      | TC-007                               |
+|---------------|--------------------------------------|
+|**Nome**       |Controllare che il nome sia scelto dall’utente ma che non lo possa cambiare a partita in corso.|
+|**Riferimento**|<ul><li>REQ-007</li><li>REQ-008</li></ul>|
+|**Descrizione**|Una volta collegati prima di essere creati si dovrà scegliere un nome, questo nome non potrà essere cambiato.|
+|**Prerequisiti**| TC-003 |
+|**Procedura**     |Collegarsi, dovremmo vedere una schermata che ci chiede il nome. In seguito, non sarà presente nessuna opzione per farlo.|
+|**Risultati attesi** |Il nome inserito verrà memorizzato e verrà mostrato sopra l’avatar corrispondente.|
+
+|Test Case      | TC-008                               |
+|---------------|--------------------------------------|
+|**Nome**       |Controllare che nello schermo dell’host ci sia una classifica.|
+|**Riferimento**|REQ-009|
+|**Descrizione**|Bisognerà guardare in alto a destra nello schermo dell’host per vedere che è presente la classifica dei top-scorer.|
+|**Prerequisiti**|<ul><li>TC-005</li><li>TC-007</li></ul>|
+|**Procedura**     |Entrando nella partita dovremo segnare per vedere comparire il nostro nome in classifica, se ciò accadrà vorrà dire che funziona correttamente.|
+|**Risultati attesi** |Il nome inserito inizialmente verrà inserito nella classifica con a fianco quanti gol ho fatto.|
+
+|Test Case      | TC-009                               |
+|---------------|--------------------------------------|
+|**Nome**       |Controllare che il nome sia scelto dall’utente ma che non lo possa cambiare a partita in corso.|
+|**Riferimento**|<ul><li>REQ-010</li><li>REQ-011</li><li>REQ-012</li></ul>|
+|**Descrizione**|Una volta collegati guarderemo lo schermino del telefono e vedremo i controlli, una volta guardato il monitor dell’host vedremo invece il campo visto dall’alto con i giocatori che si muovono.|
+|**Prerequisiti**|TC-003|
+|**Procedura**     |Collegarsi, dovremmo vedere una schermata che ci chiede il nome. In seguito, non sarà presente nessuna opzione per farlo.|
+|**Risultati attesi** |Il nome inserito verrà memorizzato e verrà mostrato sopra l’avatar corrispondente.|
+
+|Test Case      | TC-010                               |
+|---------------|--------------------------------------|
+|**Nome**       |Partita infinita|
+|**Riferimento**|REQ-013|
+|**Descrizione**|La partita terminerà solo quando l’host smetterà la sua attività.|
+|**Prerequisiti**|TC-003|
+|**Procedura**     |Non è semplice da testare ma si può lasciare andare la partita per un po’ di tempo e vedere che non si ferma.|
+|**Risultati attesi** |Non sarà presente nessun timer, e la partita non si fermerà se non interrotta dall’host.|
+
+|Test Case      | TC-011                               |
+|---------------|--------------------------------------|
+|**Nome**       |Rubare disco|
+|**Riferimento**|REQ-014|
+|**Descrizione**|Se un giocatore senza disco va addosso a uno con il disco, lo ottiene|
+|**Prerequisiti**|<ul><li>TC-003</li><li>TC-004</li></ul>|
+|**Procedura**     |Collegarsi alla partita con due utenti uno prende il disco, l'altro gli va addosso.|
+|**Risultati attesi** |Il giocatore senza disco dovrebbe ottonere il possesso del disco, mentre l'altro lo perde.|
+
+|Test Case      | TC-012                               |
+|---------------|--------------------------------------|
+|**Nome**       |Rimbazo disco|
+|**Riferimento**|REQ-014|
+|**Descrizione**|Il disco deve rimbalzare contro le pareti|
+|**Prerequisiti**|<ul><li>TC-003</li><li>TC-004</li></ul>|
+|**Procedura**     |Collegarsi alla partita con un utente, prendere il disco andandogli addosso e tirarlo contro una parete.|
+|**Risultati attesi** |Il disco rimbalza contro la parete.|
 
 ### Risultati test
 
