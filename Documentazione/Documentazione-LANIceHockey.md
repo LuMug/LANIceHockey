@@ -266,7 +266,7 @@ requisiti.
 ### Use case
 
 Ecco il nostro Use Case:
-![Use case](Assets/use-case.png)
+![Use case](/Assets/use-case.PNG)
 > Use case
 
 ### Pianificazione
