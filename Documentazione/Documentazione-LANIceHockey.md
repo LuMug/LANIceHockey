@@ -98,50 +98,6 @@ presenti in una partita di hockey. Il controller permette all'utente di muoversi
   -   …
 
 ### Analisi e specifica dei requisiti
-
-  Il progettista, dopo aver ricevuto il mandato, in collaborazione con il
-  committente redige una lista di requisiti. Durante questi incontri,
-  tramite interviste (da inserire nei diari), il progettista deve cercare
-  di rispondere alle seguenti domande:
-
-  -   Quali sono i bisogni del committente?
-
-  -   Quali funzioni deve svolgere il prodotto?
-
-  -   Come devono essere implementate?
-
-  -   L’utente, come vorrebbe/dovrebbe interagire con il prodotto?
-
-  -   Come verrà utilizzato il prodotto?
-
-  -   Che tipo di interfaccia si immagina?
-
-  -   Che prestazioni minime deve fornire il prodotto?
-
-  -   Che grado di sicurezza deve avere il prodotto?
-
-  -   …
-
-  In base alla lista dei requisiti e all’analisi degli stessi, il
-  progettista redige una *specifica dei requisiti* in cui elenca e
-  descrive in modo dettagliato quali sono le funzionalità che il prodotto
-  fornirà. La specifica dovrebbe essere abbastanza dettagliata da poter
-  essere utilizzata come base per lo sviluppo, ma non troppo; ad esempio
-  non dovrebbe contenere dettagli di implementazione, o definizioni
-  dettagliate dell’interfaccia grafica a meno che questi non siano
-  considerati cruciali. Non si deve scordare che i requisiti non
-  rappresentano delle attività bensì delle caratteristiche che il prodotto
-  dovrà possedere.
-
-
-
-
-  |**ID**	|**Nome**			|**Priorità**|**Vers**|**Note**  |
-  |----|------------|--------|----|------|
-  |Req-12|Dovrà esserci una maschera di login|1|1.0|...|
-  |Req-13|Si dovranno poter immettere nuovi allievi|1|1.0|...|
-  |Req-14|Dovrà essere possibile la ricerca di allievi|1|1.0|...|
-  
   
 |**ID:** | **Req-001**|
 |-|-|
@@ -277,6 +233,23 @@ Su quale piattaforma dovrà essere eseguito il prodotto? Che hardware
 particolare è coinvolto nel progetto? Che particolarità e limitazioni
 presenta? Che hw sarà disponibile durante lo sviluppo?
 
+#### Hardware
+- Computer1: 
+  - Processore: Intel(R) Core(TM) i5-7360U CPU @ 2.30GHz
+  - RAM: 16 GB
+- Computer2: 
+  - Processore: 
+  - RAM: 
+
+#### Software
+- OS Computer1: Windows 10 Enterprise versione 20H2 (build SO 19042.1586)
+- OS Computer2: Ubuntu 21.10
+- Visual Studio Code version 1.58
+- Notepad++ v8.1.4
+- Nipplejs v0.9.0
+- Nodejs v12.22.5
+- Phaser v3.55.2
+
 ## Progettazione
 
 Questo capitolo descrive esaustivamente come deve essere realizzato il
@@ -314,6 +287,14 @@ Descrizione delle interfacce interne ed esterne del sistema e
 dell’interfaccia utente. La progettazione delle interfacce è basata
 sulle informazioni ricavate durante la fase di analisi e realizzata
 tramite mockups.
+
+Design dell'interfaccia del campo da gioco:
+![Campo da gioco](Assets/Design-Interfaccia-Campo_LANIceHockey.PNG)
+> Campo da gioco
+
+Design dell'interfaccia del controller:
+![Controller](Assets/Design-Interfaccia-Controlle_LANIceHockey.PNG)
+> Controller
 
 ### Design procedurale
 
