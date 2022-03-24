@@ -18,16 +18,26 @@ wss.on('connection', (ws, req) => {
                 ws.send(host);
             }
             host.send("new;" + ws._socket.remoteAddress + ";" + data.toString().split(";")[1]);
-            clients.push(ws);
+            clients.push(new Array(ws, ws._socket.remoteAddress));
             console.log(clients.length);
         } else {
             host.send(data + ";" + ws._socket.remoteAddress);
         }
     });
 
-    ws.on("close", (ws) => {
+    ws.on("close", (num) => {
         console.log("Client disconnected");
-        host.send("close;" + ws._socket.remoteAddress);
-        clients.splice(clients.indexOf(ws), 1);
+        var ipToSend = removeWithWSFromClients(ws);
+        host.send("close;" + ipToSend);
     });
 })
+
+function removeWithWSFromClients(ws) {
+    for (let i = 0; i < clients.length; i++) {
+        if (clients[i][0] == ws) {
+            var returned = clients[i][1];
+            clients.splice(i, 1);
+            return returned;
+        }
+    }
+}

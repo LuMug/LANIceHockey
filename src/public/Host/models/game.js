@@ -1,7 +1,7 @@
 import Team from "./team.js";
-import Player from "../models/player.js";
 
 export default class Game {
+
 
 
     leaderboard = new Array();
@@ -9,6 +9,9 @@ export default class Game {
 
     constructor() {
         this.teams = new Array(new Team("Green"), new Team("Yellow"));
+        console.log("done");
+
+        console.log(this.teams);
     }
 
     compare(a, b) {
@@ -68,10 +71,15 @@ export default class Game {
         }
     }
 
+    startPaint() {
+        setInterval(this.repaintAllPlayer, 1000);
+    }
+
     repaintAllPlayer() {
         var c = document.getElementById("playground");
         var ctx = c.getContext("2d");
 
+        console.log(this.teams);
         var h = c.height;
         var w = c.width;
 

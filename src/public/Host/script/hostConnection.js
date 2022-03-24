@@ -8,6 +8,8 @@ ws.addEventListener("open", () => {
     ws.send("host");
 
     var game = new Game();
+    //var intervallRepaint = setInterval(game.repaintAllPlayer, 1000);
+    game.startPaint();
 
 
     ws.binaryType = "arraybuffer";
@@ -18,14 +20,14 @@ ws.addEventListener("open", () => {
             console.log(str[2]);
             game.teams[0].addPlayer(new Player(str[2], 100, 100, str[1]));
         } else if (str[0] == "close") {
-            game.getPlayerByIp(str[1]).team.removePlayer(getPlayerByIp(str[1]));
+            game.getPlayerByIp(str[1]).team.removePlayer(game.getPlayerByIp(str[1]));
+            //game.repaintAllPlayer();
         } else {
             var num = Number(str[0]);
             var ip = str[1];
-            //console.log(num + " " + ip);
             game.getPlayerByIp(str[1]).setAngle(num);
             move(game.getPlayerByIp(str[1]));
-            game.repaintAllPlayer();
+            //game.repaintAllPlayer();
         }
     }
 });
