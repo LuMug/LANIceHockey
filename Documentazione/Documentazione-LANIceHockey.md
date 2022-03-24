@@ -211,7 +211,7 @@ vecchie dovranno essere inserite nei diari.
 ### Use case
 
 Ecco il nostro Use Case:
-![Use case](Assets/use-case.png)
+![Use case](Assets/use-case.PNG)
 > Use case
 
 ### Pianificazione
@@ -289,11 +289,11 @@ sulle informazioni ricavate durante la fase di analisi e realizzata
 tramite mockups.
 
 Design dell'interfaccia del campo da gioco:
-![Campo da gioco](Assets/Design-Interfaccia-Campo_LANIceHockey.PNG)
+![Campo da gioco](Assets/Design-Interfaccia-Campo_LANIceHockey.png)
 > Campo da gioco
 
 Design dell'interfaccia del controller:
-![Controller](Assets/Design-Interfaccia-Controlle_LANIceHockey.PNG)
+![Controller](Assets/Design-Interfaccia-Controlle_LANIceHockey.png)
 > Controller
 
 ### Design procedurale
