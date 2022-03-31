@@ -8,11 +8,11 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     angle;
     intensity;
     team;
-    dimension = 10;
+    dimension = 20;
     ip;
 
     constructor(scene, name, posX, posY, ip, team) {
-        super(scene, posX, posY, 10, 10, team.color);
+        super(scene, posX, posY, 20, 20, team.color);
         this.name = name;
         this.pos = new Point(posX, posY);
         this.ip = ip;
@@ -29,7 +29,9 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     }
 
     update() {
-
+        //this.pos.moveBy(this.intensity * Math.cos(this.angle), this.intensity * Math.sin(this.angle));
+        this.body.setVelocity((this.intensity * Math.cos(this.angle * Math.PI / 180)), (this.intensity * Math.sin(this.angle * Math.PI / 180)));
+        //this.body.setVelocity(50, 50);
     }
 
     /*paint() {

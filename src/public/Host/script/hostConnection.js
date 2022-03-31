@@ -29,6 +29,8 @@ export default class Host {
                     var ip = str[2];
                     game.getPlayerByIp(ip).setAngle(num);
                     game.getPlayerByIp(ip).setIntensity(intensity);
+                    console.log("Funziona");
+                    game.getPlayerByIp(ip).update();
                     //move(game.getPlayerByIp(ip));
                     //game.repaintAllPlayer();
                 }

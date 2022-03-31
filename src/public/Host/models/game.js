@@ -24,13 +24,17 @@ export default class Game extends Phaser.Scene {
         //var player1 = new Player(this, "alf", 100, 100, "", this.teams[1]);
     }
 
-    update() {
-
+    update(time, delta) {
+        for (let i = 0; i < this.teams.length; i++) {
+            for (let j = 0; j < this.teams[i].players.length; j++) {
+                this.teams[i].players[j].update();
+            }
+        }
     }
 
     create_player(name, ip, team_number) {
-        this.teams[team_number].addPlayer(new Player(this, name, 100, 100, ip, this.teams[team_number]));
-        console.debug('new player added ' + name)
+        this.autoSetTeam().addPlayer(new Player(this, name, 100, 100, ip, this.autoSetTeam()));
+        console.debug('new player added ' + name);
     }
 
     compare(a, b) {
