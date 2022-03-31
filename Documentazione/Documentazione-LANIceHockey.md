@@ -41,7 +41,7 @@
 
   - [Considerazioni personali](#considerazioni-personali)
 
-8. [Sitografia](#sitografia)
+8. [Bibliografia](#bibliografia)
 
 9. [Allegati](#allegati)
 
@@ -479,21 +479,27 @@ facilmente generalizzabili o sono specifici di un caso particolare? ecc
 ### Considerazioni personali
   Cosa ho imparato in questo progetto? ecc
 
+  ##### Xavier Horisberger:
+  - 
+
+  ##### Nathan Ferrari:
+  - 
+
+  ##### Andrea Masciocchi:
+  - 
+  
+
+
 ## Bibliografia
 
 ### Sitografia
 
-1.  URL del sito (se troppo lungo solo dominio, evt completo nel
-    diario),
-
-2.  Eventuale titolo della pagina (in italico),
-
-3.  Data di consultazione (GG-MM-AAAA).
-
-**Esempio:**
-
--   http://standards.ieee.org/guides/style/section7.html, *IEEE
-    Standards Style Manual*, 07-06-2008.
+- https://www.youtube.com/watch?v=V1kNrsdVqWs, 03-02-2022
+- https://developer.mozilla.org/en-US/, *MDN Web Docs*, 10-02-2022
+- http://www.referencedesigner.com/, *Reference Designer Inc. - Engineering and Design Services*, 10.02.2022
+- https://favicon.io/emoji-favicons/ice-hockey/, *favicon.io - favicon.io*, 17-02-2022
+- https://media.istockphoto.com/vectors/ice-hockey-crossed-sticks-and-puck-icon-black-silhouette-isolated-on-vector-id1207437659?k=20&m=1207437659&s=170667a&w=0&h=EOxTs6V_YZeujFtrG8GkFv9zSVpUk5jwYu5Ubh9Uf4U=, 17-02-2022
+- https://getcssscan.com/css-buttons-examples, *84 Beautiful CSS buttons examples - CSS Scan*, 24-02-2022
 
 ## Allegati
 
