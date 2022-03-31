@@ -14,11 +14,6 @@
     transform: translate(-50%);
 }
 
-.container {
-    position: relative;
-    height: 100%;
-}
-
 html,
 body {
     height: 100%;

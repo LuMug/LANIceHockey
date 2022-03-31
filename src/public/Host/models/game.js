@@ -1,8 +1,8 @@
+import Player from "./player.js";
 import Team from "./team.js";
+import Host from "../script/hostConnection.js"
 
 export default class Game extends Phaser.Scene {
-
-
 
     leaderboard = new Array();
     teams;
@@ -13,6 +13,7 @@ export default class Game extends Phaser.Scene {
         console.log("done");
 
         console.log(this.teams);
+        var conn = new Host(this);
     }
 
     preload() {
@@ -20,7 +21,16 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
-        var player1 = this.add.circle(200, 200, 80, 0x6666ff);
+        //var player1 = new Player(this, "alf", 100, 100, "", this.teams[1]);
+    }
+
+    update() {
+
+    }
+
+    create_player(name, ip, team_number) {
+        this.teams[team_number].addPlayer(new Player(this, name, 100, 100, ip, this.teams[team_number]));
+        console.debug('new player added ' + name)
     }
 
     compare(a, b) {
@@ -63,6 +73,13 @@ export default class Game extends Phaser.Scene {
             this.teams[1].removePlayer(player);
             this.teams[0].addPlayer(player);
         }
+    }
+
+    autoSetTeam() {
+        if (this.teams[0].players.length > this.teams[1].players.length) {
+            return this.teams[0];
+        }
+        return this.teams[1];
     }
 
     score(player) {

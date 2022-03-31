@@ -14,10 +14,7 @@
 
     <!--<script src="./script/game.js"></script>-->
 
-    <script src="./modules/phaser/phaser.js"></script>
-    <script src="./modules/phaser/phaser-arcade-physics.js"></script>
-
-    <script type="module" src="./script/hostConnection.js"></script>
+    <!--<script type="module" src="./script/hostConnection.js"></script>-->
     <script type="module" src="./script/main.js"></script>
 
     <link rel="stylesheet" href="./style/HostView.css">
@@ -27,6 +24,7 @@
 </head>
 
 <body onload="printPlayground()">
+
     <div id="scoreBoard" class="centerH">
         <h2>Score</h2>
         <div class="centerText">
@@ -52,8 +50,7 @@
         </ol>
     </div>
 
-    <div class="container">
-        <canvas id="campo" width="1469" height="626" class="centerHV"></canvas>
+    <div class="centerHV" id="container">
         <canvas id="playground" width="1469" height="626" class="centerHV"></canvas>
     </div>
 

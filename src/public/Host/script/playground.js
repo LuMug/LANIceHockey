@@ -1,5 +1,5 @@
 function printPlayground() {
-    var c = document.getElementById("campo");
+    var c = document.getElementById("playground");
     var ctx = c.getContext("2d");
 
     var spessoreBalaustre = 8;

@@ -17,6 +17,6 @@ export function move(player) {
     } else if (player.angle > 247.5 && player.angle < 292.5) {
         player.pos.moveBy(0, 1);
     } else if (player.angle > 292.5 && player.angle < 337, 5) {
-        player.pos.moveBy(1, 1)
+        player.pos.moveBy(1, 1);
     }
 }

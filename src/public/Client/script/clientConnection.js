@@ -31,5 +31,5 @@ var options = {
 };
 var manager = nipplejs.create(options);
 manager.on('move', function(evt, data) {
-    ws.send(data.angle.degree);
+    ws.send(data.angle.degree + ";" + data.distance);
 });
