@@ -16,7 +16,7 @@
 #### Mandato:
 - [Mandato](/Documentazione/QdC_LM_LANIceHoceky.docx)	
 #### Struttura:
-- [Gantt preventivo](/Documentazione/GanttPreventivo-LANIceHockey.mpp)
+- [Gantt preventivo](/Documentazione/Gantt/GanttPreventivo-LANIceHockey.mpp)
 
 
 - [Diari di lavoro](Diario/)
