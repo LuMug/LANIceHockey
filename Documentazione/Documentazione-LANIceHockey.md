@@ -72,6 +72,10 @@ presenti in una partita di hockey. Il controller permette all'utente di muoversi
 
 ### Analisi del dominio
 
+  Il prodotto può essere utilizzato sia su Windows sia su Linux, ma bisogna essere collegati ad un router appositamente usato per questo progetto. 
+  Una volta connessi al router si cerca il sito apposito, una volta sul sito del prodotto si può scegliere se essere l'host o se essere un giocatore. Può esserci un solo host e i giocatori possono connettersi alla partita solo se è già presente un host.
+
+
   Questo capitolo dovrebbe descrivere il contesto in cui il prodotto verrà
   utilizzato, da questa analisi dovrebbero scaturire le risposte a quesiti
   quali ad esempio:
@@ -252,11 +256,6 @@ presenta? Che hw sarà disponibile durante lo sviluppo?
 
 ## Progettazione
 
-Questo capitolo descrive esaustivamente come deve essere realizzato il
-prodotto fin nei suoi dettagli. Una buona progettazione permette
-all’esecutore di evitare fraintendimenti e imprecisioni
-nell’implementazione del prodotto.
-
 ### Design dell’architettura del sistema
 
 Descrive:
@@ -271,22 +270,20 @@ Descrive:
 
 -   Eventuale sitemap
 
+Diagramma delle classi che compongono il nostro progetto:
+![Diagramma delle classi](Assets/DiagrammaDelleClassi.PNG)
+> Diagramma delle classi 
+
+Diagramma di flusso dei dati:
+![DFD](Assets/DFD.PNG)
+> DFD
+
 ### Design dei dati e database
 
 Descrizione delle strutture di dati utilizzate dal programma in base
 agli attributi e le relazioni degli oggetti in uso.
 
-### Schema E-R, schema logico e descrizione.
-
-Se il diagramma E-R viene modificato, sulla doc dovrà apparire l’ultima
-versione, mentre le vecchie saranno sui diari.
-
 ### Design delle interfacce
-
-Descrizione delle interfacce interne ed esterne del sistema e
-dell’interfaccia utente. La progettazione delle interfacce è basata
-sulle informazioni ricavate durante la fase di analisi e realizzata
-tramite mockups.
 
 Design dell'interfaccia del campo da gioco:
 ![Campo da gioco](Assets/Design-Interfaccia-Campo_LANIceHockey.png)
