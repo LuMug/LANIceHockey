@@ -29,6 +29,7 @@ wss.on('connection', (ws, req) => {
         console.log("Client disconnected");
         var ipToSend = removeWithWSFromClients(ws);
         host.send("close;" + ipToSend);
+
     });
 })
 

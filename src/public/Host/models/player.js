@@ -4,7 +4,6 @@ export default class Player extends Phaser.GameObjects.Ellipse {
 
     name;
     scoredGoals = 0;
-    pos; //TODO remove
     angle = 0;
     intensity = 0;
     team;
@@ -14,7 +13,6 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     constructor(scene, name, posX, posY, ip, team) {
         super(scene, posX, posY, 20, 20, team.color);
         this.name = name;
-        this.pos = new Point(posX, posY);
         this.ip = ip;
         scene.physics.world.enable(this);
         scene.add.existing(this);

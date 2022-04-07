@@ -106,18 +106,4 @@ export default class Game extends Phaser.Scene {
         setInterval(this.repaintAllPlayer, 1000);
     }
 
-    repaintAllPlayer() {
-        var c = document.getElementById("playground");
-        var ctx = c.getContext("2d");
-
-        var h = c.height;
-        var w = c.width;
-
-        ctx.clearRect(0, 0, w, h);
-        for (let i = 0; i < this.teams.length; i++) {
-            for (let j = 0; j < this.teams[i].players.length; j++) {
-                this.teams[i].players[j].paint();
-            }
-        }
-    }
 }
