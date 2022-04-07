@@ -72,7 +72,7 @@ presenti in una partita di hockey. Il controller permette all'utente di muoversi
 
 ### Analisi del dominio
 
-  Il prodotto può essere utilizzato sia su Windows sia su Linux, ma bisogna essere collegati ad un router appositamente usato per questo progetto. 
+  Il prodotto può essere utilizzato su qualsiasi piattaforma, ma bisogna essere collegati ad un router appositamente usato per questo progetto. 
   Una volta connessi al router si cerca il sito apposito, una volta sul sito del prodotto si può scegliere se essere l'host o se essere un giocatore. Può esserci un solo host e i giocatori possono connettersi alla partita solo se è già presente un host.
 
 
