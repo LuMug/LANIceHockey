@@ -1,8 +1,14 @@
-export default class Puck{
+import "./../modules/phaser/phaser.min.js";
 
-    currPos;
+export default class Puck extends Phaser.GameObjects.Ellipse {
 
-    constructor(x, y){
-        currPos = new Point(x, y);
+
+
+    constructor(scene, posX, posY) {
+        super(scene, posX, posY, 10, 10, 0x000000);
+        scene.physics.world.enable(this);
+        scene.add.existing(this);
     }
+
+
 }

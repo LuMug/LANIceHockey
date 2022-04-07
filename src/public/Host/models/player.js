@@ -1,4 +1,3 @@
-import Point from "./point.js";
 import "./../modules/phaser/phaser.min.js";
 export default class Player extends Phaser.GameObjects.Ellipse {
 
@@ -29,11 +28,8 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     update() {
         var x = (this.intensity * Math.cos(this.angle * Math.PI / 180)) * 2;
         var y = -(this.intensity * Math.sin(this.angle * Math.PI / 180)) * 2;
-        //console.log(this.intensity);
-        //console.log(this.angle);
-        console.log('name: ' + this.name + ', ip: ' + this.ip + ' [' + x + ";" + y + '], team: ' + this.team.color);
+        //console.log('name: ' + this.name + ', ip: ' + this.ip + ' [' + x + ";" + y + '], team: ' + this.team.color);
         this.body.setVelocity(x, y);
-        //this.body.setVelocity(50, 50);
     }
 
     /*paint() {

@@ -1,6 +1,7 @@
 function printPlayground() {
     var c = document.getElementById("playground");
     var ctx = c.getContext("2d");
+    //ctx.globalAlpha = 0.5;
 
     var spessoreBalaustre = 8;
     var raggioAngoli = 85;

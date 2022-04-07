@@ -14,9 +14,6 @@ ws.addEventListener("open", () => {
     }
 });
 
-
-
-
 var x = 100;
 var y = 100;
 var options = {
@@ -34,3 +31,7 @@ var manager = nipplejs.create(options);
 manager.on('move', function(evt, data) {
     ws.send(data.angle.degree + ";" + data.distance);
 });
+
+manager.on('end', function(evt, data) {
+    ws.send(0 + ";" + 0);
+})

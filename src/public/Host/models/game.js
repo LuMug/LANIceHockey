@@ -1,6 +1,7 @@
 import Player from "./player.js";
 import Team from "./team.js";
 import Host from "../script/hostConnection.js"
+import Puck from "./puck.js";
 
 export default class Game extends Phaser.Scene {
 
@@ -21,8 +22,7 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
-        game.physics.startSystem(Phaser.Physics.ARCADE);
-
+        this.create_puck();
     }
 
     update(time, delta) {
@@ -35,17 +35,23 @@ export default class Game extends Phaser.Scene {
 
     create_player(name, ip) {
         var team = this.autoSetTeam();
-        team.addPlayer(new Player(this, name, 100, 100, ip, team));
+        var p = new Player(this, name, 100, 100, ip, team);
+        team.addPlayer(p);
         console.debug('new player added ' + name);
     }
 
-    enablePhysicsByIp(ip){
+    create_puck() {
+        var puck = new Puck(this, 734, 313);
+        console.log("Puck created");
+    }
+
+    enablePhysicsByIp(ip) {
         var player = this.getPlayerByIp(ip);
 
         game.physics.arcade.enable(player);
 
         player.body.collideWorldBounds = true;
-	    player.body.allowGravity = false;
+        player.body.allowGravity = false;
     }
 
     compare(a, b) {

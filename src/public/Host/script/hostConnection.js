@@ -21,6 +21,7 @@ export default class Host {
 
                     game.create_player(name, ip)
                 } else if (str[0] == "close") {
+                    game.getPlayerByIp(str[1]).destroy();
                     game.getPlayerByIp(str[1]).team.removePlayer(game.getPlayerByIp(str[1]));
                 } else {
                     var num = Number(str[0]);

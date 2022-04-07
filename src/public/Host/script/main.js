@@ -9,12 +9,13 @@ var SET_HEIGHT = document.getElementById("playground").height;
 const config = {
     // For more settings see <https://github.com/photonstorm/phaser/blob/master/src/boot/Config.js>
     type: Phaser.AUTO,
-    pixelArt: true,
+    //pixelArt: true,
     roundPixels: true,
     parent: 'container',
     width: SET_WIDTH,
     height: SET_HEIGHT,
-    backgroundColor: "#FFFFFF",
+    //backgroundColor: "#FFFFFF",
+    transparent: true,
     physics: {
         default: 'arcade',
         arcade: {

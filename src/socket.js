@@ -41,4 +41,5 @@ function removeWithWSFromClients(ws) {
             return returned;
         }
     }
+    return -1;
 }
