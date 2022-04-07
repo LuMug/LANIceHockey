@@ -21,7 +21,8 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
-        //var player1 = new Player(this, "alf", 100, 100, "", this.teams[1]);
+        game.physics.startSystem(Phaser.Physics.ARCADE);
+
     }
 
     update(time, delta) {
@@ -36,6 +37,15 @@ export default class Game extends Phaser.Scene {
         var team = this.autoSetTeam();
         team.addPlayer(new Player(this, name, 100, 100, ip, team));
         console.debug('new player added ' + name);
+    }
+
+    enablePhysicsByIp(ip){
+        var player = this.getPlayerByIp(ip);
+
+        game.physics.arcade.enable(player);
+
+        player.body.collideWorldBounds = true;
+	    player.body.allowGravity = false;
     }
 
     compare(a, b) {
