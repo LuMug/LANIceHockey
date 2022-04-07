@@ -9,7 +9,7 @@ export default class Game extends Phaser.Scene {
 
     constructor() {
         super({ key: 'Game' });
-        this.teams = new Array(new Team("Green"), new Team("Yellow"));
+        this.teams = new Array(new Team("Green", 0x05871b), new Team("Yellow", 0xf0d31a));
         console.log("done");
 
         console.log(this.teams);
@@ -32,8 +32,9 @@ export default class Game extends Phaser.Scene {
         }
     }
 
-    create_player(name, ip, team_number) {
-        this.autoSetTeam().addPlayer(new Player(this, name, 100, 100, ip, this.autoSetTeam()));
+    create_player(name, ip) {
+        var team = this.autoSetTeam();
+        team.addPlayer(new Player(this, name, 100, 100, ip, team));
         console.debug('new player added ' + name);
     }
 
@@ -81,9 +82,9 @@ export default class Game extends Phaser.Scene {
 
     autoSetTeam() {
         if (this.teams[0].players.length > this.teams[1].players.length) {
-            return this.teams[0];
+            return this.teams[1];
         }
-        return this.teams[1];
+        return this.teams[0];
     }
 
     score(player) {

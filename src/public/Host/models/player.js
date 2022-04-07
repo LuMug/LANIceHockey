@@ -4,9 +4,9 @@ export default class Player extends Phaser.GameObjects.Ellipse {
 
     name;
     scoredGoals = 0;
-    pos;
-    angle;
-    intensity;
+    pos; //TODO remove
+    angle = 0;
+    intensity = 0;
     team;
     dimension = 20;
     ip;
@@ -29,8 +29,12 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     }
 
     update() {
-        //this.pos.moveBy(this.intensity * Math.cos(this.angle), this.intensity * Math.sin(this.angle));
-        this.body.setVelocity((this.intensity * Math.cos(this.angle * Math.PI / 180)), (this.intensity * Math.sin(this.angle * Math.PI / 180)));
+        var x = (this.intensity * Math.cos(this.angle * Math.PI / 180)) * 2;
+        var y = -(this.intensity * Math.sin(this.angle * Math.PI / 180)) * 2;
+        //console.log(this.intensity);
+        //console.log(this.angle);
+        console.log('name: ' + this.name + ', ip: ' + this.ip + ' [' + x + ";" + y + '], team: ' + this.team.color);
+        this.body.setVelocity(x, y);
         //this.body.setVelocity(50, 50);
     }
 

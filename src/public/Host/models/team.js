@@ -1,9 +1,11 @@
 export default class Team {
 
     players = new Array();
+    name;
     color;
 
-    constructor(color) {
+    constructor(name, color) {
+        this.name = name;
         this.color = color;
     }
 

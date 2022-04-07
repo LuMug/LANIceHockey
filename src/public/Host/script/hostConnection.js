@@ -19,7 +19,7 @@ export default class Host {
                     let ip = str[1];
                     console.log('new player connecting ' + name);
 
-                    game.create_player(name, ip, 0)
+                    game.create_player(name, ip)
                 } else if (str[0] == "close") {
                     game.getPlayerByIp(str[1]).team.removePlayer(game.getPlayerByIp(str[1]));
                     //game.repaintAllPlayer();
@@ -29,8 +29,8 @@ export default class Host {
                     var ip = str[2];
                     game.getPlayerByIp(ip).setAngle(num);
                     game.getPlayerByIp(ip).setIntensity(intensity);
-                    console.log("Funziona");
-                    game.getPlayerByIp(ip).update();
+                    //console.log("Funziona");
+                    //game.getPlayerByIp(ip).update();
                     //move(game.getPlayerByIp(ip));
                     //game.repaintAllPlayer();
                 }
