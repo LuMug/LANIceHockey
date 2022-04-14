@@ -20,6 +20,10 @@ export default class Host {
                     game.getPlayerByIp(str[1]).followText.destroy();
                     game.getPlayerByIp(str[1]).destroy();
                     game.getPlayerByIp(str[1]).team.removePlayer(game.getPlayerByIp(str[1]));
+                }
+                if (str[0] == "team") {
+                    var ip = str[1];
+                    game.switchTeam(game.getPlayerByIp(ip));
                 } else {
                     var num = Number(str[0]);
                     var intensity = Number(str[1]);
