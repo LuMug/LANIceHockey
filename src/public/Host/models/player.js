@@ -1,4 +1,4 @@
-import "./../modules/phaser/phaser.min.js";
+//import "./../modules/phaser/phaser.min.js";
 export default class Player extends Phaser.GameObjects.Ellipse {
 
     name;

@@ -8,21 +8,24 @@ export default class Game extends Phaser.Scene {
     leaderboard = new Array();
     teams;
     puck;
+    game_width = 0;
+    game_height = 0;
 
     constructor() {
         super({ key: 'Game' });
         this.teams = new Array(new Team("Green", 0x05871b), new Team("Yellow", 0xf0d31a));
         console.log("done");
-
         console.log(this.teams);
         var conn = new Host(this);
     }
 
     preload() {
-
+        this.canvas = this.sys.game.canvas;
     }
 
     create() {
+        this.game_width = this.canvas.width;
+        this.game_height = this.canvas.height;
         this.create_puck();
     }
 
@@ -39,18 +42,17 @@ export default class Game extends Phaser.Scene {
         var p = new Player(this, name, 100, 100, ip, team);
         team.addPlayer(p);
         console.debug('new player added ' + name);
-        this.physics.add.overlap(p,this.puck,this.puck.setPlayer(p));
+        this.physics.add.overlap(p, this.puck, this.puck.setPlayer(p));
     }
 
     create_puck() {
-        puck = new Puck(this, 734, 313);
-        console.log("Puck created");
+        this.puck = new Puck(this, this.game_width / 2, this.game_height / 2);
     }
 
     enablePhysicsByIp(ip) {
         var player = this.getPlayerByIp(ip);
 
-        game.physics.arcade.enable(player);
+        //game.physics.arcade.enable(player); //TODO chk where game is defined... ma not be
 
         player.body.collideWorldBounds = true;
         player.body.allowGravity = false;
