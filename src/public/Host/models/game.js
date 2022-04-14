@@ -2,6 +2,7 @@ import Player from "./player.js";
 import Team from "./team.js";
 import Host from "../script/hostConnection.js"
 import Puck from "./puck.js";
+import { SET_HEIGHT, SET_WIDTH } from "../script/main.js";
 
 export default class Game extends Phaser.Scene {
 
@@ -26,6 +27,110 @@ export default class Game extends Phaser.Scene {
     create() {
         this.game_width = this.canvas.width;
         this.game_height = this.canvas.height;
+        var spessoreBordi = 8;
+        var raggioAngoli = 85;
+        var highSide = new Phaser.Geom.Rectangle(raggioAngoli,0,SET_WIDTH-2*raggioAngoli,spessoreBordi);
+        var lowSide = new Phaser.Geom.Rectangle(raggioAngoli,SET_HEIGHT-spessoreBordi,SET_WIDTH-2*raggioAngoli,spessoreBordi);
+        var leftSide = new Phaser.Geom.Rectangle(0,raggioAngoli,spessoreBordi,SET_HEIGHT-2*raggioAngoli);
+        var rightSide = new Phaser.Geom.Rectangle(SET_WIDTH-spessoreBordi,raggioAngoli,spessoreBordi,SET_HEIGHT-2*raggioAngoli);
+        var centralRow = new Phaser.Geom.Rectangle(SET_WIDTH / 2 - spessoreBordi / 2, spessoreBordi, spessoreBordi, SET_HEIGHT);
+        var leftThird = new Phaser.Geom.Rectangle((SET_WIDTH - raggioAngoli * 2) / 4 + raggioAngoli, spessoreBordi, spessoreBordi, SET_HEIGHT - spessoreBordi * 2);
+        var rightThird = new Phaser.Geom.Rectangle((SET_WIDTH - raggioAngoli * 2) / 4 * 3 + raggioAngoli, spessoreBordi, spessoreBordi, SET_HEIGHT - spessoreBordi * 2);
+        var leftNetRow = new Phaser.Geom.Rectangle(raggioAngoli, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
+        var rightNetRow = new Phaser.Geom.Rectangle(SET_WIDTH - raggioAngoli - 2*spessoreBordi - spessoreBordi/2, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
+        
+        var graphics = this.add.graphics({ fillStyle: { color: 0x000000 } });
+
+        graphics.fillRectShape(highSide);
+        graphics.fillRectShape(lowSide);
+        graphics.fillRectShape(leftSide);
+        graphics.fillRectShape(rightSide);
+
+        graphics = this.add.graphics({ fillStyle: { color: 0xFF0000 } });
+
+        graphics.fillRectShape(centralRow);
+        graphics.fillRectShape(rightNetRow);
+        graphics.fillRectShape(leftNetRow);
+
+        graphics = this.add.graphics({ fillStyle: { color: 0x0000FF } });
+
+        graphics.fillRectShape(rightThird);
+        graphics.fillRectShape(leftThird);
+
+        graphics = this.add.graphics();
+        graphics.lineStyle(spessoreBordi, 0x000000, 1);
+        graphics.beginPath();
+        graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi/2, SET_HEIGHT - raggioAngoli -spessoreBordi/2, raggioAngoli, 0.5 * Math.PI, 0, true);
+        graphics.strokePath();
+        graphics.beginPath();
+        graphics.arc(raggioAngoli + spessoreBordi/2, SET_HEIGHT - raggioAngoli - spessoreBordi/2, raggioAngoli, 1 * Math.PI, 0.5  * Math.PI, true);
+        graphics.strokePath();
+        graphics.beginPath();
+        graphics.arc(raggioAngoli + spessoreBordi/2, raggioAngoli + spessoreBordi/2, raggioAngoli, 1.5 * Math.PI, 1 * Math.PI,true);
+        graphics.strokePath();
+        graphics.beginPath();
+        graphics.arc(SET_WIDTH - (raggioAngoli + spessoreBordi/2), raggioAngoli + spessoreBordi/2, raggioAngoli, 0, 1.5 * Math.PI, true);
+        graphics.strokePath();
+        graphics.lineStyle(spessoreBordi, 0x0000FF, 1);
+        graphics.beginPath();
+        graphics.arc(SET_WIDTH / 2, SET_HEIGHT / 2, raggioAngoli, 0, 2 * Math.PI, true);
+        graphics.strokePath();
+        graphics.fillStyle(0xFF0000, 1);
+        graphics.beginPath();
+        graphics.arc(SET_WIDTH/ 2, SET_HEIGHT / 2, spessoreBordi * 2, 0, 2 * Math.PI, true);
+        graphics.fillPath();
+        graphics.lineStyle(spessoreBordi/2, 0xFF0000, 1);
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + raggioAngoli, SET_HEIGHT / 4, raggioAngoli, 0, 2 * Math.PI);
+        graphics.strokePath();
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + raggioAngoli, SET_HEIGHT / 4 * 3, raggioAngoli, 0, 2 * Math.PI);
+        graphics.strokePath();
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 3 + raggioAngoli, SET_HEIGHT / 4, raggioAngoli, 0, 2 * Math.PI);
+        graphics.strokePath();
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 3 + raggioAngoli, SET_HEIGHT / 4 * 3, raggioAngoli, 0, 2 * Math.PI);
+        graphics.strokePath();
+        graphics.fillStyle(0xFF0000, 1);
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 + raggioAngoli, SET_HEIGHT / 4, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.fillPath();
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH- 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4+ raggioAngoli, SET_HEIGHT / 4 * 3, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.fillPath();
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 2+ raggioAngoli, SET_HEIGHT / 4, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.fillPath();
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH- 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 2+ raggioAngoli, SET_HEIGHT / 4 * 3, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.fillPath();
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 3+ raggioAngoli, SET_HEIGHT / 4, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.fillPath();
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH- 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 3+ raggioAngoli, SET_HEIGHT / 4 * 3, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.fillPath();
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 0 + raggioAngoli, SET_HEIGHT / 4, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.fillPath();
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH- 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 0 + raggioAngoli, SET_HEIGHT / 4 * 3, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.fillPath();
+        graphics.fillStyle(0x43c2e8, 1);
+        graphics.beginPath();
+        graphics.arc(raggioAngoli, SET_HEIGHT / 2, raggioAngoli / 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
+        graphics.fillPath();
+        graphics.beginPath();
+        graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi*2 + 1, SET_HEIGHT / 2, raggioAngoli / 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
+        graphics.fillPath();
+        graphics.lineStyle(spessoreBordi, 0x000000, 1);
+        graphics.beginPath();
+        graphics.arc(raggioAngoli, SET_HEIGHT / 2, raggioAngoli / 2 - spessoreBordi * 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
+        graphics.strokePath();
+        graphics.beginPath();
+        graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2 - spessoreBordi * 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
+        graphics.strokePath();
         this.create_puck();
 
     }
