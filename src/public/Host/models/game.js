@@ -7,6 +7,7 @@ export default class Game extends Phaser.Scene {
 
     leaderboard = new Array();
     teams;
+    puck;
 
     constructor() {
         super({ key: 'Game' });
@@ -38,10 +39,11 @@ export default class Game extends Phaser.Scene {
         var p = new Player(this, name, 100, 100, ip, team);
         team.addPlayer(p);
         console.debug('new player added ' + name);
+        this.physics.add.overlap(p,this.puck,this.puck.setPlayer(p));
     }
 
     create_puck() {
-        var puck = new Puck(this, 734, 313);
+        puck = new Puck(this, 734, 313);
         console.log("Puck created");
     }
 
