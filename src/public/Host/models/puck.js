@@ -12,12 +12,13 @@ export default class Puck extends Phaser.GameObjects.Ellipse {
     }
 
     setPlayer(p) {
+        console.log('setting puck to player: ' + p.name);
         this.player = p;
     }
 
     update() {
         if (this.player != null) {
-            this.setPosition(player.x, player.y);
+            this.setPosition(this.player.x, this.player.y);
         }
     }
 }

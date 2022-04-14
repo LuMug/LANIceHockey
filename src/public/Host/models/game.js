@@ -27,6 +27,7 @@ export default class Game extends Phaser.Scene {
         this.game_width = this.canvas.width;
         this.game_height = this.canvas.height;
         this.create_puck();
+
     }
 
     update(time, delta) {
@@ -35,6 +36,7 @@ export default class Game extends Phaser.Scene {
                 this.teams[i].players[j].update();
             }
         }
+        this.puck.update();
     }
 
     create_player(name, ip) {
@@ -42,12 +44,24 @@ export default class Game extends Phaser.Scene {
         var p = new Player(this, name, 100, 100, ip, team);
         team.addPlayer(p);
         console.debug('new player added ' + name);
-        this.physics.add.overlap(p, this.puck, this.puck.setPlayer(p));
+        //this.physics.add.collider(p, this.puck);
+        //var pGroup = this.add.group();
+        //pGroup.add(p);
+
+        //TODO move creation of the collider/overlap inside player and save it as variable for toggling
+        this.physics.add.collider(p, this.puck, this.change_puck_owner);
+    }
+
+    change_puck_owner(player, puck) {
+        //la variabule this.puck non esiste in questo scope!
+        console.log('change_puck_owner to: ' + player.name);
+        puck.setPlayer(player);
     }
 
     create_puck() {
         this.puck = new Puck(this, this.game_width / 2, this.game_height / 2);
     }
+
 
     enablePhysicsByIp(ip) {
         var player = this.getPlayerByIp(ip);
@@ -125,5 +139,4 @@ export default class Game extends Phaser.Scene {
     startPaint() {
         setInterval(this.repaintAllPlayer, 1000);
     }
-
 }
