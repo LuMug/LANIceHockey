@@ -56,16 +56,6 @@ export default class Game extends Phaser.Scene {
         this.puck = new Puck(this, this.game_width / 2, this.game_height / 2);
     }
 
-
-    // enablePhysicsByIp(ip) {
-    //     var player = this.getPlayerByIp(ip);
-
-    //     //game.physics.arcade.enable(player); //TODO chk where game is defined... ma not be
-
-    //     player.body.collideWorldBounds = true;
-    //     player.body.allowGravity = false;
-    // }
-
     compare(a, b) {
         if (a.scoredGoals < b.scoredGoals) {
             return 1;
@@ -98,13 +88,15 @@ export default class Game extends Phaser.Scene {
         }
     }
 
-    switchTeam(player) {
+    switchTeam(player) { // TODO AAAAA
         if (this.teams[0].players.indexOf(player) != -1) {
             this.teams[0].removePlayer(player);
             this.teams[1].addPlayer(player);
+            player.setColor(this.teams[1]);
         } else {
             this.teams[1].removePlayer(player);
             this.teams[0].addPlayer(player);
+            player.setColor(this.teams[0]);
         }
     }
 

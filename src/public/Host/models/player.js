@@ -29,6 +29,10 @@ export default class Player extends Phaser.GameObjects.Ellipse {
         this.intensity = intensity;
     }
 
+    setColor(team) {
+        this.fillColor(team.color); // TODO PORCO DIO
+    }
+
     update() {
         var x = (this.intensity * Math.cos(this.angle * Math.PI / 180)) * 2;
         var y = -(this.intensity * Math.sin(this.angle * Math.PI / 180)) * 2;
