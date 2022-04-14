@@ -44,16 +44,10 @@ export default class Game extends Phaser.Scene {
         var p = new Player(this, name, 100, 100, ip, team);
         team.addPlayer(p);
         console.debug('new player added ' + name);
-        //this.physics.add.collider(p, this.puck);
-        //var pGroup = this.add.group();
-        //pGroup.add(p);
-
-        //TODO move creation of the collider/overlap inside player and save it as variable for toggling
         this.physics.add.collider(p, this.puck, this.change_puck_owner);
     }
 
     change_puck_owner(player, puck) {
-        //la variabule this.puck non esiste in questo scope!
         console.log('change_puck_owner to: ' + player.name);
         puck.setPlayer(player);
     }
@@ -63,14 +57,14 @@ export default class Game extends Phaser.Scene {
     }
 
 
-    enablePhysicsByIp(ip) {
-        var player = this.getPlayerByIp(ip);
+    // enablePhysicsByIp(ip) {
+    //     var player = this.getPlayerByIp(ip);
 
-        //game.physics.arcade.enable(player); //TODO chk where game is defined... ma not be
+    //     //game.physics.arcade.enable(player); //TODO chk where game is defined... ma not be
 
-        player.body.collideWorldBounds = true;
-        player.body.allowGravity = false;
-    }
+    //     player.body.collideWorldBounds = true;
+    //     player.body.allowGravity = false;
+    // }
 
     compare(a, b) {
         if (a.scoredGoals < b.scoredGoals) {
