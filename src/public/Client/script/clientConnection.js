@@ -1,6 +1,7 @@
 const ws = new WebSocket("ws://10.90.1.117:2389");
 //const ws = new WebSocket("ws://127.0.0.1:2389");
 
+var currentTeam;
 
 ws.addEventListener("open", () => {
     console.log("We are connected!");
@@ -13,6 +14,10 @@ ws.addEventListener("open", () => {
         }
     }
 });
+
+function teamChanged(){
+    ws.send("team");
+}
 
 var x = 100;
 var y = 100;
@@ -27,6 +32,7 @@ var options = {
     },
     size: 150,
 };
+
 var manager = nipplejs.create(options);
 manager.on('move', function(evt, data) {
     ws.send(data.angle.degree + ";" + data.distance);

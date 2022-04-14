@@ -122,6 +122,14 @@ export default class Game extends Phaser.Scene {
         }
     }
 
+    getTeamByColor(color){
+        if(this.game.teams[0].color == "Green"){
+            return this.game.teams[0];
+        }else{
+            return this.game.teams[1];
+        }
+    }
+
     startPaint() {
         setInterval(this.repaintAllPlayer, 1000);
     }

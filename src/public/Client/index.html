@@ -10,12 +10,11 @@
     <script src="./script/clientConnection.js" defer></script>
 </head>
 
-
 <body>
     <div id="teams">
-        <input type="radio" name="changeTeamRadio" id="yellow" value="yellow">
+        <input type="radio" name="changeTeamRadio" id="yellow" value="yellow" onchange="teamChanged();">
         <label for="red">Yellow Team</label><br>
-        <input type="radio" name="changeTeamRadio" id="green" value="green">
+        <input type="radio" name="changeTeamRadio" id="green" value="green" onchange="teamChanged();">
         <label for="red">Green Team</label>
     </div>
 

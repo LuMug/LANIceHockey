@@ -23,12 +23,16 @@ export default class Host {
                 } else if (str[0] == "close") {
                     game.getPlayerByIp(str[1]).destroy();
                     game.getPlayerByIp(str[1]).team.removePlayer(game.getPlayerByIp(str[1]));
+                } if(str[0] == "team") {
+                    var ip = str[1];
+                    game.switchTeam(game.getPlayerByIp(ip));
                 } else {
                     var num = Number(str[0]);
                     var intensity = Number(str[1]);
                     var ip = str[2];
                     game.getPlayerByIp(ip).setAngle(num);
                     game.getPlayerByIp(ip).setIntensity(intensity);
+                    game.getPlayerByIp(ip).getTeamByColor(str[3])
                     //console.log("Funziona");
                     //game.getPlayerByIp(ip).update();
                     //move(game.getPlayerByIp(ip));
