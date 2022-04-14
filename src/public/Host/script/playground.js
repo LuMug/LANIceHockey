@@ -1,4 +1,4 @@
-function printPlayground() {
+/*function printPlayground() {
     var c = document.getElementById("playground");
     var ctx = c.getContext("2d");
     //ctx.globalAlpha = 0.5;
@@ -96,4 +96,4 @@ function printPlayground() {
     ctx.beginPath();
     ctx.arc(w - raggioAngoli - spessoreBalaustre / 2 + 1, h / 2, raggioAngoli / 2 - spessoreBalaustre * 2, 1.5 * Math.PI, 0.5 * Math.PI);
     ctx.stroke();
-}
+}*/
