@@ -18,6 +18,20 @@ div{
     height: 416px;
 }
 
+#label{
+    position: absolute;
+    top: 10px;
+    left: 21px;
+}
+
+#playerName{
+    position: absolute;
+    top: 30px;
+    left: 21px;
+    height: auto;
+    width: 10vw;
+}
+
 #giocatoreButton {
     background: #5E5DF0;
     border-radius: 999px;
