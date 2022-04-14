@@ -1,3 +1,2 @@
 #!/bin/bash
-node ./socket.js
-node ./server.js
+node ./socket.js & node ./server.js
