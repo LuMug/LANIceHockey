@@ -188,9 +188,7 @@ export default class Game extends Phaser.Scene {
         p.setPuckCollider(puckCollider);
     }
 
-    createBorderCollide(player, border) {
-        console.log(player);
-    }
+    createBorderCollide(player, border) {}
 
     changePuckOwner(player, puck) {
         console.log('changePuckOwner to: ' + player.name);
