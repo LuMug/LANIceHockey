@@ -35,13 +35,13 @@ export default class Game extends Phaser.Scene {
         var leftThird = new Phaser.GameObjects.Rectangle(this, (SET_WIDTH - raggioAngoli * 2) / 4 + raggioAngoli, spessoreBordi, spessoreBordi, SET_HEIGHT - spessoreBordi * 2);
         var rightThird = new Phaser.GameObjects.Rectangle(this, (SET_WIDTH - raggioAngoli * 2) / 4 * 3 + raggioAngoli, spessoreBordi, spessoreBordi, SET_HEIGHT - spessoreBordi * 2);
 
-        var angleA = new Phaser.GameObjects.Rectangle(this,raggioAngoli/2,raggioAngoli/2,50,1);
+        var angleA = new Phaser.GameObjects.Rectangle(this,raggioAngoli/2,raggioAngoli/2,100,1);
         angleA.setAngle(45);
-        var angleB = new Phaser.GameObjects.Rectangle(this,SET_WIDTH-raggioAngoli/2,raggioAngoli/2,50,1);
+        var angleB = new Phaser.GameObjects.Rectangle(this,SET_WIDTH-raggioAngoli/2,raggioAngoli/2,100,1);
         angleB.setAngle(135);
-        var angleC = new Phaser.GameObjects.Rectangle(this,raggioAngoli/2,SET_HEIGHT-raggioAngoli/2,50,1);
+        var angleC = new Phaser.GameObjects.Rectangle(this,raggioAngoli/2,SET_HEIGHT-raggioAngoli/2,100,1);
         angleC.setAngle(135);
-        var angleD = new Phaser.GameObjects.Rectangle(this,SET_WIDTH-raggioAngoli/2,SET_HEIGHT-raggioAngoli/2,50,1);
+        var angleD = new Phaser.GameObjects.Rectangle(this,SET_WIDTH-raggioAngoli/2,SET_HEIGHT-raggioAngoli/2,100,1);
         angleD.setAngle(45);
 
         var leftNetRow = new Phaser.GameObjects.Rectangle(this, raggioAngoli, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
