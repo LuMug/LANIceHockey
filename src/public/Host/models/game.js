@@ -156,6 +156,9 @@ export default class Game extends Phaser.Scene {
 
         this.create_puck();
 
+        
+        this.physics.add.overlap(this.puck, leftNet, this.score(this.puck.player));
+        this.physics.add.overlap(this.puck, rightNet, this.score(this.puck.player));
     }
 
     update(time, delta) {
