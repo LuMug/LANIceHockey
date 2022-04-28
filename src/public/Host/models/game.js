@@ -49,6 +49,7 @@ export default class Game extends Phaser.Scene {
         graphics.fillRectShape(lowSide);
         graphics.fillRectShape(leftSide);
         graphics.fillRectShape(rightSide);
+        graphics.lineStyle(spessoreBordi, 0x000000, 1);
         graphics.beginPath();
         graphics.arc(rightNet);
         graphics.strokePath();
