@@ -8,8 +8,6 @@ export default class Game extends Phaser.Scene {
 
     leaderboard = new Array();
     teams;
-    borders;
-    puck;
 
     constructor() {
         super({ key: 'Game' });
@@ -24,7 +22,11 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
-
+        for (let i = 0; i < this.teams.length; i++) {
+            for (let j = 0; j < this.teams[i].players.length; j++) {
+                this.teams[i].players[j].setCollideWorldBounds(true);
+            }
+        }
 
         var spessoreBordi = 8;
         var raggioAngoli = 85;
@@ -38,7 +40,14 @@ export default class Game extends Phaser.Scene {
         var leftNetRow = new Phaser.Geom.Rectangle(raggioAngoli, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
         var rightNetRow = new Phaser.Geom.Rectangle(SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
 
-        this.borders = Array(highSide, lowSide, leftSide, rightSide, centralRow, leftThird, rightThird, leftNetRow, rightNetRow);
+        var borders = Array(highSide, lowSide, leftSide, rightSide, centralRow, leftThird, rightThird, leftNetRow, rightNetRow);
+
+        for (let i = 0; i < this.teams.length; i++) {
+            for (let j = 0; j < this.teams[i].players.length; j++) {
+                this.physics.add.collider(this.teams[i].players[j], borders);
+                this.physics.add.overlap(this.teams[i].players[j], borders, null, this);
+            }
+        }
 
         var graphics = this.add.graphics({ fillStyle: { color: 0x000000 } });
 
@@ -235,7 +244,6 @@ export default class Game extends Phaser.Scene {
     }
 
     shoot() {
-        this.physics.remove.collider(this.puck.player);
-        this.puck.body.setVelocity(50);
+        this.puck.body.setVelocity(50)
     }
 }
