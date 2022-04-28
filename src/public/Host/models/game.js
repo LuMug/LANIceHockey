@@ -45,7 +45,7 @@ export default class Game extends Phaser.Scene {
         for (let i = 0; i < this.teams.length; i++) {
             for (let j = 0; j < this.teams[i].players.length; j++) {
                 this.physics.add.collider(this.teams[i].players[j], borders);
-                this.physics.add.overlap(this.teams[i].players[j], borders, null, this);
+                //this.physics.add.overlap(this.teams[i].players[j], borders, null, this); 
             }
         }
 
@@ -162,6 +162,7 @@ export default class Game extends Phaser.Scene {
         team.addPlayer(p);
         console.debug('new player added ' + name);
         var puckCollider = this.physics.add.collider(p, this.puck, this.change_puck_owner);
+        this.puck.setCollider(puckCollider);
     }
 
     change_puck_owner(player, puck) {
@@ -244,6 +245,9 @@ export default class Game extends Phaser.Scene {
     }
 
     shoot() {
-        this.puck.body.setVelocity(50)
+        console.log("puck shooted");
+        this.puck.beingShoot = true;
+        this.puck.body.setVelocity(100, 100);
+
     }
 }

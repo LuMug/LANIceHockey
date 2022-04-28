@@ -9,6 +9,7 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     dimension = 20;
     ip;
     followText;
+    puckCollider;
 
     constructor(scene, name, posX, posY, ip, team) {
         super(scene, posX, posY, 20, 20, team.color);
@@ -19,6 +20,10 @@ export default class Player extends Phaser.GameObjects.Ellipse {
         scene.physics.world.enable(this);
         scene.add.existing(this);
         scene.add.existing(this.followText);
+    }
+
+    setPuckCollider(collider) {
+        this.puckCollider = collider;
     }
 
     setAngle(angle) {
