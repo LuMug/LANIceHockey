@@ -1,6 +1,7 @@
 //import "./../modules/phaser/phaser.min.js";
 export default class Player extends Phaser.GameObjects.Ellipse {
 
+    scene;
     name;
     scoredGoals = 0;
     angle = 0;
@@ -13,6 +14,7 @@ export default class Player extends Phaser.GameObjects.Ellipse {
 
     constructor(scene, name, posX, posY, ip, team) {
         super(scene, posX, posY, 20, 20, team.color);
+        this.scene = scene;
         this.name = name;
         this.ip = ip;
         this.followText = scene.add.text(100, 100, '', { font: '20px Courier', fill: '#00ff00' });
@@ -46,5 +48,11 @@ export default class Player extends Phaser.GameObjects.Ellipse {
         this.followText.setPosition(this.x, this.y);
     }
 
+    removeCollider() {
+        this.scene.physics.world.removeCollider(this.puckCollider);
+    }
 
+    addCollider() {
+        this.scene.physics.add.collider(this, this.scene.puck, this.scene.change_puck_owner);
+    }
 }

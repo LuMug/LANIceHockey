@@ -83,16 +83,16 @@ export default class Game extends Phaser.Scene {
         graphics = this.add.graphics();
         graphics.lineStyle(spessoreBordi, 0x000000, 1);
         graphics.beginPath();
-        graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 0.5 * Math.PI, 0, true);
+        graphics.arc(this, SET_WIDTH - raggioAngoli - spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 0.5 * Math.PI, 0, true);
         graphics.strokePath();
         graphics.beginPath();
-        graphics.arc(raggioAngoli + spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 1 * Math.PI, 0.5 * Math.PI, true);
+        graphics.arc(this, raggioAngoli + spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 1 * Math.PI, 0.5 * Math.PI, true);
         graphics.strokePath();
         graphics.beginPath();
-        graphics.arc(raggioAngoli + spessoreBordi / 2, raggioAngoli + spessoreBordi / 2, raggioAngoli, 1.5 * Math.PI, 1 * Math.PI, true);
+        graphics.arc(this, raggioAngoli + spessoreBordi / 2, raggioAngoli + spessoreBordi / 2, raggioAngoli, 1.5 * Math.PI, 1 * Math.PI, true);
         graphics.strokePath();
         graphics.beginPath();
-        graphics.arc(SET_WIDTH - (raggioAngoli + spessoreBordi / 2), raggioAngoli + spessoreBordi / 2, raggioAngoli, 0, 1.5 * Math.PI, true);
+        graphics.arc(this, SET_WIDTH - (raggioAngoli + spessoreBordi / 2), raggioAngoli + spessoreBordi / 2, raggioAngoli, 0, 1.5 * Math.PI, true);
         graphics.strokePath();
         graphics.lineStyle(spessoreBordi, 0x0000FF, 1);
         graphics.beginPath();
@@ -187,11 +187,11 @@ export default class Game extends Phaser.Scene {
         console.log('change_puck_owner to: ' + player.name);
         if (puck.beingShoot == true) {
             puck.beingShoot = false;
-            game.physics.add.collider(puck.player, puck, game.change_puck_owner);
+            puck.player.addCollider();
         }
 
         puck.setPlayer(player);
-        game.physics.world.removeCollider(puck.player.puckCollider);
+        puck.player.removeCollider();
     }
 
     create_puck(net1, net2) {
