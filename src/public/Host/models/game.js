@@ -189,11 +189,11 @@ export default class Game extends Phaser.Scene {
         console.log('change_puck_owner to: ' + player.name);
         if (puck.beingShoot == true) {
             puck.beingShoot = false;
-            game.physics.add.collider(puck.player, puck, game.change_puck_owner);
+            puck.player.addCollider();
         }
 
         puck.setPlayer(player);
-        game.physics.world.removeCollider(puck.player.puckCollider);
+        puck.player.removeCollider();
     }
 
     create_puck(net1, net2) {
