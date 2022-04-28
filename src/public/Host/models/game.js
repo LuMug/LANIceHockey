@@ -136,10 +136,10 @@ export default class Game extends Phaser.Scene {
         graphics.fillPath();
         graphics.lineStyle(spessoreBordi, 0x000000, 1);
         graphics.beginPath();
-        graphics.arc(raggioAngoli, SET_HEIGHT / 2, raggioAngoli / 2 - spessoreBordi * 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
+        var leftNet = graphics.arc(raggioAngoli, SET_HEIGHT / 2, raggioAngoli / 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
         graphics.strokePath();
         graphics.beginPath();
-        graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2 - spessoreBordi * 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
+        var rightNet = graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
         graphics.strokePath();
 
         this.create_puck();
@@ -150,7 +150,7 @@ export default class Game extends Phaser.Scene {
         for (let i = 0; i < this.teams.length; i++) {
             for (let j = 0; j < this.teams[i].players.length; j++) {
                 this.teams[i].players[j].update();
-                //this.physics.world.collide(this.teams[i].players[j], borders);
+                this.physics.world.collide(this.teams[i].players[j], this.borders);
             }
         }
         this.puck.update();
@@ -170,7 +170,7 @@ export default class Game extends Phaser.Scene {
     }
 
     create_puck() {
-        this.puck = new Puck(this, this.game_width / 2, this.game_height / 2);
+        this.puck = new Puck(this, SET_WIDTH / 2, SET_HEIGHT / 2);
     }
 
     compare(a, b) {
@@ -244,6 +244,6 @@ export default class Game extends Phaser.Scene {
     }
 
     shoot() {
-
+        this.puck.body.setVelocity(50)
     }
 }
