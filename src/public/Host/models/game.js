@@ -156,9 +156,7 @@ export default class Game extends Phaser.Scene {
         graphics.strokePath();
 
         this.create_puck(rightNet, leftNet);
-
-
-
+        this.physics.add.collider(this.puck, this.bordersGroup);
     }
 
     update(time, delta) {
