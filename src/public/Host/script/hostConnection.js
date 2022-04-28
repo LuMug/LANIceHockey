@@ -15,10 +15,10 @@ export default class Host {
                     let ip = str[1];
                     console.log('new player connecting ' + name);
 
-                    if (name == null) {
+                    /*if (name == null) {
                         name = "player" + game.playerNum;
                     }
-                    game.playerNum++;;
+                    game.playerNum++;*/
                     game.createPlayer(name, ip);
                 } else if (str[0] == "close") {
                     game.getPlayerByIp(str[1]).followText.destroy();
