@@ -20,6 +20,7 @@ export default class Player extends Phaser.GameObjects.Ellipse {
         scene.physics.world.enable(this);
         scene.add.existing(this);
         scene.add.existing(this.followText);
+        //this.body.bounce.set(1);
     }
 
     setPuckCollider(collider) {
