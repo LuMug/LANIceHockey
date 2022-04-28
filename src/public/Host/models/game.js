@@ -297,7 +297,6 @@ export default class Game extends Phaser.Scene {
     shoot() {
         console.log("puck shooted");
         this.puck.beingShoot = true;
-        //this.puck.player.physics.world.removeCollider(puck.player.collider);
         this.puck.body.setVelocity(100, 100);
     }
 }
