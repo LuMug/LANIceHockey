@@ -35,13 +35,13 @@ export default class Game extends Phaser.Scene {
         var leftThird = new Phaser.GameObjects.Rectangle(this, (SET_WIDTH - raggioAngoli * 2) / 4 + raggioAngoli, spessoreBordi, spessoreBordi, SET_HEIGHT - spessoreBordi * 2);
         var rightThird = new Phaser.GameObjects.Rectangle(this, (SET_WIDTH - raggioAngoli * 2) / 4 * 3 + raggioAngoli, spessoreBordi, spessoreBordi, SET_HEIGHT - spessoreBordi * 2);
 
-        var angleA = new Phaser.GameObjects.Rectangle(this,raggioAngoli/2,raggioAngoli/2,raggioAngoli,raggioAngoli);
+        var angleA = new Phaser.GameObjects.Rectangle(this, raggioAngoli / 2, raggioAngoli / 2, raggioAngoli, raggioAngoli);
         angleA.setAngle(45);
-        var angleB = new Phaser.GameObjects.Rectangle(this,SET_WIDTH-raggioAngoli/2,raggioAngoli/2,raggioAngoli,raggioAngoli);
+        var angleB = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli / 2, raggioAngoli / 2, raggioAngoli, raggioAngoli);
         angleB.setAngle(135);
-        var angleC = new Phaser.GameObjects.Rectangle(this,raggioAngoli/2,SET_HEIGHT-raggioAngoli/2,raggioAngoli,raggioAngoli);
+        var angleC = new Phaser.GameObjects.Rectangle(this, raggioAngoli / 2, SET_HEIGHT - raggioAngoli / 2, raggioAngoli, raggioAngoli);
         angleC.setAngle(135);
-        var angleD = new Phaser.GameObjects.Rectangle(this,SET_WIDTH-raggioAngoli/2,SET_HEIGHT-raggioAngoli/2,raggioAngoli,raggioAngoli);
+        var angleD = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli / 2, SET_HEIGHT - raggioAngoli / 2, raggioAngoli, raggioAngoli);
         angleD.setAngle(45);
 
         var leftNetRow = new Phaser.GameObjects.Rectangle(this, raggioAngoli, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
@@ -188,9 +188,7 @@ export default class Game extends Phaser.Scene {
         p.setPuckCollider(puckCollider);
     }
 
-    createBorderCollide(player, border) {
-        console.log(player);
-    }
+    createBorderCollide(player, border) {}
 
     changePuckOwner(player, puck) {
         console.log('changePuckOwner to: ' + player.name);
