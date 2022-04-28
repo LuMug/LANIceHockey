@@ -201,7 +201,7 @@ export default class Game extends Phaser.Scene {
     }
 
     compare(a, b) {
-        if (a.scoredGoals < b.scoredGoals) { // TODO PORCO D
+        if (a.scoredGoals < b.scoredGoals) {
             return 1;
         }
         if (a.scoredGoals > b.scoredGoals) {
