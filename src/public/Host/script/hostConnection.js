@@ -21,7 +21,7 @@ export default class Host {
                     game.getPlayerByIp(str[1]).destroy();
                     game.getPlayerByIp(str[1]).team.removePlayer(game.getPlayerByIp(str[1]));
                 } else if (str[0] == "shoot" && game.getPlayerByIp(str[1]) == game.puck.player) {
-                    game.getPlayerByIp(str[1]).shoot();
+                    game.shoot();
                 } else if (str[0] == "team") {
                     var ip = str[1];
                     game.switchTeam(game.getPlayerByIp(ip));

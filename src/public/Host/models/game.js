@@ -184,7 +184,7 @@ export default class Game extends Phaser.Scene {
     }
 
     compare(a, b) {
-        if (a.scoredGoals < b.scoredGoals) { // TODO PORCO DIO
+        if (a.scoredGoals < b.scoredGoals) { // TODO PORCO D
             return 1;
         }
         if (a.scoredGoals > b.scoredGoals) {
@@ -251,5 +251,9 @@ export default class Game extends Phaser.Scene {
 
     startPaint() {
         setInterval(this.repaintAllPlayer, 1000);
+    }
+
+    shoot() {
+
     }
 }

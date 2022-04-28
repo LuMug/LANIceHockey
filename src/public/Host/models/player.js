@@ -39,4 +39,6 @@ export default class Player extends Phaser.GameObjects.Ellipse {
         this.body.setVelocity(x, y);
         this.followText.setPosition(this.x, this.y);
     }
+
+
 }
