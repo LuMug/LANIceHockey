@@ -59,7 +59,6 @@ export default class Game extends Phaser.Scene {
             }
         }
 
-
         var graphics = this.add.graphics({ fillStyle: { color: 0x000000 } });
 
         graphics.fillRectShape(highSide);
@@ -155,7 +154,7 @@ export default class Game extends Phaser.Scene {
         var rightNet = graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
         graphics.strokePath();
 
-        this.create_puck(rightNet, leftNet);
+        this.createPuck(rightNet, leftNet);
         this.physics.add.collider(this.puck, this.bordersGroup);
     }
 
@@ -169,22 +168,22 @@ export default class Game extends Phaser.Scene {
         this.puck.update();
     }
 
-    create_player(name, ip) {
+    createPlayer(name, ip) {
         var team = this.autoSetTeam();
         var p = new Player(this, name, 100, 100, ip, team);
         team.addPlayer(p);
         console.debug('new player added ' + name);
-        var puckCollider = this.physics.add.collider(p, this.puck, this.change_puck_owner);
-        this.physics.add.collider(p, this.bordersGroup, this.player_border_collide);
+        var puckCollider = this.physics.add.collider(p, this.puck, this.changePuckOwner);
+        this.physics.add.collider(p, this.bordersGroup, this.createBorderCollide);
         p.setPuckCollider(puckCollider);
     }
 
-    player_border_collide(player, border) {
+    createBorderCollide(player, border) {
         console.log(player);
     }
 
-    change_puck_owner(player, puck) {
-        console.log('change_puck_owner to: ' + player.name);
+    changePuckOwner(player, puck) {
+        console.log('changePuckOwner to: ' + player.name);
         if (puck.beingShoot == true) {
             puck.beingShoot = false;
             puck.player.addCollider();
@@ -194,7 +193,7 @@ export default class Game extends Phaser.Scene {
         puck.player.removeCollider();
     }
 
-    create_puck(net1, net2) {
+    createPuck(net1, net2) {
         this.puck = new Puck(this, SET_WIDTH / 2, SET_HEIGHT / 2);
         this.physics.add.overlap(this.puck, net1, this.score);
         this.physics.add.overlap(this.puck, net2, this.score);
@@ -236,11 +235,11 @@ export default class Game extends Phaser.Scene {
         if (this.teams[0].players.indexOf(player) != -1) {
             this.teams[0].removePlayer(player);
             this.teams[1].addPlayer(player);
-            player.setColor(this.teams[1]);
+            player.setColor();
         } else {
             this.teams[1].removePlayer(player);
             this.teams[0].addPlayer(player);
-            player.setColor(this.teams[0]);
+            player.setColor();
         }
     }
 
