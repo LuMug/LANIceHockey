@@ -38,8 +38,9 @@ export default class Game extends Phaser.Scene {
         var centralRow = new Phaser.Geom.Rectangle(SET_WIDTH / 2 - spessoreBordi / 2, spessoreBordi, spessoreBordi, SET_HEIGHT);
         var leftThird = new Phaser.Geom.Rectangle((SET_WIDTH - raggioAngoli * 2) / 4 + raggioAngoli, spessoreBordi, spessoreBordi, SET_HEIGHT - spessoreBordi * 2);
         var rightThird = new Phaser.Geom.Rectangle((SET_WIDTH - raggioAngoli * 2) / 4 * 3 + raggioAngoli, spessoreBordi, spessoreBordi, SET_HEIGHT - spessoreBordi * 2);
-        var leftNetRow = new Phaser.Geom.Rectangle(raggioAngoli, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
-        var rightNetRow = new Phaser.Geom.Rectangle(SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
+
+        var leftNetRow = new Phaser.Geom.Rectangle(raggioAngoli, spessoreBordi + SET_HEIGHT / 2 - raggioAngoli / 2, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi + raggioAngoli / 2);
+        var rightNetRow = new Phaser.Geom.Rectangle(SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2, spessoreBordi + SET_HEIGHT / 2 - raggioAngoli / 2, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi + raggioAngoli / 2);
 
         var borders = Array(highSide, lowSide, leftSide, rightSide, centralRow, leftThird, rightThird, leftNetRow, rightNetRow);
 
@@ -167,6 +168,7 @@ export default class Game extends Phaser.Scene {
         team.addPlayer(p);
         console.debug('new player added ' + name);
         var puckCollider = this.physics.add.collider(p, this.puck, this.change_puck_owner);
+        this.puck.setCollider(puckCollider);
     }
 
     change_puck_owner(player, puck) {
@@ -249,6 +251,9 @@ export default class Game extends Phaser.Scene {
     }
 
     shoot() {
-        this.puck.body.setVelocity(50)
+        console.log("puck shooted");
+        this.puck.beingShoot = true;
+        this.puck.body.setVelocity(100, 100);
+
     }
 }
