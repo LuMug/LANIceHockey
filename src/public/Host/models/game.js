@@ -8,6 +8,7 @@ export default class Game extends Phaser.Scene {
 
     leaderboard = new Array();
     teams;
+    borders;
 
     constructor() {
         super({ key: 'Game' });
@@ -43,10 +44,14 @@ export default class Game extends Phaser.Scene {
 
         var borders = Array(highSide, lowSide, leftSide, rightSide, centralRow, leftThird, rightThird, leftNetRow, rightNetRow);
 
+        this.borders = this.physics.add.group();
+        for(var i = 0;i < borders.length;i++){
+            this.borders.add(borders[i]);
+        }
+
         for (let i = 0; i < this.teams.length; i++) {
             for (let j = 0; j < this.teams[i].players.length; j++) {
-                this.physics.add.collider(this.teams[i].players[j], borders);
-                this.physics.add.overlap(this.teams[i].players[j], borders, null, this);
+                this.physics.add.collider(this.teams[i].players[j], this.borders);
             }
         }
 
@@ -56,8 +61,6 @@ export default class Game extends Phaser.Scene {
         graphics.fillRectShape(lowSide);
         graphics.fillRectShape(leftSide);
         graphics.fillRectShape(rightSide);
-        graphics.fillRectShape(leftNetRow);
-        graphics.fillRectShape(rightNetRow);
 
         graphics = this.add.graphics({ fillStyle: { color: 0xFF0000 } });
 
@@ -165,6 +168,7 @@ export default class Game extends Phaser.Scene {
         team.addPlayer(p);
         console.debug('new player added ' + name);
         var puckCollider = this.physics.add.collider(p, this.puck, this.change_puck_owner);
+        this.puck.setCollider(puckCollider);
     }
 
     change_puck_owner(player, puck) {
@@ -247,6 +251,9 @@ export default class Game extends Phaser.Scene {
     }
 
     shoot() {
-        this.puck.body.setVelocity(50)
+        console.log("puck shooted");
+        this.puck.beingShoot = true;
+        this.puck.body.setVelocity(100, 100);
+
     }
 }

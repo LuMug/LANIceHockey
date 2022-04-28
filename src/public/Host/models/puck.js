@@ -3,6 +3,7 @@
 export default class Puck extends Phaser.GameObjects.Ellipse {
 
     player; //player that has the puck
+    beingShoot = false;
 
     constructor(scene, posX, posY, size = 40, color = 0x202020) {
         super(scene, posX, posY, size, size, color);
@@ -17,7 +18,7 @@ export default class Puck extends Phaser.GameObjects.Ellipse {
     }
 
     update() {
-        if (this.player != null) {
+        if (this.player != null && this.beingShoot == false) {
             this.setPosition(this.player.x, this.player.y);
         }
     }
