@@ -161,7 +161,7 @@ export default class Game extends Phaser.Scene {
         var p = new Player(this, name, 100, 100, ip, team);
         team.addPlayer(p);
         console.debug('new player added ' + name);
-        this.physics.add.collider(p, this.puck, this.change_puck_owner);
+        var puckCollider = this.physics.add.collider(p, this.puck, this.change_puck_owner);
     }
 
     change_puck_owner(player, puck) {
