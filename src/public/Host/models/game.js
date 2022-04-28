@@ -140,7 +140,7 @@ export default class Game extends Phaser.Scene {
         for (let i = 0; i < this.teams.length; i++) {
             for (let j = 0; j < this.teams[i].players.length; j++) {
                 this.teams[i].players[j].update();
-                this.physics.world.collide(this.teams[i].players[j], borders);
+                this.physics.world.collide(this.teams[i].players[j], this.borders);
             }
         }
         this.puck.update();
@@ -234,6 +234,6 @@ export default class Game extends Phaser.Scene {
     }
 
     shoot() {
-
+        this.puck.body.setVelocity(50)
     }
 }
