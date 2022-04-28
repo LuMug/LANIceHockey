@@ -96,4 +96,8 @@
     ctx.beginPath();
     ctx.arc(w - raggioAngoli - spessoreBalaustre / 2 + 1, h / 2, raggioAngoli / 2 - spessoreBalaustre * 2, 1.5 * Math.PI, 0.5 * Math.PI);
     ctx.stroke();
+<<<<<<< HEAD
 }*/
+=======
+}*/
+>>>>>>> dc3caf6dee474b1a71596670b9ad558e8ebb0c51
