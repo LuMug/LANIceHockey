@@ -8,6 +8,7 @@ export default class Game extends Phaser.Scene {
 
     leaderboard = new Array();
     teams;
+    borders;
 
     constructor() {
         super({ key: 'Game' });
@@ -40,12 +41,22 @@ export default class Game extends Phaser.Scene {
         var leftNetRow = new Phaser.Geom.Rectangle(raggioAngoli, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
         var rightNetRow = new Phaser.Geom.Rectangle(SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
 
-        var borders = Array(highSide, lowSide, leftSide, rightSide, centralRow, leftThird, rightThird, leftNetRow, rightNetRow);
+        borders = this.physics.add.group({
+            highSide,
+            lowSide,
+            leftSide,
+            rightSide,
+            centralRow,
+            leftThird,
+            rightThird,
+            leftNetRow,
+            rightNetRow
+        });
 
         for (let i = 0; i < this.teams.length; i++) {
             for (let j = 0; j < this.teams[i].players.length; j++) {
                 this.physics.add.collider(this.teams[i].players[j], borders);
-                this.physics.add.overlap(this.teams[i].players[j], borders, null, this);
+                //this.physics.add.overlap(this.teams[i].players[j], borders, null, this);
             }
         }
 
