@@ -41,8 +41,6 @@ export default class Game extends Phaser.Scene {
         var rightNetRow = new Phaser.Geom.Rectangle(SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
 
         var rightNetRow = new Phaser.Geom.Rectangle(SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
-        var rightNet = new Phaser.GameObjects.Arc(this, raggioAngoli, SET_HEIGHT / 2, raggioAngoli / 2 - spessoreBordi * 2, 30, 1.5 * Math.PI, 0.5 * Math.PI);
-        var leftNet = new Phaser.GameObjects.Arc(this, SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2 - spessoreBordi * 2, 30, 0.5 * Math.PI, 1.5 * Math.PI);
         //var goalLineRight = new Phaser.Geom.Rectangle(SET_WIDTH - raggioAngoli - 2*spessoreBordi - spessoreBordi/2, , spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
         //var goalLineLeft = new Phaser.Geom.Rectangle();
 
@@ -52,13 +50,6 @@ export default class Game extends Phaser.Scene {
         graphics.fillRectShape(lowSide);
         graphics.fillRectShape(leftSide);
         graphics.fillRectShape(rightSide);
-        graphics.lineStyle(spessoreBordi, 0x000000, 1);
-        graphics.beginPath();
-        graphics.arc(rightNet);
-        graphics.strokePath();
-        graphics.beginPath();
-        graphics.arc(leftNet);
-        graphics.strokePath();
 
         graphics = this.add.graphics({ fillStyle: { color: 0xFF0000 } });
 
@@ -146,13 +137,13 @@ export default class Game extends Phaser.Scene {
         graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
         graphics.fillPath();
         //porte
-        // graphics.lineStyle(spessoreBordi, 0x000000, 1);
-        // graphics.beginPath();
-        // graphics.arc(raggioAngoli, SET_HEIGHT / 2, raggioAngoli / 2 - spessoreBordi * 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
-        // graphics.strokePath();
-        // graphics.beginPath();
-        // graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2 - spessoreBordi * 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
-        // graphics.strokePath();
+        graphics.lineStyle(spessoreBordi, 0x000000, 1);
+        graphics.beginPath();
+        var rightNet = graphics.arc(raggioAngoli, SET_HEIGHT / 2, raggioAngoli / 2 - spessoreBordi * 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
+        graphics.strokePath();
+        graphics.beginPath();
+        var LeftNet = graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2 - spessoreBordi * 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
+        graphics.strokePath();
         this.create_puck();
 
     }
