@@ -15,7 +15,7 @@ export default class Host {
                     let ip = str[1];
                     console.log('new player connecting ' + name);
 
-                    game.create_player(name, ip)
+                    game.createPlayer(name, ip)
                 } else if (str[0] == "close") {
                     game.getPlayerByIp(str[1]).followText.destroy();
                     game.getPlayerByIp(str[1]).destroy();
