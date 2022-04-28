@@ -6,6 +6,7 @@ import { SET_HEIGHT, SET_WIDTH } from "../script/main.js";
 
 export default class Game extends Phaser.Scene {
 
+    playerNum = 0;
     leaderboard = new Array();
     teams;
     bordersGroup;
