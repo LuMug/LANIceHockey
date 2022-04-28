@@ -1,7 +1,3 @@
-//import Game from "../models/game.js";
-import Player from "../models/player.js";
-//import { move } from "./movement.js";
-
 export default class Host {
     ws = new WebSocket("ws://10.90.1.117:2389");
     //ws = new WebSocket("ws://127.0.0.1:2389");
@@ -21,18 +17,20 @@ export default class Host {
 
                     game.create_player(name, ip)
                 } else if (str[0] == "close") {
+                    game.getPlayerByIp(str[1]).followText.destroy();
                     game.getPlayerByIp(str[1]).destroy();
                     game.getPlayerByIp(str[1]).team.removePlayer(game.getPlayerByIp(str[1]));
+                } else if (str[0] == "shoot" && game.getPlayerByIp(str[1]) == game.puck.player) {
+                    game.getPlayerByIp(str[1]).shoot();
+                } else if (str[0] == "team") {
+                    var ip = str[1];
+                    game.switchTeam(game.getPlayerByIp(ip));
                 } else {
                     var num = Number(str[0]);
                     var intensity = Number(str[1]);
                     var ip = str[2];
                     game.getPlayerByIp(ip).setAngle(num);
                     game.getPlayerByIp(ip).setIntensity(intensity);
-                    //console.log("Funziona");
-                    //game.getPlayerByIp(ip).update();
-                    //move(game.getPlayerByIp(ip));
-                    //game.repaintAllPlayer();
                 }
             }
         });

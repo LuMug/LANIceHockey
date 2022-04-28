@@ -1,4 +1,4 @@
-import "./../modules/phaser/phaser.min.js";
+//import "./../modules/phaser/phaser.min.js";
 export default class Player extends Phaser.GameObjects.Ellipse {
 
     name;
@@ -8,13 +8,17 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     team;
     dimension = 20;
     ip;
+    followText;
 
     constructor(scene, name, posX, posY, ip, team) {
         super(scene, posX, posY, 20, 20, team.color);
         this.name = name;
         this.ip = ip;
+        this.followText = scene.add.text(100, 100, '', { font: '64px Courier', fill: '#00ff00' });
+        this.followText.setText(this.name);
         scene.physics.world.enable(this);
         scene.add.existing(this);
+        scene.add.existing(this.followText);
     }
 
     setAngle(angle) {
@@ -25,21 +29,14 @@ export default class Player extends Phaser.GameObjects.Ellipse {
         this.intensity = intensity;
     }
 
+    setColor(team) {
+        this.fillColor(team.color); // TODO PORCO DIO
+    }
+
     update() {
         var x = (this.intensity * Math.cos(this.angle * Math.PI / 180)) * 2;
         var y = -(this.intensity * Math.sin(this.angle * Math.PI / 180)) * 2;
-        //console.log('name: ' + this.name + ', ip: ' + this.ip + ' [' + x + ";" + y + '], team: ' + this.team.color);
         this.body.setVelocity(x, y);
+        this.followText.setPosition(this.x, this.y);
     }
-
-    /*paint() {
-        var c = document.getElementById("playground");
-        var ctx = c.getContext("2d");
-        ctx.strokeStyle = this.team.color;
-        ctx.fillStyle = this.team.color;
-        ctx.beginPath();
-        ctx.arc(this.pos.x, this.pos.y, this.dimension, 0, 2 * Math.PI);
-        ctx.stroke();
-        ctx.fill();
-    }*/
 }
