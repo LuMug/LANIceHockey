@@ -83,16 +83,16 @@ export default class Game extends Phaser.Scene {
         graphics = this.add.graphics();
         graphics.lineStyle(spessoreBordi, 0x000000, 1);
         graphics.beginPath();
-        var angleA = new Phaser.GameObjects.Arc(this, SET_WIDTH - raggioAngoli - spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 0.5 * Math.PI, 0, true);
+        graphics.arc(this, SET_WIDTH - raggioAngoli - spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 0.5 * Math.PI, 0, true);
         graphics.strokePath();
         graphics.beginPath();
-        var angleB = new Phaser.GameObjects.Arc(this, raggioAngoli + spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 1 * Math.PI, 0.5 * Math.PI, true);
+        graphics.arc(this, raggioAngoli + spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 1 * Math.PI, 0.5 * Math.PI, true);
         graphics.strokePath();
         graphics.beginPath();
-        var angleC = new Phaser.GameObjects.Arc(this, raggioAngoli + spessoreBordi / 2, raggioAngoli + spessoreBordi / 2, raggioAngoli, 1.5 * Math.PI, 1 * Math.PI, true);
+        graphics.arc(this, raggioAngoli + spessoreBordi / 2, raggioAngoli + spessoreBordi / 2, raggioAngoli, 1.5 * Math.PI, 1 * Math.PI, true);
         graphics.strokePath();
         graphics.beginPath();
-        var angleD = new Phaser.GameObjects.Arc(this, SET_WIDTH - (raggioAngoli + spessoreBordi / 2), raggioAngoli + spessoreBordi / 2, raggioAngoli, 0, 1.5 * Math.PI, true);
+        graphics.arc(this, SET_WIDTH - (raggioAngoli + spessoreBordi / 2), raggioAngoli + spessoreBordi / 2, raggioAngoli, 0, 1.5 * Math.PI, true);
         graphics.strokePath();
         graphics.lineStyle(spessoreBordi, 0x0000FF, 1);
         graphics.beginPath();
@@ -149,10 +149,10 @@ export default class Game extends Phaser.Scene {
         graphics.fillPath();
         graphics.lineStyle(spessoreBordi, 0x000000, 1);
         graphics.beginPath();
-        var leftNet = new Phaser.GameObjects.Arc(raggioAngoli, SET_HEIGHT / 2, raggioAngoli / 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
+        var leftNet = graphics.arc(raggioAngoli, SET_HEIGHT / 2, raggioAngoli / 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
         graphics.strokePath();
         graphics.beginPath();
-        var rightNet = new Phaser.GameObjects.Arc(SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
+        var rightNet = graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
         graphics.strokePath();
 
         this.create_puck(rightNet, leftNet);
