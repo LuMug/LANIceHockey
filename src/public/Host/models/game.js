@@ -29,20 +29,23 @@ export default class Game extends Phaser.Scene {
         this.game_height = this.canvas.height;
         var spessoreBordi = 8;
         var raggioAngoli = 85;
-        var highSide = new Phaser.Geom.Rectangle(raggioAngoli,0,SET_WIDTH-2*raggioAngoli,spessoreBordi);
-        var lowSide = new Phaser.Geom.Rectangle(raggioAngoli,SET_HEIGHT-spessoreBordi,SET_WIDTH-2*raggioAngoli,spessoreBordi);
-        var leftSide = new Phaser.Geom.Rectangle(0,raggioAngoli,spessoreBordi,SET_HEIGHT-2*raggioAngoli);
-        var rightSide = new Phaser.Geom.Rectangle(SET_WIDTH-spessoreBordi,raggioAngoli,spessoreBordi,SET_HEIGHT-2*raggioAngoli);
+        var highSide = new Phaser.Geom.Rectangle(raggioAngoli, 0, SET_WIDTH - 2 * raggioAngoli, spessoreBordi);
+        var lowSide = new Phaser.Geom.Rectangle(raggioAngoli, SET_HEIGHT - spessoreBordi, SET_WIDTH - 2 * raggioAngoli, spessoreBordi);
+        var leftSide = new Phaser.Geom.Rectangle(0, raggioAngoli, spessoreBordi, SET_HEIGHT - 2 * raggioAngoli);
+        var rightSide = new Phaser.Geom.Rectangle(SET_WIDTH - spessoreBordi, raggioAngoli, spessoreBordi, SET_HEIGHT - 2 * raggioAngoli);
         var centralRow = new Phaser.Geom.Rectangle(SET_WIDTH / 2 - spessoreBordi / 2, spessoreBordi, spessoreBordi, SET_HEIGHT);
         var leftThird = new Phaser.Geom.Rectangle((SET_WIDTH - raggioAngoli * 2) / 4 + raggioAngoli, spessoreBordi, spessoreBordi, SET_HEIGHT - spessoreBordi * 2);
         var rightThird = new Phaser.Geom.Rectangle((SET_WIDTH - raggioAngoli * 2) / 4 * 3 + raggioAngoli, spessoreBordi, spessoreBordi, SET_HEIGHT - spessoreBordi * 2);
         var leftNetRow = new Phaser.Geom.Rectangle(raggioAngoli, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
-        var rightNetRow = new Phaser.Geom.Rectangle(SET_WIDTH - raggioAngoli - 2*spessoreBordi - spessoreBordi/2, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
-        var rightNet = new Phaser.GameObjects. Arc(this, raggioAngoli, SET_HEIGHT / 2, raggioAngoli / 2 - spessoreBordi * 2, 30, 1.5 * Math.PI, 0.5 * Math.PI);
-        var leftNet = new Phaser.GameObjects. Arc(this, SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2 - spessoreBordi * 2, 30, 0.5 * Math.PI, 1.5 * Math.PI);
+
+        var rightNetRow = new Phaser.Geom.Rectangle(SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
+
+        var rightNetRow = new Phaser.Geom.Rectangle(SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
+        var rightNet = new Phaser.GameObjects.Arc(this, raggioAngoli, SET_HEIGHT / 2, raggioAngoli / 2 - spessoreBordi * 2, 30, 1.5 * Math.PI, 0.5 * Math.PI);
+        var leftNet = new Phaser.GameObjects.Arc(this, SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2 - spessoreBordi * 2, 30, 0.5 * Math.PI, 1.5 * Math.PI);
         //var goalLineRight = new Phaser.Geom.Rectangle(SET_WIDTH - raggioAngoli - 2*spessoreBordi - spessoreBordi/2, , spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
         //var goalLineLeft = new Phaser.Geom.Rectangle();
-        
+
         var graphics = this.add.graphics({ fillStyle: { color: 0x000000 } });
 
         graphics.fillRectShape(highSide);
@@ -72,16 +75,16 @@ export default class Game extends Phaser.Scene {
         //angoli
         graphics.lineStyle(spessoreBordi, 0x000000, 1);
         graphics.beginPath();
-        graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi/2, SET_HEIGHT - raggioAngoli -spessoreBordi/2, raggioAngoli, 0.5 * Math.PI, 0, true);
+        graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 0.5 * Math.PI, 0, true);
         graphics.strokePath();
         graphics.beginPath();
-        graphics.arc(raggioAngoli + spessoreBordi/2, SET_HEIGHT - raggioAngoli - spessoreBordi/2, raggioAngoli, 1 * Math.PI, 0.5  * Math.PI, true);
+        graphics.arc(raggioAngoli + spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 1 * Math.PI, 0.5 * Math.PI, true);
         graphics.strokePath();
         graphics.beginPath();
-        graphics.arc(raggioAngoli + spessoreBordi/2, raggioAngoli + spessoreBordi/2, raggioAngoli, 1.5 * Math.PI, 1 * Math.PI,true);
+        graphics.arc(raggioAngoli + spessoreBordi / 2, raggioAngoli + spessoreBordi / 2, raggioAngoli, 1.5 * Math.PI, 1 * Math.PI, true);
         graphics.strokePath();
         graphics.beginPath();
-        graphics.arc(SET_WIDTH - (raggioAngoli + spessoreBordi/2), raggioAngoli + spessoreBordi/2, raggioAngoli, 0, 1.5 * Math.PI, true);
+        graphics.arc(SET_WIDTH - (raggioAngoli + spessoreBordi / 2), raggioAngoli + spessoreBordi / 2, raggioAngoli, 0, 1.5 * Math.PI, true);
         graphics.strokePath();
         //cerchio centrale
         graphics.lineStyle(spessoreBordi, 0x0000FF, 1);
@@ -91,10 +94,11 @@ export default class Game extends Phaser.Scene {
         //centro campo
         graphics.fillStyle(0xFF0000, 1);
         graphics.beginPath();
-        graphics.arc(SET_WIDTH/ 2, SET_HEIGHT / 2, spessoreBordi * 2, 0, 2 * Math.PI, true);
+        graphics.arc(SET_WIDTH / 2, SET_HEIGHT / 2, spessoreBordi * 2, 0, 2 * Math.PI, true);
         graphics.fillPath();
+        graphics.lineStyle(spessoreBordi / 2, 0xFF0000, 1);
         //cerchi laterali
-        graphics.lineStyle(spessoreBordi/2, 0xFF0000, 1);
+        graphics.lineStyle(spessoreBordi / 2, 0xFF0000, 1);
         graphics.beginPath();
         graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + raggioAngoli, SET_HEIGHT / 4, raggioAngoli, 0, 2 * Math.PI);
         graphics.strokePath();
@@ -113,25 +117,25 @@ export default class Game extends Phaser.Scene {
         graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 + raggioAngoli, SET_HEIGHT / 4, spessoreBordi, 0, 2 * Math.PI, true);
         graphics.fillPath();
         graphics.beginPath();
-        graphics.arc((SET_WIDTH- 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4+ raggioAngoli, SET_HEIGHT / 4 * 3, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 + raggioAngoli, SET_HEIGHT / 4 * 3, spessoreBordi, 0, 2 * Math.PI, true);
         graphics.fillPath();
         graphics.beginPath();
-        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 2+ raggioAngoli, SET_HEIGHT / 4, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 2 + raggioAngoli, SET_HEIGHT / 4, spessoreBordi, 0, 2 * Math.PI, true);
         graphics.fillPath();
         graphics.beginPath();
-        graphics.arc((SET_WIDTH- 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 2+ raggioAngoli, SET_HEIGHT / 4 * 3, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 2 + raggioAngoli, SET_HEIGHT / 4 * 3, spessoreBordi, 0, 2 * Math.PI, true);
         graphics.fillPath();
         graphics.beginPath();
-        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 3+ raggioAngoli, SET_HEIGHT / 4, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 3 + raggioAngoli, SET_HEIGHT / 4, spessoreBordi, 0, 2 * Math.PI, true);
         graphics.fillPath();
         graphics.beginPath();
-        graphics.arc((SET_WIDTH- 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 3+ raggioAngoli, SET_HEIGHT / 4 * 3, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 3 + raggioAngoli, SET_HEIGHT / 4 * 3, spessoreBordi, 0, 2 * Math.PI, true);
         graphics.fillPath();
         graphics.beginPath();
         graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 0 + raggioAngoli, SET_HEIGHT / 4, spessoreBordi, 0, 2 * Math.PI, true);
         graphics.fillPath();
         graphics.beginPath();
-        graphics.arc((SET_WIDTH- 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 0 + raggioAngoli, SET_HEIGHT / 4 * 3, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 0 + raggioAngoli, SET_HEIGHT / 4 * 3, spessoreBordi, 0, 2 * Math.PI, true);
         graphics.fillPath();
         //aree
         graphics.fillStyle(0x43c2e8, 1);
@@ -139,7 +143,7 @@ export default class Game extends Phaser.Scene {
         graphics.arc(raggioAngoli, SET_HEIGHT / 2, raggioAngoli / 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
         graphics.fillPath();
         graphics.beginPath();
-        graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi*2 + 1, SET_HEIGHT / 2, raggioAngoli / 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
+        graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
         graphics.fillPath();
         //porte
         // graphics.lineStyle(spessoreBordi, 0x000000, 1);
@@ -180,7 +184,7 @@ export default class Game extends Phaser.Scene {
     }
 
     compare(a, b) {
-        if (a.scoredGoals < b.scoredGoals) {
+        if (a.scoredGoals < b.scoredGoals) { // TODO PORCO DIO
             return 1;
         }
         if (a.scoredGoals > b.scoredGoals) {

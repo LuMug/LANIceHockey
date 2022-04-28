@@ -15,8 +15,12 @@ ws.addEventListener("open", () => {
     }
 });
 
-function teamChanged(){
+function teamChanged() {
     ws.send("team");
+}
+
+function shoot() {
+    ws.send("shoot");
 }
 
 var x = 100;
