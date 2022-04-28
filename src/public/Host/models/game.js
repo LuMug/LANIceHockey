@@ -201,7 +201,7 @@ export default class Game extends Phaser.Scene {
     }
 
     compare(a, b) {
-        if (a.scoredGoals < b.scoredGoals) { // TODO PORCO D
+        if (a.scoredGoals < b.scoredGoals) {
             return 1;
         }
         if (a.scoredGoals > b.scoredGoals) {
@@ -232,7 +232,7 @@ export default class Game extends Phaser.Scene {
         }
     }
 
-    switchTeam(player) { // TODO AAAAA
+    switchTeam(player) { // TODO change color player
         if (this.teams[0].players.indexOf(player) != -1) {
             this.teams[0].removePlayer(player);
             this.teams[1].addPlayer(player);
@@ -250,10 +250,23 @@ export default class Game extends Phaser.Scene {
         }
         return this.teams[0];
     }
+    
+    writeLeadorder(){
+        this.updateLeaderboard();
+
+        for(var i = 0;i < this.leaderboard.length;i++){
+            var id = i + "";
+            document.getElementById(id).value = i+1 + " " + this.leaderboard[i].name + " goals: " + this.leaderboard[i].scoredGoals;
+        }
+    }
 
     score(puck) {
         puck.player.scoredGoals++;
-        this.updateLeaderboard();
+
+        this.writeLeaderboard();
+
+        document.getElementById("team1").value = this.teams[0].getTeamGoals() + "";
+        document.getElementById("team2").value = this.teams[1].getTeamGoals() + "";
     }
 
     getPlayerByIp(ip) {

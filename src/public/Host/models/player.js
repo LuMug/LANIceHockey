@@ -15,7 +15,7 @@ export default class Player extends Phaser.GameObjects.Ellipse {
         super(scene, posX, posY, 20, 20, team.color);
         this.name = name;
         this.ip = ip;
-        this.followText = scene.add.text(100, 100, '', { font: '64px Courier', fill: '#00ff00' });
+        this.followText = scene.add.text(100, 100, '', { font: '20px Courier', fill: '#00ff00' });
         this.followText.setText(this.name);
         scene.physics.world.enable(this);
         scene.add.existing(this);
