@@ -6,6 +6,7 @@ import { SET_HEIGHT, SET_WIDTH } from "../script/main.js";
 
 export default class Game extends Phaser.Scene {
 
+    //playerNum = 0;
     leaderboard = new Array();
     teams;
     bordersGroup;
@@ -26,7 +27,7 @@ export default class Game extends Phaser.Scene {
     create() {
         var spessoreBordi = 8;
         var raggioAngoli = 85;
-        var highSide = new Phaser.GameObjects.Rectangle(this, raggioAngoli, 20, SET_WIDTH - 2 * raggioAngoli, spessoreBordi);
+        var highSide = new Phaser.GameObjects.Rectangle(this, raggioAngoli, 0, SET_WIDTH - 2 * raggioAngoli, spessoreBordi);
         var lowSide = new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT - spessoreBordi, SET_WIDTH - 2 * raggioAngoli, spessoreBordi);
         var leftSide = new Phaser.GameObjects.Rectangle(this, 0, raggioAngoli, spessoreBordi, SET_HEIGHT - 2 * raggioAngoli);
         var rightSide = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - spessoreBordi, raggioAngoli, spessoreBordi, SET_HEIGHT - 2 * raggioAngoli);
@@ -68,7 +69,6 @@ export default class Game extends Phaser.Scene {
             }
         }
 
-
         var graphics = this.add.graphics({ fillStyle: { color: 0x000000 } });
 
         graphics.fillRectShape(highSide);
@@ -92,16 +92,16 @@ export default class Game extends Phaser.Scene {
         graphics = this.add.graphics();
         graphics.lineStyle(spessoreBordi, 0x000000, 1);
         graphics.beginPath();
-        graphics.arc(this, SET_WIDTH - raggioAngoli - spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 0.5 * Math.PI, 0, true);
+        graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 0.5 * Math.PI, 0, true);
         graphics.strokePath();
         graphics.beginPath();
-        graphics.arc(this, raggioAngoli + spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 1 * Math.PI, 0.5 * Math.PI, true);
+        graphics.arc(raggioAngoli + spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 1 * Math.PI, 0.5 * Math.PI, true);
         graphics.strokePath();
         graphics.beginPath();
-        graphics.arc(this, raggioAngoli + spessoreBordi / 2, raggioAngoli + spessoreBordi / 2, raggioAngoli, 1.5 * Math.PI, 1 * Math.PI, true);
+        graphics.arc(raggioAngoli + spessoreBordi / 2, raggioAngoli + spessoreBordi / 2, raggioAngoli, 1.5 * Math.PI, 1 * Math.PI, true);
         graphics.strokePath();
         graphics.beginPath();
-        graphics.arc(this, SET_WIDTH - (raggioAngoli + spessoreBordi / 2), raggioAngoli + spessoreBordi / 2, raggioAngoli, 0, 1.5 * Math.PI, true);
+        graphics.arc(SET_WIDTH - (raggioAngoli + spessoreBordi / 2), raggioAngoli + spessoreBordi / 2, raggioAngoli, 0, 1.5 * Math.PI, true);
         graphics.strokePath();
         graphics.lineStyle(spessoreBordi, 0x0000FF, 1);
         graphics.beginPath();
@@ -164,7 +164,7 @@ export default class Game extends Phaser.Scene {
         var rightNet = graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
         graphics.strokePath();
 
-        this.create_puck(rightNet, leftNet);
+        this.createPuck(rightNet, leftNet);
         this.physics.add.collider(this.puck, this.bordersGroup);
     }
 
@@ -178,32 +178,34 @@ export default class Game extends Phaser.Scene {
         this.puck.update();
     }
 
-    create_player(name, ip) {
+    createPlayer(name, ip) {
         var team = this.autoSetTeam();
         var p = new Player(this, name, 100, 100, ip, team);
         team.addPlayer(p);
         console.debug('new player added ' + name);
-        var puckCollider = this.physics.add.collider(p, this.puck, this.change_puck_owner);
-        this.physics.add.collider(p, this.bordersGroup, this.player_border_collide);
+        var puckCollider = this.physics.add.collider(p, this.puck, this.changePuckOwner);
+        this.physics.add.collider(p, this.bordersGroup, this.createBorderCollide);
         p.setPuckCollider(puckCollider);
     }
 
-    player_border_collide(player, border) {
+    createBorderCollide(player, border) {
         console.log(player);
     }
 
-    change_puck_owner(player, puck) {
-        console.log('change_puck_owner to: ' + player.name);
+    changePuckOwner(player, puck) {
+        console.log('changePuckOwner to: ' + player.name);
         if (puck.beingShoot == true) {
             puck.beingShoot = false;
             puck.player.addCollider();
         }
-
+        if (puck.player != null) {
+            puck.player.addCollider();
+        }
         puck.setPlayer(player);
         puck.player.removeCollider();
     }
 
-    create_puck(net1, net2) {
+    createPuck(net1, net2) {
         this.puck = new Puck(this, SET_WIDTH / 2, SET_HEIGHT / 2);
         this.physics.add.overlap(this.puck, net1, this.score);
         this.physics.add.overlap(this.puck, net2, this.score);
@@ -241,15 +243,15 @@ export default class Game extends Phaser.Scene {
         }
     }
 
-    switchTeam(player) { // TODO AAAAA
+    switchTeam(player) { // TODO change color player
         if (this.teams[0].players.indexOf(player) != -1) {
             this.teams[0].removePlayer(player);
             this.teams[1].addPlayer(player);
-            player.setColor(this.teams[1]);
+            player.setColor();
         } else {
             this.teams[1].removePlayer(player);
             this.teams[0].addPlayer(player);
-            player.setColor(this.teams[0]);
+            player.setColor();
         }
     }
 
@@ -260,9 +262,22 @@ export default class Game extends Phaser.Scene {
         return this.teams[0];
     }
 
+    writeLeadorder() {
+        this.updateLeaderboard();
+
+        for (var i = 0; i < this.leaderboard.length; i++) {
+            var id = i + "";
+            document.getElementById(id).value = i + 1 + " " + this.leaderboard[i].name + " goals: " + this.leaderboard[i].scoredGoals;
+        }
+    }
+
     score(puck) {
         puck.player.scoredGoals++;
-        this.updateLeaderboard();
+
+        this.writeLeaderboard();
+
+        document.getElementById("team1").value = this.teams[0].getTeamGoals() + "";
+        document.getElementById("team2").value = this.teams[1].getTeamGoals() + "";
     }
 
     getPlayerByIp(ip) {
@@ -282,7 +297,7 @@ export default class Game extends Phaser.Scene {
     shoot() {
         console.log("puck shooted");
         this.puck.beingShoot = true;
-        puck.player.physics.world.removeCollider(puck.player.collider);
+        //this.puck.player.physics.world.removeCollider(puck.player.collider);
         this.puck.body.setVelocity(100, 100);
     }
 }
