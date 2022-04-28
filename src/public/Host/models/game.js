@@ -27,7 +27,7 @@ export default class Game extends Phaser.Scene {
     create() {
         var spessoreBordi = 8;
         var raggioAngoli = 85;
-        var highSide = new Phaser.GameObjects.Rectangle(this, raggioAngoli, 20, SET_WIDTH - 2 * raggioAngoli, spessoreBordi);
+        var highSide = new Phaser.GameObjects.Rectangle(this, raggioAngoli, 0, SET_WIDTH - 2 * raggioAngoli, spessoreBordi);
         var lowSide = new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT - spessoreBordi, SET_WIDTH - 2 * raggioAngoli, spessoreBordi);
         var leftSide = new Phaser.GameObjects.Rectangle(this, 0, raggioAngoli, spessoreBordi, SET_HEIGHT - 2 * raggioAngoli);
         var rightSide = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - spessoreBordi, raggioAngoli, spessoreBordi, SET_HEIGHT - 2 * raggioAngoli);
@@ -83,16 +83,16 @@ export default class Game extends Phaser.Scene {
         graphics = this.add.graphics();
         graphics.lineStyle(spessoreBordi, 0x000000, 1);
         graphics.beginPath();
-        graphics.arc(this, SET_WIDTH - raggioAngoli - spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 0.5 * Math.PI, 0, true);
+        graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 0.5 * Math.PI, 0, true);
         graphics.strokePath();
         graphics.beginPath();
-        graphics.arc(this, raggioAngoli + spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 1 * Math.PI, 0.5 * Math.PI, true);
+        graphics.arc(raggioAngoli + spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 1 * Math.PI, 0.5 * Math.PI, true);
         graphics.strokePath();
         graphics.beginPath();
-        graphics.arc(this, raggioAngoli + spessoreBordi / 2, raggioAngoli + spessoreBordi / 2, raggioAngoli, 1.5 * Math.PI, 1 * Math.PI, true);
+        graphics.arc(raggioAngoli + spessoreBordi / 2, raggioAngoli + spessoreBordi / 2, raggioAngoli, 1.5 * Math.PI, 1 * Math.PI, true);
         graphics.strokePath();
         graphics.beginPath();
-        graphics.arc(this, SET_WIDTH - (raggioAngoli + spessoreBordi / 2), raggioAngoli + spessoreBordi / 2, raggioAngoli, 0, 1.5 * Math.PI, true);
+        graphics.arc(SET_WIDTH - (raggioAngoli + spessoreBordi / 2), raggioAngoli + spessoreBordi / 2, raggioAngoli, 0, 1.5 * Math.PI, true);
         graphics.strokePath();
         graphics.lineStyle(spessoreBordi, 0x0000FF, 1);
         graphics.beginPath();
@@ -189,7 +189,9 @@ export default class Game extends Phaser.Scene {
             puck.beingShoot = false;
             puck.player.addCollider();
         }
-
+        if (puck.player != null) {
+            puck.player.addCollider();
+        }
         puck.setPlayer(player);
         puck.player.removeCollider();
     }
@@ -250,13 +252,13 @@ export default class Game extends Phaser.Scene {
         }
         return this.teams[0];
     }
-    
-    writeLeadorder(){
+
+    writeLeadorder() {
         this.updateLeaderboard();
 
-        for(var i = 0;i < this.leaderboard.length;i++){
+        for (var i = 0; i < this.leaderboard.length; i++) {
             var id = i + "";
-            document.getElementById(id).value = i+1 + " " + this.leaderboard[i].name + " goals: " + this.leaderboard[i].scoredGoals;
+            document.getElementById(id).value = i + 1 + " " + this.leaderboard[i].name + " goals: " + this.leaderboard[i].scoredGoals;
         }
     }
 
@@ -286,7 +288,7 @@ export default class Game extends Phaser.Scene {
     shoot() {
         console.log("puck shooted");
         this.puck.beingShoot = true;
-        puck.player.physics.world.removeCollider(puck.player.collider);
+        //this.puck.player.physics.world.removeCollider(puck.player.collider);
         this.puck.body.setVelocity(100, 100);
     }
 }
