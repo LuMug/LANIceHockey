@@ -9,6 +9,7 @@ export default class Game extends Phaser.Scene {
     leaderboard = new Array();
     teams;
     borders;
+    puck;
 
     constructor() {
         super({ key: 'Game' });
@@ -150,7 +151,6 @@ export default class Game extends Phaser.Scene {
         var team = this.autoSetTeam();
         var p = new Player(this, name, 100, 100, ip, team);
         team.addPlayer(p);
-        p.setCollideWorldBounds(true);
         console.debug('new player added ' + name);
         this.physics.add.collider(p, this.puck, this.change_puck_owner);
     }
@@ -161,7 +161,7 @@ export default class Game extends Phaser.Scene {
     }
 
     create_puck() {
-        this.puck = new Puck(this, this.game_width / 2, this.game_height / 2);
+        this.puck = new Puck(this, SET_WIDTH / 2, SET_HEIGHT / 2);
     }
 
     compare(a, b) {
