@@ -23,11 +23,6 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
-        for (let i = 0; i < this.teams.length; i++) {
-            for (let j = 0; j < this.teams[i].players.length; j++) {
-                this.teams[i].players[j].setCollideWorldBounds(true);
-            }
-        }
 
         var spessoreBordi = 8;
         var raggioAngoli = 85;
@@ -42,12 +37,12 @@ export default class Game extends Phaser.Scene {
         var leftNetRow = new Phaser.Geom.Rectangle(raggioAngoli, spessoreBordi + SET_HEIGHT / 2 - raggioAngoli / 2, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi + raggioAngoli / 2);
         var rightNetRow = new Phaser.Geom.Rectangle(SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2, spessoreBordi + SET_HEIGHT / 2 - raggioAngoli / 2, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi + raggioAngoli / 2);
 
-        var borders = Array(highSide, lowSide, leftSide, rightSide, centralRow, leftThird, rightThird, leftNetRow, rightNetRow);
+        var bordersarr = Array(highSide, lowSide, leftSide, rightSide, centralRow, leftThird, rightThird, leftNetRow, rightNetRow);
 
         this.borders = this.physics.add.group();
-        for(var i = 0;i < borders.length;i++){
-            this.borders.add(borders[i]);
-        }
+        // for (var i = 0; i < bordersarr.length; i++) {
+        //     this.borders.add(bordersarr[i]);
+        // }
 
         for (let i = 0; i < this.teams.length; i++) {
             for (let j = 0; j < this.teams[i].players.length; j++) {
@@ -168,13 +163,17 @@ export default class Game extends Phaser.Scene {
         team.addPlayer(p);
         console.debug('new player added ' + name);
         var puckCollider = this.physics.add.collider(p, this.puck, this.change_puck_owner);
-        this.puck.setCollider(puckCollider);
+        p.setPuckCollider(puckCollider);
     }
 
     change_puck_owner(player, puck) {
+        if (puck.beingShoot == true) {
+            puck.beingShoot = false;
+            this.physics.add.collider(puck.player, this.puck, this.change_puck_owner);
+        }
         console.log('change_puck_owner to: ' + player.name);
-        puck.player.physics.world.removeCollider(puck.player.collider);
         puck.setPlayer(player);
+        puck.player.physics.world.removeCollider(puck.player.collider);
     }
 
     create_puck() {
@@ -252,9 +251,8 @@ export default class Game extends Phaser.Scene {
     }
 
     shoot() {
-        console.log("puck shooted");
         this.puck.beingShoot = true;
+        console.log("puck shooted");
         this.puck.body.setVelocity(100, 100);
-
     }
 }
