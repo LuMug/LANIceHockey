@@ -8,6 +8,7 @@ export default class Game extends Phaser.Scene {
 
     leaderboard = new Array();
     teams;
+    borders;
 
     constructor() {
         super({ key: 'Game' });
@@ -37,15 +38,26 @@ export default class Game extends Phaser.Scene {
         var centralRow = new Phaser.Geom.Rectangle(SET_WIDTH / 2 - spessoreBordi / 2, spessoreBordi, spessoreBordi, SET_HEIGHT);
         var leftThird = new Phaser.Geom.Rectangle((SET_WIDTH - raggioAngoli * 2) / 4 + raggioAngoli, spessoreBordi, spessoreBordi, SET_HEIGHT - spessoreBordi * 2);
         var rightThird = new Phaser.Geom.Rectangle((SET_WIDTH - raggioAngoli * 2) / 4 * 3 + raggioAngoli, spessoreBordi, spessoreBordi, SET_HEIGHT - spessoreBordi * 2);
-        var leftNetRow = new Phaser.Geom.Rectangle(raggioAngoli, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
-        var rightNetRow = new Phaser.Geom.Rectangle(SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
 
-        var borders = Array(highSide, lowSide, leftSide, rightSide, centralRow, leftThird, rightThird, leftNetRow, rightNetRow);
+        var leftNetRow = new Phaser.Geom.Rectangle(raggioAngoli, spessoreBordi + SET_HEIGHT / 2 - raggioAngoli / 2, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi + raggioAngoli / 2);
+        var rightNetRow = new Phaser.Geom.Rectangle(SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2, spessoreBordi + SET_HEIGHT / 2 - raggioAngoli / 2, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi + raggioAngoli / 2);
+
+        borders = this.physics.add.group({
+            highSide,
+            lowSide,
+            leftSide,
+            rightSide,
+            centralRow,
+            leftThird,
+            rightThird,
+            leftNetRow,
+            rightNetRow
+        });
 
         for (let i = 0; i < this.teams.length; i++) {
             for (let j = 0; j < this.teams[i].players.length; j++) {
                 this.physics.add.collider(this.teams[i].players[j], borders);
-                //this.physics.add.overlap(this.teams[i].players[j], borders, null, this); 
+                //this.physics.add.overlap(this.teams[i].players[j], borders, null, this);
             }
         }
 
@@ -55,6 +67,8 @@ export default class Game extends Phaser.Scene {
         graphics.fillRectShape(lowSide);
         graphics.fillRectShape(leftSide);
         graphics.fillRectShape(rightSide);
+        graphics.fillRectShape(leftNetRow);
+        graphics.fillRectShape(rightNetRow);
 
         graphics = this.add.graphics({ fillStyle: { color: 0xFF0000 } });
 
