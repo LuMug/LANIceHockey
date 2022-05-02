@@ -50,7 +50,7 @@ export default class Game extends Phaser.Scene {
         var leftRowScore = new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi - raggioAngoli / 2);
         var rightRowScore = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2, SET_HEIGHT / 2 - raggioAngoli / 2, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi - raggioAngoli / 2);
 
-        var borders = Array(highSide, lowSide, leftSide, rightSide, angleA, angleB, angleC, angleD);
+        var borders = Array(highSide, lowSide, leftSide, rightSide/*, angleA, angleB, angleC, angleD*/);
         //lati porte solidi
         borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, 2, raggioAngoli));
         borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, raggioAngoli/2, 2));
