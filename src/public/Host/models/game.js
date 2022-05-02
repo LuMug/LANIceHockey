@@ -53,19 +53,13 @@ export default class Game extends Phaser.Scene {
 
         var borders = Array(highSide, lowSide, leftSide, rightSide /*, angleA, angleB, angleC, angleD*/ );
         //lati porte solidi
-<<<<<<< HEAD
-        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 - raggioAngoli, 2, raggioAngoli/3));
+        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 - raggioAngoli, 2, raggioAngoli/1.5));
         borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, raggioAngoli/2, 2));
         borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 + raggioAngoli / 2, raggioAngoli/2, 2));
-=======
-        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, 2, raggioAngoli));
-        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, raggioAngoli / 2, 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 + raggioAngoli / 2, raggioAngoli / 2, 2));
->>>>>>> 28188d13baab32298bda0313e9b65a5ac956a8fa
 
-        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, 2, raggioAngoli/3));
+        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, 2, raggioAngoli/1.5));
         borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli / 2 * 3, SET_HEIGHT / 2 - raggioAngoli / 2, raggioAngoli/2, 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli / 2 * 3, SET_HEIGHT / 2 - raggioAngoli / 2, raggioAngoli/2, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli / 2 * 3 + raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, raggioAngoli/2, 2));
 
         this.bordersGroup = this.physics.add.staticGroup();
         for (var i = 0; i < borders.length; i++) {
