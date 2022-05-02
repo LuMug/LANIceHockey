@@ -11,7 +11,8 @@ export default class Game extends Phaser.Scene {
     teams;
     bordersGroup;
     puck;
-
+    rightRowScore;
+    leftRowScore;
     constructor() {
         super({ key: 'Game' });
         this.teams = new Array(new Team("Green", 0x05871b), new Team("Yellow", 0xf0d31a));
@@ -47,14 +48,14 @@ export default class Game extends Phaser.Scene {
         var leftNetRow = new Phaser.GameObjects.Rectangle(this, raggioAngoli, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
         var rightNetRow = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
 
-        var leftRowScore = new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi - raggioAngoli / 2);
-        var rightRowScore = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2, SET_HEIGHT / 2 - raggioAngoli / 2, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi - raggioAngoli / 2);
+        this.leftRowScore = new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi - raggioAngoli / 2);
+        this.rightRowScore = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2, SET_HEIGHT / 2 - raggioAngoli / 2, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi - raggioAngoli / 2);
 
-        var borders = Array(highSide, lowSide, leftSide, rightSide, angleA, angleB, angleC, angleD);
+        var borders = Array(highSide, lowSide, leftSide, rightSide /*, angleA, angleB, angleC, angleD*/ );
         //lati porte solidi
         borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, 2, raggioAngoli));
-        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, raggioAngoli/2, 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 + raggioAngoli / 2, raggioAngoli/2, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, raggioAngoli / 2, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 + raggioAngoli / 2, raggioAngoli / 2, 2));
 
         borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, 2, raggioAngoli));
         borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli / 2 * 3, SET_HEIGHT / 2 - raggioAngoli / 2, 2, raggioAngoli));
@@ -181,6 +182,7 @@ export default class Game extends Phaser.Scene {
         this.physics.add.collider(this.puck, this.bordersGroup);
     }
 
+
     update(time, delta) {
         for (let i = 0; i < this.teams.length; i++) {
             for (let j = 0; j < this.teams[i].players.length; j++) {
@@ -189,6 +191,9 @@ export default class Game extends Phaser.Scene {
             }
         }
         this.puck.update();
+        if (!this.leftRowScore.body.touching.none) {
+            this.score(this.puck, this.leftRowScore);
+        }
     }
 
     createPlayer(name, ip) {
