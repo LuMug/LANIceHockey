@@ -168,7 +168,7 @@ export default class Game extends Phaser.Scene {
         var rightNet = graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
         graphics.strokePath();
 
-        this.createPuck(rightNet, leftNet);
+        this.createPuck(rightRowScore, leftRowScore);
         this.physics.add.collider(this.puck, this.bordersGroup);
     }
 
@@ -273,13 +273,14 @@ export default class Game extends Phaser.Scene {
         }
     }
 
-    score(puck) {
+    score(puck, net) {
         puck.player.scoredGoals++;
 
-        this.writeLeaderboard();
+        //this.writeLeaderboard();
 
-        document.getElementById("team1").value = this.teams[0].getTeamGoals() + "";
-        document.getElementById("team2").value = this.teams[1].getTeamGoals() + "";
+        //document.getElementById("team1").value = this.teams[0].getTeamGoals() + "";
+        //document.getElementById("team2").value = this.teams[1].getTeamGoals() + "";
+        console.log("il puck è entrato in portaaaa");
     }
 
     getPlayerByIp(ip) {
