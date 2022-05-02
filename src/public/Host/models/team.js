@@ -3,6 +3,7 @@ export default class Team {
     players = new Array();
     name;
     color;
+    score;
 
     constructor(name, color) {
         this.name = name;

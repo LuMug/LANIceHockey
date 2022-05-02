@@ -13,6 +13,8 @@ export default class Game extends Phaser.Scene {
     puck;
     rightRowScore;
     leftRowScore;
+    goalScored = false;
+
     constructor() {
         super({ key: 'Game' });
         this.teams = new Array(new Team("Green", 0x05871b), new Team("Yellow", 0xf0d31a));
@@ -177,7 +179,6 @@ export default class Game extends Phaser.Scene {
         var rightNet = graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
         graphics.strokePath();
 
-
         this.createPuck(this.rightRowScore, this.leftRowScore);
         this.physics.add.collider(this.puck, this.bordersGroup);
     }
@@ -189,6 +190,24 @@ export default class Game extends Phaser.Scene {
                 this.teams[i].players[j].update();
                 this.physics.world.collide(this.teams[i].players[j], this.borders);
             }
+        }
+        if(this.puck.scoredLeft || this.puck.scoredRight){
+            if(this.puck.scoredLeft){
+                this.teams[1].score++;
+            }else{
+                this.teams[0].score++;
+            }
+            this.puck.destroy();
+            this.createPuck(this.leftRowScore, this.rightRowScore);
+            for(var i = 0; i < this.teams.length; i++){
+                for(var j = 0; j < this.teams[i].players.length; j++){
+                    var puckCollider = this.physics.add.collider(this.teams[i].players[j], this.puck, this.changePuckOwner);
+                    this.teams[i].players[j].setPuckCollider(puckCollider);
+                }
+            }
+            this.writeLeadorder();
+            this.puck.scoredLeft = false;
+            this.puck.scoredRight = false;
         }
         this.puck.update();
     }
@@ -220,8 +239,8 @@ export default class Game extends Phaser.Scene {
 
     createPuck(net1, net2) {
         this.puck = new Puck(this, SET_WIDTH / 2, SET_HEIGHT / 2);
-        this.physics.add.overlap(this.puck, net1, this.score);
-        this.physics.add.overlap(this.puck, net2, this.score);
+        this.physics.add.overlap(this.puck, net1, this.scoreRight);
+        this.physics.add.overlap(this.puck, net2, this.scoreLeft);
         this.puck.body.setBounce(0.8,0.8);
     }
 
@@ -238,10 +257,10 @@ export default class Game extends Phaser.Scene {
     updateLeaderboard() {
         this.leaderboard = new Array();
         var allPlayers = new Array();
-        for (i = 0; i < this.teams[0].players.length; i++) {
+        for (var i = 0; i < this.teams[0].players.length; i++) {
             allPlayers.push(this.teams[0].players[i]);
         }
-        for (i = 0; i < this.teams[1].players.length; i++) {
+        for (var i = 0; i < this.teams[1].players.length; i++) {
             allPlayers.push(this.teams[1].players[i]);
         }
         allPlayers.sort(this.compare);
@@ -252,7 +271,7 @@ export default class Game extends Phaser.Scene {
         } else {
             max = allPlayers.length;
         }
-        for (i = 0; i < max; i++) {
+        for (var i = 0; i < max; i++) {
             this.leaderboard.push(allPlayers[i]);
         }
     }
@@ -285,14 +304,27 @@ export default class Game extends Phaser.Scene {
         }
     }
 
-    score(puck, net) {
+    scoreLeft(puck, net) {
         puck.player.scoredGoals++;
+        console.log(puck.player.scoredGoals);
 
-        this.writeLeadorder();
+        puck.scoredLeft = true;
 
         // document.getElementById("team1").value = this.teams[0].getTeamGoals() + "";
         // document.getElementById("team2").value = this.teams[1].getTeamGoals() + "";
-        console.log("il puck è entrato in portaaaa");
+
+        console.log("il puck è entrato nella porta sinistra");
+    }
+
+    scoreRight(puck, net) {
+        puck.player.scoredGoals++;
+        console.log(puck.player.scoredGoals);
+
+        puck.scoredRight = true;
+
+        // document.getElementById("team1").value = this.teams[0].getTeamGoals() + "";
+        // document.getElementById("team2").value = this.teams[1].getTeamGoals() + "";
+        console.log("il puck è entrato nella porta destra");
     }
 
     getPlayerByIp(ip) {
