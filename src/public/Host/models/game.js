@@ -88,8 +88,8 @@ export default class Game extends Phaser.Scene {
         graphics.fillRectShape(lowSide);
         graphics.fillRectShape(leftSide);
         graphics.fillRectShape(rightSide);
-        graphics.fillRectShape(leftRowScore);
-        graphics.fillRectShape(rightRowScore);
+        graphics.fillRectShape(this.leftRowScore);
+        graphics.fillRectShape(this.rightRowScore);
 
         graphics = this.add.graphics({ fillStyle: { color: 0xFF0000 } });
 
@@ -178,7 +178,7 @@ export default class Game extends Phaser.Scene {
         var rightNet = graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
         graphics.strokePath();
 
-        this.createPuck(rightRowScore, leftRowScore);
+        this.createPuck(this.rightRowScore, this.leftRowScore);
         this.physics.add.collider(this.puck, this.bordersGroup);
     }
 
@@ -191,9 +191,6 @@ export default class Game extends Phaser.Scene {
             }
         }
         this.puck.update();
-        if (!this.leftRowScore.body.touching.none) {
-            this.score(this.puck, this.leftRowScore);
-        }
     }
 
     createPlayer(name, ip) {
@@ -314,6 +311,6 @@ export default class Game extends Phaser.Scene {
     shoot() {
         console.log("puck shooted");
         this.puck.beingShoot = true;
-        this.puck.body.setVelocity(100, 100);
+        this.puck.body.setVelocity(100, 0);
     }
 }
