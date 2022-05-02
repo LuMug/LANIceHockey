@@ -1,9 +1,10 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const json = require('./settings.json');
 
-const hostname = '10.90.1.117';
-//const hostname = '127.0.0.1';
+const hostname = json.ip;
+//const hostname = '10.90.1.117';
 const port = 80;
 
 const server = http.createServer((req, res) => {

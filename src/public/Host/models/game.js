@@ -222,6 +222,7 @@ export default class Game extends Phaser.Scene {
         this.puck = new Puck(this, SET_WIDTH / 2, SET_HEIGHT / 2);
         this.physics.add.overlap(this.puck, net1, this.score);
         this.physics.add.overlap(this.puck, net2, this.score);
+        this.puck.body.setBounce(0.8,0.8);
     }
 
     compare(a, b) {
@@ -287,10 +288,10 @@ export default class Game extends Phaser.Scene {
     score(puck, net) {
         puck.player.scoredGoals++;
 
-        //this.writeLeaderboard();
+        this.writeLeadorder();
 
-        //document.getElementById("team1").value = this.teams[0].getTeamGoals() + "";
-        //document.getElementById("team2").value = this.teams[1].getTeamGoals() + "";
+        // document.getElementById("team1").value = this.teams[0].getTeamGoals() + "";
+        // document.getElementById("team2").value = this.teams[1].getTeamGoals() + "";
         console.log("il puck è entrato in portaaaa");
     }
 
