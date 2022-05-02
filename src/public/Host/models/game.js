@@ -53,13 +53,13 @@ export default class Game extends Phaser.Scene {
 
         var borders = Array(highSide, lowSide, leftSide, rightSide /*, angleA, angleB, angleC, angleD*/ );
         //lati porte solidi
-        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli / 2, SET_HEIGHT / 2 - raggioAngoli / 2, 2, raggioAngoli / 1.5));
-        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, raggioAngoli / 2, 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 + raggioAngoli / 2, raggioAngoli / 2, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2, 2, raggioAngoli / 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli / 2, SET_HEIGHT / 2 - raggioAngoli / 2, raggioAngoli / 2, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli / 2, SET_HEIGHT / 2 + raggioAngoli / 2, raggioAngoli / 2, 2));
 
-        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli / 2, SET_HEIGHT / 2 - raggioAngoli, 2, raggioAngoli / 1.5));
+        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli / 2, SET_HEIGHT / 2 - raggioAngoli, 2, raggioAngoli / 2));
         borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli / 2 * 3, SET_HEIGHT / 2 - raggioAngoli / 2, raggioAngoli / 2, 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli / 2 * 3, SET_HEIGHT / 2 - raggioAngoli / 2 * 3, raggioAngoli / 2, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli / 2 * 3, SET_HEIGHT / 2 - raggioAngoli / 2 + raggioAngoli, raggioAngoli / 2, 2));
 
         this.physics.world.enable(this.leftRowScore);
         this.physics.world.enable(this.rightRowScore);
@@ -90,8 +90,6 @@ export default class Game extends Phaser.Scene {
         graphics.fillRectShape(lowSide);
         graphics.fillRectShape(leftSide);
         graphics.fillRectShape(rightSide);
-        graphics.fillRectShape(this.leftRowScore);
-        graphics.fillRectShape(this.rightRowScore);
 
         graphics = this.add.graphics({ fillStyle: { color: 0xFF0000 } });
 
