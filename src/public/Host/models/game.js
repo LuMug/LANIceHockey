@@ -11,9 +11,9 @@ export default class Game extends Phaser.Scene {
     teams;
     bordersGroup;
     puck;
-    rightRowScore;
-    leftRowScore;
     goalScored = false;
+    raggioAngoli;
+    spessoreBordi;
 
     constructor() {
         super({ key: 'Game' });
@@ -28,42 +28,37 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
-        var spessoreBordi = 8;
-        var raggioAngoli = 85;
-        var highSide = new Phaser.GameObjects.Rectangle(this, raggioAngoli, 0, SET_WIDTH - 2 * raggioAngoli, spessoreBordi);
-        var lowSide = new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT - spessoreBordi, SET_WIDTH - 2 * raggioAngoli, spessoreBordi);
-        var leftSide = new Phaser.GameObjects.Rectangle(this, 0, raggioAngoli, spessoreBordi, SET_HEIGHT - 2 * raggioAngoli);
-        var rightSide = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - spessoreBordi, raggioAngoli, spessoreBordi, SET_HEIGHT - 2 * raggioAngoli);
-        var centralRow = new Phaser.GameObjects.Rectangle(this, SET_WIDTH / 2 - spessoreBordi / 2, spessoreBordi, spessoreBordi, SET_HEIGHT);
-        var leftThird = new Phaser.GameObjects.Rectangle(this, (SET_WIDTH - raggioAngoli * 2) / 4 + raggioAngoli, spessoreBordi, spessoreBordi, SET_HEIGHT - spessoreBordi * 2);
-        var rightThird = new Phaser.GameObjects.Rectangle(this, (SET_WIDTH - raggioAngoli * 2) / 4 * 3 + raggioAngoli, spessoreBordi, spessoreBordi, SET_HEIGHT - spessoreBordi * 2);
+        this.spessoreBordi = 8;
+        this.raggioAngoli = 85;
+        var highSide = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli, 0, SET_WIDTH - 2 * this.raggioAngoli, this.spessoreBordi);
+        var lowSide = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli, SET_HEIGHT - this.spessoreBordi, SET_WIDTH - 2 * this.raggioAngoli, this.spessoreBordi);
+        var leftSide = new Phaser.GameObjects.Rectangle(this, 0, this.raggioAngoli, this.spessoreBordi, SET_HEIGHT - 2 * this.raggioAngoli);
+        var rightSide = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.spessoreBordi, this.raggioAngoli, this.spessoreBordi, SET_HEIGHT - 2 * this.raggioAngoli);
+        var centralRow = new Phaser.GameObjects.Rectangle(this, SET_WIDTH / 2 - this.spessoreBordi / 2, this.spessoreBordi, this.spessoreBordi, SET_HEIGHT);
+        var leftThird = new Phaser.GameObjects.Rectangle(this, (SET_WIDTH - this.raggioAngoli * 2) / 4 + this.raggioAngoli, this.spessoreBordi, this.spessoreBordi, SET_HEIGHT - this.spessoreBordi * 2);
+        var rightThird = new Phaser.GameObjects.Rectangle(this, (SET_WIDTH - this.raggioAngoli * 2) / 4 * 3 + this.raggioAngoli, this.spessoreBordi, this.spessoreBordi, SET_HEIGHT - this.spessoreBordi * 2);
 
-        /*var angleA = new Phaser.GameObjects.Rectangle(this, raggioAngoli / 2, raggioAngoli / 2, 50, 1);
+        /*var angleA = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli / 2, this.raggioAngoli / 2, 50, 1);
         angleA.setAngle(45);
-        var angleB = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli / 2, raggioAngoli / 2, 50, 1);
+        var angleB = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli / 2, this.raggioAngoli / 2, 50, 1);
         angleB.setAngle(135);
-        var angleC = new Phaser.GameObjects.Rectangle(this, raggioAngoli / 2, SET_HEIGHT - raggioAngoli / 2, 50, 1);
+        var angleC = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli / 2, SET_HEIGHT - this.raggioAngoli / 2, 50, 1);
         angleC.setAngle(135);
-        var angleD = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli / 2, SET_HEIGHT - raggioAngoli / 2, 50, 1);
+        var angleD = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli / 2, SET_HEIGHT - this.raggioAngoli / 2, 50, 1);
         angleD.setAngle(45);*/
 
-        var leftNetRow = new Phaser.GameObjects.Rectangle(this, raggioAngoli, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
-        var rightNetRow = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2, spessoreBordi, spessoreBordi / 2 + 1, SET_HEIGHT - 2 * spessoreBordi);
-
-        this.leftRowScore = new Phaser.GameObjects.Rectangle(this, raggioAngoli, SET_HEIGHT / 2 - raggioAngoli / 2 + 41, spessoreBordi / 2 + 1, SET_HEIGHT / 7);
-        this.rightRowScore = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli - 2 * spessoreBordi - spessoreBordi / 2 + 2, SET_HEIGHT / 2 - raggioAngoli / 2 + 41, spessoreBordi / 2 + 1, SET_HEIGHT / 7);
+        var leftNetRow = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli, this.spessoreBordi, this.spessoreBordi / 2 + 1, SET_HEIGHT - 2 * this.spessoreBordi);
+        var rightNetRow = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli - 2 * this.spessoreBordi - this.spessoreBordi / 2, this.spessoreBordi, this.spessoreBordi / 2 + 1, SET_HEIGHT - 2 * this.spessoreBordi);
 
         var borders = Array(highSide, lowSide, leftSide, rightSide /*, angleA, angleB, angleC, angleD*/ );
         //lati porte solidi
-        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli / 2, SET_HEIGHT / 2 - raggioAngoli / 2 * 3, 2, raggioAngoli / 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli - spessoreBordi, SET_HEIGHT / 2 - raggioAngoli / 2, raggioAngoli / 2, 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, raggioAngoli - spessoreBordi, SET_HEIGHT / 2 + raggioAngoli / 2, raggioAngoli / 2, 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli / 2 - spessoreBordi, SET_HEIGHT / 2 - raggioAngoli, 2, raggioAngoli / 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli / 3, SET_HEIGHT / 2 - raggioAngoli / 2, raggioAngoli / 2, 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - raggioAngoli / 3, SET_HEIGHT / 2 - raggioAngoli / 2 + raggioAngoli, raggioAngoli / 2, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli / 2, SET_HEIGHT / 2 - this.raggioAngoli / 2 * 3, 2, this.raggioAngoli / 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli - this.spessoreBordi, SET_HEIGHT / 2 - this.raggioAngoli / 2, this.raggioAngoli / 2, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli - this.spessoreBordi, SET_HEIGHT / 2 + this.raggioAngoli / 2, this.raggioAngoli / 2, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli / 2 - this.spessoreBordi, SET_HEIGHT / 2 - this.raggioAngoli, 2, this.raggioAngoli / 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli / 3, SET_HEIGHT / 2 - this.raggioAngoli / 2, this.raggioAngoli / 2, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli / 3, SET_HEIGHT / 2 - this.raggioAngoli / 2 + this.raggioAngoli, this.raggioAngoli / 2, 2));
 
-        this.physics.world.enable(this.leftRowScore);
-        this.physics.world.enable(this.rightRowScore);
         this.bordersGroup = this.physics.add.staticGroup();
         for (var i = 0; i < borders.length; i++) {
             //borders[i].originX = 0;
@@ -104,83 +99,82 @@ export default class Game extends Phaser.Scene {
         graphics.fillRectShape(leftThird);
 
         graphics = this.add.graphics();
-        graphics.lineStyle(spessoreBordi, 0x000000, 1);
+        graphics.lineStyle(this.spessoreBordi, 0x000000, 1);
         graphics.beginPath();
-        graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 0.5 * Math.PI, 0, true);
+        graphics.arc(SET_WIDTH - this.raggioAngoli - this.spessoreBordi / 2, SET_HEIGHT - this.raggioAngoli - this.spessoreBordi / 2, this.raggioAngoli, 0.5 * Math.PI, 0, true);
         graphics.strokePath();
         graphics.beginPath();
-        graphics.arc(raggioAngoli + spessoreBordi / 2, SET_HEIGHT - raggioAngoli - spessoreBordi / 2, raggioAngoli, 1 * Math.PI, 0.5 * Math.PI, true);
+        graphics.arc(this.raggioAngoli + this.spessoreBordi / 2, SET_HEIGHT - this.raggioAngoli - this.spessoreBordi / 2, this.raggioAngoli, 1 * Math.PI, 0.5 * Math.PI, true);
         graphics.strokePath();
         graphics.beginPath();
-        graphics.arc(raggioAngoli + spessoreBordi / 2, raggioAngoli + spessoreBordi / 2, raggioAngoli, 1.5 * Math.PI, 1 * Math.PI, true);
+        graphics.arc(this.raggioAngoli + this.spessoreBordi / 2, this.raggioAngoli + this.spessoreBordi / 2, this.raggioAngoli, 1.5 * Math.PI, 1 * Math.PI, true);
         graphics.strokePath();
         graphics.beginPath();
-        graphics.arc(SET_WIDTH - (raggioAngoli + spessoreBordi / 2), raggioAngoli + spessoreBordi / 2, raggioAngoli, 0, 1.5 * Math.PI, true);
+        graphics.arc(SET_WIDTH - (this.raggioAngoli + this.spessoreBordi / 2), this.raggioAngoli + this.spessoreBordi / 2, this.raggioAngoli, 0, 1.5 * Math.PI, true);
         graphics.strokePath();
-        graphics.lineStyle(spessoreBordi, 0x0000FF, 1);
+        graphics.lineStyle(this.spessoreBordi, 0x0000FF, 1);
         graphics.beginPath();
-        graphics.arc(SET_WIDTH / 2, SET_HEIGHT / 2, raggioAngoli, 0, 2 * Math.PI, true);
-        graphics.strokePath();
-        graphics.fillStyle(0xFF0000, 1);
-        graphics.beginPath();
-        graphics.arc(SET_WIDTH / 2, SET_HEIGHT / 2, spessoreBordi * 2, 0, 2 * Math.PI, true);
-        graphics.fillPath();
-        graphics.lineStyle(spessoreBordi / 2, 0xFF0000, 1);
-        graphics.beginPath();
-        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + raggioAngoli, SET_HEIGHT / 4, raggioAngoli, 0, 2 * Math.PI);
-        graphics.strokePath();
-        graphics.beginPath();
-        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + raggioAngoli, SET_HEIGHT / 4 * 3, raggioAngoli, 0, 2 * Math.PI);
-        graphics.strokePath();
-        graphics.beginPath();
-        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 3 + raggioAngoli, SET_HEIGHT / 4, raggioAngoli, 0, 2 * Math.PI);
-        graphics.strokePath();
-        graphics.beginPath();
-        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 3 + raggioAngoli, SET_HEIGHT / 4 * 3, raggioAngoli, 0, 2 * Math.PI);
+        graphics.arc(SET_WIDTH / 2, SET_HEIGHT / 2, this.raggioAngoli, 0, 2 * Math.PI, true);
         graphics.strokePath();
         graphics.fillStyle(0xFF0000, 1);
         graphics.beginPath();
-        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 + raggioAngoli, SET_HEIGHT / 4, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.arc(SET_WIDTH / 2, SET_HEIGHT / 2, this.spessoreBordi * 2, 0, 2 * Math.PI, true);
+        graphics.fillPath();
+        graphics.lineStyle(this.spessoreBordi / 2, 0xFF0000, 1);
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH - 2 * this.raggioAngoli) / 8 + this.raggioAngoli, SET_HEIGHT / 4, this.raggioAngoli, 0, 2 * Math.PI);
+        graphics.strokePath();
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH - 2 * this.raggioAngoli) / 8 + this.raggioAngoli, SET_HEIGHT / 4 * 3, this.raggioAngoli, 0, 2 * Math.PI);
+        graphics.strokePath();
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH - 2 * this.raggioAngoli) / 8 + (SET_WIDTH - 2 * this.raggioAngoli) / 4 * 3 + this.raggioAngoli, SET_HEIGHT / 4, this.raggioAngoli, 0, 2 * Math.PI);
+        graphics.strokePath();
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH - 2 * this.raggioAngoli) / 8 + (SET_WIDTH - 2 * this.raggioAngoli) / 4 * 3 + this.raggioAngoli, SET_HEIGHT / 4 * 3, this.raggioAngoli, 0, 2 * Math.PI);
+        graphics.strokePath();
+        graphics.fillStyle(0xFF0000, 1);
+        graphics.beginPath();
+        graphics.arc((SET_WIDTH - 2 * this.raggioAngoli) / 8 + (SET_WIDTH - 2 * this.raggioAngoli) / 4 + this.raggioAngoli, SET_HEIGHT / 4, this.spessoreBordi, 0, 2 * Math.PI, true);
         graphics.fillPath();
         graphics.beginPath();
-        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 + raggioAngoli, SET_HEIGHT / 4 * 3, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.arc((SET_WIDTH - 2 * this.raggioAngoli) / 8 + (SET_WIDTH - 2 * this.raggioAngoli) / 4 + this.raggioAngoli, SET_HEIGHT / 4 * 3, this.spessoreBordi, 0, 2 * Math.PI, true);
         graphics.fillPath();
         graphics.beginPath();
-        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 2 + raggioAngoli, SET_HEIGHT / 4, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.arc((SET_WIDTH - 2 * this.raggioAngoli) / 8 + (SET_WIDTH - 2 * this.raggioAngoli) / 4 * 2 + this.raggioAngoli, SET_HEIGHT / 4, this.spessoreBordi, 0, 2 * Math.PI, true);
         graphics.fillPath();
         graphics.beginPath();
-        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 2 + raggioAngoli, SET_HEIGHT / 4 * 3, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.arc((SET_WIDTH - 2 * this.raggioAngoli) / 8 + (SET_WIDTH - 2 * this.raggioAngoli) / 4 * 2 + this.raggioAngoli, SET_HEIGHT / 4 * 3, this.spessoreBordi, 0, 2 * Math.PI, true);
         graphics.fillPath();
         graphics.beginPath();
-        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 3 + raggioAngoli, SET_HEIGHT / 4, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.arc((SET_WIDTH - 2 * this.raggioAngoli) / 8 + (SET_WIDTH - 2 * this.raggioAngoli) / 4 * 3 + this.raggioAngoli, SET_HEIGHT / 4, this.spessoreBordi, 0, 2 * Math.PI, true);
         graphics.fillPath();
         graphics.beginPath();
-        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 3 + raggioAngoli, SET_HEIGHT / 4 * 3, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.arc((SET_WIDTH - 2 * this.raggioAngoli) / 8 + (SET_WIDTH - 2 * this.raggioAngoli) / 4 * 3 + this.raggioAngoli, SET_HEIGHT / 4 * 3, this.spessoreBordi, 0, 2 * Math.PI, true);
         graphics.fillPath();
         graphics.beginPath();
-        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 0 + raggioAngoli, SET_HEIGHT / 4, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.arc((SET_WIDTH - 2 * this.raggioAngoli) / 8 + (SET_WIDTH - 2 * this.raggioAngoli) / 4 * 0 + this.raggioAngoli, SET_HEIGHT / 4, this.spessoreBordi, 0, 2 * Math.PI, true);
         graphics.fillPath();
         graphics.beginPath();
-        graphics.arc((SET_WIDTH - 2 * raggioAngoli) / 8 + (SET_WIDTH - 2 * raggioAngoli) / 4 * 0 + raggioAngoli, SET_HEIGHT / 4 * 3, spessoreBordi, 0, 2 * Math.PI, true);
+        graphics.arc((SET_WIDTH - 2 * this.raggioAngoli) / 8 + (SET_WIDTH - 2 * this.raggioAngoli) / 4 * 0 + this.raggioAngoli, SET_HEIGHT / 4 * 3, this.spessoreBordi, 0, 2 * Math.PI, true);
         graphics.fillPath();
         graphics.fillStyle(0x43c2e8, 1);
         graphics.beginPath();
-        graphics.arc(raggioAngoli, SET_HEIGHT / 2, raggioAngoli / 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
+        graphics.arc(this.raggioAngoli, SET_HEIGHT / 2, this.raggioAngoli / 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
         graphics.fillPath();
         graphics.beginPath();
-        graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
+        graphics.arc(SET_WIDTH - this.raggioAngoli - this.spessoreBordi * 2 + 1, SET_HEIGHT / 2, this.raggioAngoli / 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
         graphics.fillPath();
         //disegno porte
-        graphics.lineStyle(spessoreBordi, 0x000000, 1);
+        graphics.lineStyle(this.spessoreBordi, 0x000000, 1);
         graphics.beginPath();
-        var leftNet = graphics.arc(raggioAngoli, SET_HEIGHT / 2, raggioAngoli / 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
+        var leftNet = graphics.arc(this.raggioAngoli, SET_HEIGHT / 2, this.raggioAngoli / 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
         graphics.strokePath();
         graphics.beginPath();
-        var rightNet = graphics.arc(SET_WIDTH - raggioAngoli - spessoreBordi * 2 + 1, SET_HEIGHT / 2, raggioAngoli / 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
+        var rightNet = graphics.arc(SET_WIDTH - this.raggioAngoli - this.spessoreBordi * 2 + 1, SET_HEIGHT / 2, this.raggioAngoli / 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
         graphics.strokePath();
 
-        this.createPuck(this.rightRowScore, this.leftRowScore);
-        this.physics.add.collider(this.puck, this.bordersGroup);
+        this.createPuck();
     }
 
 
@@ -198,7 +192,7 @@ export default class Game extends Phaser.Scene {
                 this.teams[0].score++;
             }
             this.puck.destroy();
-            this.createPuck(this.leftRowScore, this.rightRowScore);
+            this.createPuck();
             for(var i = 0; i < this.teams.length; i++){
                 for(var j = 0; j < this.teams[i].players.length; j++){
                     var puckCollider = this.physics.add.collider(this.teams[i].players[j], this.puck, this.changePuckOwner);
@@ -237,11 +231,16 @@ export default class Game extends Phaser.Scene {
         puck.player.removeCollider();
     }
 
-    createPuck(net1, net2) {
+    createPuck() {
         this.puck = new Puck(this, SET_WIDTH / 2, SET_HEIGHT / 2);
-        this.physics.add.overlap(this.puck, net1, this.scoreRight);
-        this.physics.add.overlap(this.puck, net2, this.scoreLeft);
-        this.puck.body.setBounce(0.8,0.8);
+        this.puck.leftRowScore = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli, SET_HEIGHT / 2 - this.raggioAngoli / 2 + 41, this.spessoreBordi / 2 + 1, SET_HEIGHT / 7);
+        this.puck.rightRowScore = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli - 2 * this.spessoreBordi - this.spessoreBordi / 2 + 2, SET_HEIGHT / 2 - this.raggioAngoli / 2 + 41, this.spessoreBordi / 2 + 1, SET_HEIGHT / 7);
+        this.physics.world.enable(this.puck.leftRowScore);
+        this.physics.world.enable(this.puck.rightRowScore);
+        this.physics.add.collider(this.puck, this.bordersGroup);
+        this.physics.add.overlap(this.puck, this.puck.rightRowScore, this.scoreRight);
+        this.physics.add.overlap(this.puck, this.puck.leftRowScore, this.scoreLeft);
+        this.puck.body.setBounce(0.5,0.5);
     }
 
     compare(a, b) {

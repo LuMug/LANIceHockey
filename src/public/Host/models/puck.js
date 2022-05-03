@@ -6,6 +6,8 @@ export default class Puck extends Phaser.GameObjects.Ellipse {
     beingShoot = false;
     scoredRight = false;
     scoredLeft = false;
+    rightRowScore;
+    leftRowScore;
 
     constructor(scene, posX, posY, size = 40, color = 0x202020) {
         super(scene, posX, posY, size, size, color);
