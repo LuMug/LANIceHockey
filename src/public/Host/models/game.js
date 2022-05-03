@@ -269,6 +269,12 @@ export default class Game extends Phaser.Scene {
         }
         allPlayers.sort(function(a,b){return b-a});
 
+        let theExport = "";
+        theExport = '<table>';
+        allPlayers.forEach((player) => theExport += '<tr><td>' + player.name + '</td><td>' + player.scoredGoals + '</td></tr>');
+        document.getElementById("leaderBoard").innerHTML = theExport;
+        theExport += '</table>';
+
         var max = 0;
         if (allPlayers.length >= 10) {
             max = 10;
