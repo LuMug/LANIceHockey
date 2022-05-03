@@ -9,7 +9,7 @@ export default class Puck extends Phaser.GameObjects.Ellipse {
     rightRowScore;
     leftRowScore;
 
-    constructor(scene, posX, posY, size = 40, color = 0x202020) {
+    constructor(scene, posX, posY, size = 35, color = 0x202020) {
         super(scene, posX, posY, size, size, color);
         scene.physics.world.enable(this);
         scene.add.existing(this);

@@ -185,12 +185,26 @@ export default class Game extends Phaser.Scene {
                 this.physics.world.collide(this.teams[i].players[j], this.borders);
             }
         }
+
+        // If the player scored in the enemy net add a point to the player
+        // if not remove a point from the player
         if(this.puck.scoredLeft || this.puck.scoredRight){
             if(this.puck.scoredLeft){
-                this.teams[1].score++;
+                if(this.puck.player.team == this.teams[1]){
+                    this.puck.player.scoredGoals++;
+                }else{
+                    this.puck.player.scoredGoals--;
+                }
             }else{
-                this.teams[0].score++;
+                if(this.puck.player.team == this.teams[0]){
+                    this.puck.player.scoredGoals++;
+                }else{
+                    this.puck.player.scoredGoals--;
+                }
             }
+            console.log(this.puck.player.scoredGoals);
+
+            //riavvia il puck e rimette i collider
             this.puck.destroy();
             this.createPuck();
             for(var i = 0; i < this.teams.length; i++){
@@ -199,7 +213,8 @@ export default class Game extends Phaser.Scene {
                     this.teams[i].players[j].setPuckCollider(puckCollider);
                 }
             }
-            this.writeLeadorder();
+
+            this.writeLeaderboard();
             this.puck.scoredLeft = false;
             this.puck.scoredRight = false;
         }
@@ -243,16 +258,6 @@ export default class Game extends Phaser.Scene {
         this.puck.body.setBounce(0.5,0.5);
     }
 
-    compare(a, b) {
-        if (a.scoredGoals < b.scoredGoals) {
-            return 1;
-        }
-        if (a.scoredGoals > b.scoredGoals) {
-            return -1;
-        }
-        return 0;
-    }
-
     updateLeaderboard() {
         this.leaderboard = new Array();
         var allPlayers = new Array();
@@ -262,7 +267,7 @@ export default class Game extends Phaser.Scene {
         for (var i = 0; i < this.teams[1].players.length; i++) {
             allPlayers.push(this.teams[1].players[i]);
         }
-        allPlayers.sort(this.compare);
+        allPlayers.sort(function(a,b){return b-a});
 
         var max = 0;
         if (allPlayers.length >= 10) {
@@ -294,7 +299,7 @@ export default class Game extends Phaser.Scene {
         return this.teams[0];
     }
 
-    writeLeadorder() {
+    writeLeaderboard() {
         this.updateLeaderboard();
 
         for (var i = 0; i < this.leaderboard.length; i++) {
@@ -304,9 +309,6 @@ export default class Game extends Phaser.Scene {
     }
 
     scoreLeft(puck, net) {
-        puck.player.scoredGoals++;
-        console.log(puck.player.scoredGoals);
-
         puck.scoredLeft = true;
 
         // document.getElementById("team1").value = this.teams[0].getTeamGoals() + "";
@@ -316,9 +318,6 @@ export default class Game extends Phaser.Scene {
     }
 
     scoreRight(puck, net) {
-        puck.player.scoredGoals++;
-        console.log(puck.player.scoredGoals);
-
         puck.scoredRight = true;
 
         // document.getElementById("team1").value = this.teams[0].getTeamGoals() + "";
@@ -343,6 +342,7 @@ export default class Game extends Phaser.Scene {
     shoot() {
         console.log("puck shooted");
         this.puck.beingShoot = true;
-        this.puck.body.setVelocity(100, 0);
+        this.puck.body.setVelocity(this.puck.player.lastX, this.puck.player.lastY);
+        console.log("puck shooted " + this.puck.player.lastX + " " + this.puck.player.lastY)
     }
 }

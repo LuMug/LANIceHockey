@@ -45,8 +45,10 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     update() {
         var x = (this.intensity * Math.cos(this.angle * Math.PI / 180)) * 4;
         var y = -(this.intensity * Math.sin(this.angle * Math.PI / 180)) * 4;
-        this.lastX = x;
-        this.lastY = y;
+        if(x != 0 && x != 0){
+            this.lastX = x;
+            this.lastY = y;
+        }
         this.body.setVelocity(x, y);
         this.followText.setPosition(this.x, this.y);
     }
