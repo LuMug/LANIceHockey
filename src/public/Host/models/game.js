@@ -48,7 +48,8 @@ export default class Game extends Phaser.Scene {
         var leftNetRow = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli, this.spessoreBordi, this.spessoreBordi / 2 + 1, SET_HEIGHT - 2 * this.spessoreBordi);
         var rightNetRow = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli - 2 * this.spessoreBordi - this.spessoreBordi / 2, this.spessoreBordi, this.spessoreBordi / 2 + 1, SET_HEIGHT - 2 * this.spessoreBordi);
 
-        var borders = Array(highSide, lowSide, leftSide, rightSide /*, angleA, angleB, angleC, angleD*/ );
+        var borders = Array(highSide, lowSide, leftSide, rightSide);
+
         //lati porte solidi
         borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli / 2, SET_HEIGHT / 2 - this.raggioAngoli / 2 * 3, 2, this.raggioAngoli / 2));
         borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli - this.spessoreBordi, SET_HEIGHT / 2 - this.raggioAngoli / 2, this.raggioAngoli / 2, 2));
@@ -59,8 +60,6 @@ export default class Game extends Phaser.Scene {
 
         this.bordersGroup = this.physics.add.staticGroup();
         for (var i = 0; i < borders.length; i++) {
-            //borders[i].originX = 0;
-            //borders[i].originY = 0;
             this.physics.add.existing(borders[i], true);
             this.physics.world.enable(borders[i]);
             if (i < 2) {
@@ -68,7 +67,6 @@ export default class Game extends Phaser.Scene {
             } else {
                 borders[i].body.setSize(borders[i].width, borders[i].height * 2, false);
             }
-            //this.physics.world.enableBody(borders[i]);
             this.bordersGroup.add(borders[i]);
         }
 
@@ -201,7 +199,6 @@ export default class Game extends Phaser.Scene {
                     this.puck.player.scoredGoals--;
                 }
             }
-            console.log(this.puck.player.scoredGoals);
 
             //riavvia il puck e rimette i collider
             this.puck.destroy();
