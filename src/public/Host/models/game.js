@@ -6,8 +6,6 @@ import { SET_HEIGHT, SET_WIDTH } from "../script/main.js";
 
 export default class Game extends Phaser.Scene {
 
-    //playerNum = 0;
-    leaderboard = new Array();
     teams;
     bordersGroup;
     puck;
@@ -179,6 +177,7 @@ export default class Game extends Phaser.Scene {
 
 
     update(time, delta) {
+        //aggiorna le posizioni dei player
         for (let i = 0; i < this.teams.length; i++) {
             for (let j = 0; j < this.teams[i].players.length; j++) {
                 this.teams[i].players[j].update();
@@ -214,16 +213,38 @@ export default class Game extends Phaser.Scene {
                 }
             }
 
-            this.writeLeaderboard();
+            //riavvia le posizioni dei player
+            for (let i = 0; i < this.teams.length; i++) {
+                for (let j = 0; j < this.teams[i].players.length; j++) {
+                    if(i == 0){
+                        this.teams[i].players[j].setPosition(SET_WIDTH/4, SET_HEIGHT/2);
+                    }else{
+                        this.teams[i].players[j].setPosition((SET_WIDTH/4)*3, SET_HEIGHT/2);
+                    }
+                }
+            }
+
+            this.updateLeaderboard();
             this.puck.scoredLeft = false;
             this.puck.scoredRight = false;
         }
         this.puck.update();
     }
 
+    //crea un player, invocato quando un player si connette
     createPlayer(name, ip) {
         var team = this.autoSetTeam();
-        var p = new Player(this, name, 100, 100, ip, team);
+        var x;
+        var y;
+        //le posizioni dei player sono fatte in base al team
+        if(team == this.teams[0]){
+            x = SET_WIDTH/4;
+            y = SET_HEIGHT/2;
+        }else{
+            x = (SET_WIDTH/4)*3;
+            y = SET_HEIGHT/2;
+        }
+        var p = new Player(this, name, x, y, ip, team);
         team.addPlayer(p);
         console.debug('new player added ' + name);
         var puckCollider = this.physics.add.collider(p, this.puck, this.changePuckOwner);
@@ -233,6 +254,8 @@ export default class Game extends Phaser.Scene {
 
     createBorderCollide(player, border) {}
 
+    //quando il puck viene preso da un altro giocatore, invoca questo metodo
+    //si occupa di rimettere il collider al giocatore che aveva il puck e toglierlo al giocatore che lo riceve
     changePuckOwner(player, puck) {
         console.log('changePuckOwner to: ' + player.name);
         if (puck.beingShoot == true) {
@@ -246,20 +269,30 @@ export default class Game extends Phaser.Scene {
         puck.player.removeCollider();
     }
 
+    //crea il puck all'interno del campo, setta i collider e gli overlap che il puck possiede
     createPuck() {
         this.puck = new Puck(this, SET_WIDTH / 2, SET_HEIGHT / 2);
+        //crea le reti
         this.puck.leftRowScore = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli, SET_HEIGHT / 2 - this.raggioAngoli / 2 + 41, this.spessoreBordi / 2 + 1, SET_HEIGHT / 7);
         this.puck.rightRowScore = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli - 2 * this.spessoreBordi - this.spessoreBordi / 2 + 2, SET_HEIGHT / 2 - this.raggioAngoli / 2 + 41, this.spessoreBordi / 2 + 1, SET_HEIGHT / 7);
         this.physics.world.enable(this.puck.leftRowScore);
         this.physics.world.enable(this.puck.rightRowScore);
+        //collider per i bordi del campo
         this.physics.add.collider(this.puck, this.bordersGroup);
+        //overlap per reti delle porte
         this.physics.add.overlap(this.puck, this.puck.rightRowScore, this.scoreRight);
         this.physics.add.overlap(this.puck, this.puck.leftRowScore, this.scoreLeft);
+        //ogni rimbalzo dimezza la velocità
         this.puck.body.setBounce(0.5,0.5);
     }
 
     updateLeaderboard() {
-        this.leaderboard = new Array();
+        //aggiorno lo score di entrambe le squadre
+        document.getElementById('team1').innerHTML = this.teams[0].getTeamGoals();
+        document.getElementById('team2').innerHTML = this.teams[1].getTeamGoals();
+
+        //creo una nuova leaderboard per aggiornarla, allPlayers conterrà i player ordinati per score
+        var leaderboard = new Array();
         var allPlayers = new Array();
         for (var i = 0; i < this.teams[0].players.length; i++) {
             allPlayers.push(this.teams[0].players[i]);
@@ -269,12 +302,7 @@ export default class Game extends Phaser.Scene {
         }
         allPlayers.sort(function(a,b){return b-a});
 
-        let theExport = "";
-        theExport = '<table>';
-        allPlayers.forEach((player) => theExport += '<tr><td>' + player.name + '</td><td>' + player.scoredGoals + '</td></tr>');
-        document.getElementById("leaderBoard").innerHTML = theExport;
-        theExport += '</table>';
-
+        //leaderboard contiene al massimo 10 players
         var max = 0;
         if (allPlayers.length >= 10) {
             max = 10;
@@ -282,11 +310,19 @@ export default class Game extends Phaser.Scene {
             max = allPlayers.length;
         }
         for (var i = 0; i < max; i++) {
-            this.leaderboard.push(allPlayers[i]);
+            leaderboard.push(allPlayers[i]);
         }
+
+        //cambio la leaderboard presente nell'html
+        let theExport = "<table>";
+        theExport += '<tr><td>Name</td><td>Points</td></tr>';
+        leaderboard.forEach((player) => theExport += '<tr><td>' + player.name + '</td><td>' + player.scoredGoals + '</td></tr>');
+        theExport += '</table>';
+        document.getElementById("leaderBoard").innerHTML = theExport;
     }
 
-    switchTeam(player) { // TODO change color player
+    //cambia team ad un player
+    switchTeam(player) { // TODO change color player (this.fillColor is not a function player.js:42)
         if (this.teams[0].players.indexOf(player) != -1) {
             this.teams[0].removePlayer(player);
             this.teams[1].addPlayer(player);
@@ -298,6 +334,7 @@ export default class Game extends Phaser.Scene {
         }
     }
 
+    //ritorna il team con meno player
     autoSetTeam() {
         if (this.teams[0].players.length > this.teams[1].players.length) {
             return this.teams[1];
@@ -305,32 +342,19 @@ export default class Game extends Phaser.Scene {
         return this.teams[0];
     }
 
-    writeLeaderboard() {
-        this.updateLeaderboard();
-
-        for (var i = 0; i < this.leaderboard.length; i++) {
-            var id = i + "";
-            document.getElementById(id).value = i + 1 + " " + this.leaderboard[i].name + " goals: " + this.leaderboard[i].scoredGoals;
-        }
-    }
-
+    //evento scatenato se si segna a sinistra
     scoreLeft(puck, net) {
         puck.scoredLeft = true;
-
-        // document.getElementById("team1").value = this.teams[0].getTeamGoals() + "";
-        // document.getElementById("team2").value = this.teams[1].getTeamGoals() + "";
-
         console.log("il puck è entrato nella porta sinistra");
     }
 
+    //evento scatenato se si segna a destra
     scoreRight(puck, net) {
         puck.scoredRight = true;
-
-        // document.getElementById("team1").value = this.teams[0].getTeamGoals() + "";
-        // document.getElementById("team2").value = this.teams[1].getTeamGoals() + "";
         console.log("il puck è entrato nella porta destra");
     }
 
+    //tramite l'ip ritorna un player
     getPlayerByIp(ip) {
         for (let i = 0; i < this.teams.length; i++) {
             for (let j = 0; j < this.teams[i].players.length; j++) {
@@ -341,14 +365,11 @@ export default class Game extends Phaser.Scene {
         }
     }
 
-    startPaint() {
-        setInterval(this.repaintAllPlayer, 1000);
-    }
-
+    //metodo invocato quando il player lancia il puck
     shoot() {
         console.log("puck shooted");
         this.puck.beingShoot = true;
+        //la direzione del puck dipende dall'ultimo movimento fatto dal player
         this.puck.body.setVelocity(this.puck.player.lastX, this.puck.player.lastY);
-        console.log("puck shooted " + this.puck.player.lastX + " " + this.puck.player.lastY)
     }
 }
