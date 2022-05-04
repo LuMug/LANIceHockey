@@ -27,6 +27,8 @@ function shoot() {
 
 function speed(){
     ws.send("speed");
+    document.getElementById('bs').disabled = true;
+    setTimeout(() => { document.getElementById('bs').disabled = true; }, 15000);
 }
 
 var x = 100;
