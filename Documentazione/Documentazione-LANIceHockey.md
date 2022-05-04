@@ -9,7 +9,7 @@
 2. [Analisi](#analisi)
 
   - [Analisi del dominio](#analisi-del-dominio)
-  
+
   - [Analisi dei mezzi](#analisi-dei-mezzi)
 
   - [Analisi e specifica dei requisiti](#analisi-e-specifica-dei-requisiti)
@@ -244,6 +244,8 @@ presenta? Che hw sarà disponibile durante lo sviluppo?
 - Computer2: 
   - Processore: Intel Xeon (R) CPU E3-1240 V2 @ 3.40GHz x 8
   - RAM: 8 GB
+- Router:
+  - Linksys
 
 #### Software
 - OS Computer1: Windows 10 Enterprise versione 20H2 (build SO 19042.1586)

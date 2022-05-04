@@ -39,7 +39,7 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     }
 
     setColor() {
-        this.fillColor(this.team.color);
+        this.setFillStyle(this.team.color);
     }
 
     update() {
