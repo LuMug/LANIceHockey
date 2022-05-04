@@ -247,8 +247,7 @@ export default class Game extends Phaser.Scene {
         var p = new Player(this, name, x, y, ip, team);
         team.addPlayer(p);
         console.debug('new player added ' + name);
-        var puckCollider = this.physics.add.collider(p, this.puck, this.changePuckOwner);
-        p.setPuckCollider(puckCollider);
+        p.addCollider();
         this.physics.add.collider(p, this.bordersGroup, this.createBorderCollide);
     }
 
@@ -257,14 +256,18 @@ export default class Game extends Phaser.Scene {
     //quando il puck viene preso da un altro giocatore, invoca questo metodo
     //si occupa di rimettere il collider al giocatore che aveva il puck e toglierlo al giocatore che lo riceve
     changePuckOwner(player, puck) {
-        console.log('changePuckOwner to: ' + player.name);
-        if (puck.beingShoot == true && player != puck.player) {
-            puck.player.addCollider();
-        }
+        puck.bounced = 0;
+        var prePlayer = puck.player;
         puck.beingShoot = false;
         puck.setPlayer(player);
         puck.player.removeCollider();
         puck.body.setVelocity(0,0);
+
+        setTimeout(() => {
+            if (prePlayer != null && prePlayer != puck.player) {
+                prePlayer.addCollider();
+            }
+        }, 150);
     }
 
     //crea il puck all'interno del campo, setta i collider e gli overlap che il puck possiede
@@ -285,7 +288,8 @@ export default class Game extends Phaser.Scene {
     }
 
     puckBorderCollide(puck, borders){
-        if(puck.beingShoot){
+        puck.bounced++;
+        if(puck.beingShoot && puck.bounced <= 1){
             puck.player.addCollider();
         }
     }
@@ -376,4 +380,12 @@ export default class Game extends Phaser.Scene {
         //la direzione del puck dipende dall'ultimo movimento fatto dal player
         this.puck.body.setVelocity(this.puck.player.lastVelocityX *2, this.puck.player.lastVelocityY *2);
     }
+
+    sleep(milliseconds) {
+        const date = Date.now();
+        let currentDate = null;
+        do {
+          currentDate = Date.now();
+        } while (currentDate - date < milliseconds);
+      }
 }

@@ -3,6 +3,7 @@
 export default class Puck extends Phaser.GameObjects.Ellipse {
 
     player; //player that has the puck
+    bounced = 0;
     beingShoot = false;
     scoredRight = false;
     scoredLeft = false;

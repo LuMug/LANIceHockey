@@ -237,15 +237,19 @@ Su quale piattaforma dovrà essere eseguito il prodotto? Che hardware
 particolare è coinvolto nel progetto? Che particolarità e limitazioni
 presenta? Che hw sarà disponibile durante lo sviluppo?
 
+L'idea è quella di poter utilizzare questo gioco su qualsiasi rete
+
 #### Hardware
-- Computer1: 
+- Computer1:
   - Processore: Intel(R) Core(TM) i5-7360U CPU @ 2.30GHz
   - RAM: 16 GB
-- Computer2: 
+- Computer2:
   - Processore: Intel Xeon (R) CPU E3-1240 V2 @ 3.40GHz x 8
   - RAM: 8 GB
 - Router:
   - Linksys
+- Switch:
+  - boh
 
 #### Software
 - OS Computer1: Windows 10 Enterprise versione 20H2 (build SO 19042.1586)
@@ -274,7 +278,7 @@ Descrive:
 
 Diagramma delle classi che compongono il nostro progetto:
 ![Diagramma delle classi](Assets/DiagrammaDelleClassi.PNG)
-> Diagramma delle classi 
+> Diagramma delle classi
 
 Diagramma di flusso dei dati:
 ![DFD](Assets/DFD.PNG)
