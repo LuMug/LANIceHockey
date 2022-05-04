@@ -334,6 +334,27 @@ componenti utilizzati. Eventualmente questa va allegata.
 
 Per eventuali dettagli si possono inserire riferimenti ai diari.
 
+### classi
+
+#### Player
+Questa classe rappresenta i singoli giocatori che partecipano al gioco, ed estende Phaser.GameObjects.Ellipse perché nel campo vengono rappresentati appunto come ellipse ovvero degli ellissi.
+Contiene diversi attributi:
+- scene: è la scena a cui appartiene ovvero serve a far sapere a Phaser dove farlo rappresentare nella scena di gioco.
+- name: è il nome con cui il giocatore decide di giocare.
+- scoredGoals: che rappresenta il numero di reti segnate dal giocatore.
+- angle: è la direzione in cui il giocatore punta il joistick, rappresenta l'angolo in cui l'ellipse punta per muoversi.
+- intensity: rappresenta la forza con cui il player si sposta, ovvero la velocità. Questa viene calcolata rispetto a quanto il joistick è spostato rispetto al centro.
+- team: rappresenta il team per cui il player gioca.
+- ip: serve a salvare l'indirizzo di rete degi dispositivi che si connettono,appunto un player è mosso dal proprio dispositivo.
+- followText: serve a creare e salvare l'oggetto di phaser che serve per rendere visibile a schermo il nome.
+- puckCollider: 
+- lastVelocityX: si salva l'ultima componente orizontale della velocità, serve a calcolare la direzione del puck una volta tirato.
+- lastVelocityY: si salva l'ultima componente verticale della velocità, serve a calcolare la direzione del puck una volta tirato.
+E questi sono i metodi:
+- constructor(scene, name, posX, posY, ip, team): questo metodo è il costruttore, invoca il costruttore della classe ellipse, setta la posizione di partenza, nome, indirizzo ip e creiamo il testo con scritto il nome che segue il giocatore. Abilitiamo anche la fisica e aggiungiamo sia player che scritta alla scena.
+- setPuckCollider(collider): una volta passato il collider viene assegnato.
+
+
 ## Test
 
 ### Protocollo di test

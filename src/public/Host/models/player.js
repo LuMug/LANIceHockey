@@ -1,4 +1,3 @@
-//import "./../modules/phaser/phaser.min.js";
 export default class Player extends Phaser.GameObjects.Ellipse {
 
     scene;
@@ -7,7 +6,6 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     angle = 0;
     intensity = 0;
     team;
-    dimension = 20;
     ip;
     followText;
     puckCollider;
@@ -45,7 +43,7 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     update() {
         var x = (this.intensity * Math.cos(this.angle * Math.PI / 180)) * 4;
         var y = -(this.intensity * Math.sin(this.angle * Math.PI / 180)) * 4;
-        if(x != 0 && x != 0){
+        if(x != 0 && y != 0){
             this.lastX = x;
             this.lastY = y;
         }
