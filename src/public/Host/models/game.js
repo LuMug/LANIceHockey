@@ -189,20 +189,20 @@ export default class Game extends Phaser.Scene {
             if(this.puck.scoredLeft){
                 if(this.puck.player.team == this.teams[1]){
                     this.puck.player.scoredGoals++;
-                }else{
-                    this.puck.player.scoredGoals--;
                 }
+                this.teams[1].score++;
             }else{
                 if(this.puck.player.team == this.teams[0]){
                     this.puck.player.scoredGoals++;
-                }else{
-                    this.puck.player.scoredGoals--;
                 }
+                this.teams[0].score++;
             }
 
             //riavvia il puck e rimette i collider
             this.puck.destroy();
             this.createPuck();
+            this.puck.setPosition(SET_WIDTH/2, SET_HEIGHT/2);
+            this.puck.body.setVelocity(0,0);
             for(var i = 0; i < this.teams.length; i++){
                 for(var j = 0; j < this.teams[i].players.length; j++){
                     var puckCollider = this.physics.add.collider(this.teams[i].players[j], this.puck, this.changePuckOwner);
@@ -270,8 +270,8 @@ export default class Game extends Phaser.Scene {
     createPuck() {
         this.puck = new Puck(this, SET_WIDTH / 2, SET_HEIGHT / 2);
         //crea le reti
-        this.puck.leftRowScore = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli, SET_HEIGHT / 2 - this.raggioAngoli / 2 + 41, this.spessoreBordi / 2 + 1, SET_HEIGHT / 7);
-        this.puck.rightRowScore = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli - 2 * this.spessoreBordi - this.spessoreBordi / 2 + 2, SET_HEIGHT / 2 - this.raggioAngoli / 2 + 41, this.spessoreBordi / 2 + 1, SET_HEIGHT / 7);
+        this.puck.leftRowScore = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli, SET_HEIGHT / 2 - this.raggioAngoli / 2 + 43, this.spessoreBordi / 2 + 1, SET_HEIGHT / 9);
+        this.puck.rightRowScore = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli - 2 * this.spessoreBordi - this.spessoreBordi / 2 + 2, SET_HEIGHT / 2 - this.raggioAngoli / 2 + 43, this.spessoreBordi / 2 + 1, SET_HEIGHT / 9);
         this.physics.world.enable(this.puck.leftRowScore);
         this.physics.world.enable(this.puck.rightRowScore);
         //collider per i bordi del campo
@@ -285,8 +285,8 @@ export default class Game extends Phaser.Scene {
 
     updateLeaderboard() {
         //aggiorno lo score di entrambe le squadre
-        document.getElementById('team1').innerHTML = this.teams[0].getTeamGoals();
-        document.getElementById('team2').innerHTML = this.teams[1].getTeamGoals();
+        document.getElementById('team1').innerHTML = this.teams[0].score;
+        document.getElementById('team2').innerHTML = this.teams[1].score;
 
         //creo una nuova leaderboard per aggiornarla, allPlayers conterrà i player ordinati per score
         var leaderboard = new Array();
