@@ -9,8 +9,8 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     ip;
     followText;
     puckCollider;
-    lastX;
-    lastY;
+    lastVelocityX;
+    lastVelocityY;
 
     constructor(scene, name, posX, posY, ip, team) {
         super(scene, posX, posY, 20, 20, team.color);
@@ -36,16 +36,16 @@ export default class Player extends Phaser.GameObjects.Ellipse {
         this.intensity = intensity;
     }
 
-    setColor() {
-        this.setFillStyle(this.team.color);
+    setColor(team) {
+        this.setFillStyle(team.color);
     }
 
     update() {
         var x = (this.intensity * Math.cos(this.angle * Math.PI / 180)) * 4;
         var y = -(this.intensity * Math.sin(this.angle * Math.PI / 180)) * 4;
-        if(x != 0 && y != 0){
-            this.lastX = x;
-            this.lastY = y;
+        if(x != 0 && x != 0){
+            this.lastVelocityX = x;
+            this.lastVelocityY = y;
         }
         this.body.setVelocity(x, y);
         this.followText.setPosition(this.x, this.y);

@@ -323,11 +323,11 @@ export default class Game extends Phaser.Scene {
         if (this.teams[0].players.indexOf(player) != -1) {
             this.teams[0].removePlayer(player);
             this.teams[1].addPlayer(player);
-            player.setColor();
+            player.setColor(this.teams[1]);
         } else {
             this.teams[1].removePlayer(player);
             this.teams[0].addPlayer(player);
-            player.setColor();
+            player.setColor(this.teams[0]);
         }
     }
 
