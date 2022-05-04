@@ -31,7 +31,9 @@ export default class Host {
                 } else if (str[0] == "team") {
                     var ip = str[1];
                     game.switchTeam(game.getPlayerByIp(ip));
-                } else {
+                } else if(str[0] == "speed"){
+                    game.getPlayerByIp(str[1]).speed();
+                }else{
                     var num = Number(str[0]);
                     var intensity = Number(str[1]);
                     var ip = str[2];

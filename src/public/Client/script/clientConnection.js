@@ -25,6 +25,10 @@ function shoot() {
     ws.send("shoot");
 }
 
+function speed(){
+    ws.send("speed");
+}
+
 var x = 100;
 var y = 100;
 var options = {

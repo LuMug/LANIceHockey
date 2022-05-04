@@ -381,11 +381,5 @@ export default class Game extends Phaser.Scene {
         this.puck.body.setVelocity(this.puck.player.lastVelocityX *2, this.puck.player.lastVelocityY *2);
     }
 
-    sleep(milliseconds) {
-        const date = Date.now();
-        let currentDate = null;
-        do {
-          currentDate = Date.now();
-        } while (currentDate - date < milliseconds);
-      }
+    
 }

@@ -11,6 +11,7 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     puckCollider;
     lastVelocityX;
     lastVelocityY;
+    constVelocity = 4;
 
     constructor(scene, name, posX, posY, ip, team) {
         super(scene, posX, posY, 20, 20, team.color);
@@ -41,8 +42,8 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     }
 
     update() {
-        var x = (this.intensity * Math.cos(this.angle * Math.PI / 180)) * 4;
-        var y = -(this.intensity * Math.sin(this.angle * Math.PI / 180)) * 4;
+        var x = (this.intensity * Math.cos(this.angle * Math.PI / 180)) * this.constVelocity;
+        var y = -(this.intensity * Math.sin(this.angle * Math.PI / 180)) * this.constVelocity;
         if(x != 0 && y != 0){
             this.lastVelocityX = x;
             this.lastVelocityY = y;
@@ -58,5 +59,10 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     addCollider() {
         var coll = this.scene.physics.add.collider(this, this.scene.puck, this.scene.changePuckOwner);
         this.setPuckCollider(coll);
+    }
+
+    speed(){
+        this.constVelocity = 8;
+        setTimeout(() => { this.constVelocity = 4; }, 500);
     }
 }
