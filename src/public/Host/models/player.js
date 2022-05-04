@@ -1,4 +1,3 @@
-//import "./../modules/phaser/phaser.min.js";
 export default class Player extends Phaser.GameObjects.Ellipse {
 
     scene;
@@ -6,7 +5,7 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     scoredGoals = 0;
     angle = 0;
     intensity = 0;
-    dimension = 20;
+    team;
     ip;
     followText;
     puckCollider;
