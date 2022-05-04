@@ -44,7 +44,7 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     update() {
         var x = (this.intensity * Math.cos(this.angle * Math.PI / 180)) * 4;
         var y = -(this.intensity * Math.sin(this.angle * Math.PI / 180)) * 4;
-        if(x != 0 && x != 0){
+        if(x != 0 && y != 0){
             this.lastVelocityX = x;
             this.lastVelocityY = y;
         }
@@ -57,6 +57,7 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     }
 
     addCollider() {
-        this.scene.physics.add.collider(this, this.scene.puck, this.scene.change_puck_owner);
+        var coll = this.scene.physics.add.collider(this, this.scene.puck, this.scene.changePuckOwner);
+        this.setPuckCollider(coll);
     }
 }
