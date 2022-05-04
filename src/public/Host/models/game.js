@@ -51,12 +51,12 @@ export default class Game extends Phaser.Scene {
         var borders = Array(highSide, lowSide, leftSide, rightSide);
 
         //lati porte solidi
-        borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli / 2, SET_HEIGHT / 2 - this.raggioAngoli / 2 * 3, 2, this.raggioAngoli / 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli - this.spessoreBordi, SET_HEIGHT / 2 - this.raggioAngoli / 2, this.raggioAngoli / 2, 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli - this.spessoreBordi, SET_HEIGHT / 2 + this.raggioAngoli / 2, this.raggioAngoli / 2, 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli / 2 - this.spessoreBordi, SET_HEIGHT / 2 - this.raggioAngoli, 2, this.raggioAngoli / 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli / 3, SET_HEIGHT / 2 - this.raggioAngoli / 2, this.raggioAngoli / 2, 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli / 3, SET_HEIGHT / 2 - this.raggioAngoli / 2 + this.raggioAngoli, this.raggioAngoli / 2, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli / 2, SET_HEIGHT / 2 - this.raggioAngoli/3 + this.spessoreBordi, 2, this.raggioAngoli / 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli - this.spessoreBordi*2, SET_HEIGHT / 2 - this.raggioAngoli / 2, this.raggioAngoli / 2 + this.spessoreBordi, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli - this.spessoreBordi*2, SET_HEIGHT / 2 + this.raggioAngoli / 2, this.raggioAngoli / 2 + this.spessoreBordi, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli / 2 - this.spessoreBordi*2, SET_HEIGHT / 2 - this.raggioAngoli/3 + this.spessoreBordi, 2, this.raggioAngoli / 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli, SET_HEIGHT / 2 - this.raggioAngoli / 2, this.raggioAngoli / 2 + this.spessoreBordi, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli, SET_HEIGHT / 2 - this.raggioAngoli / 2 + this.raggioAngoli, this.raggioAngoli / 2 + this.spessoreBordi, 2));
 
         this.bordersGroup = this.physics.add.staticGroup();
         for (var i = 0; i < borders.length; i++) {
