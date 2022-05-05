@@ -10,3 +10,5 @@ https://www.cloudsavvyit.com/12277/how-to-use-multi-threaded-processing-in-bash-
 https://phaser.io/examples/v3/view/physics/arcade/remove-collider 
 https://phaser.io/examples/v3/view/physics/arcade/sprite-overlap-group#
 https://phaser.io/examples/v3/view/physics/arcade/collider-1#
+https://stackoverflow.com/questions/13637133/how-to-set-onclick-with-javascript --> 05.05.2022
+yo mom

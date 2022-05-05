@@ -43,6 +43,17 @@ export default class Game extends Phaser.Scene {
         this.createPlayGround();
 
         this.createPuck();
+
+        var resetPuckFunc = function rPuck(puck = this.puck) {
+            puck.beingShoot = false;
+            if (puck.player != null) {
+                puck.player.addCollider();
+            }
+            puck.player = null;
+            puck.setPosition(SET_WIDTH / 2, SET_HEIGHT / 2);
+            puck.body.setVelocity(0, 0);
+        };
+        document.getElementById('resetPuck').onclick = resetPuckFunc;
     }
 
     /**
@@ -66,15 +77,22 @@ export default class Game extends Phaser.Scene {
         var leftNetRow = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli, this.spessoreBordi, this.spessoreBordi / 2 + 1, SET_HEIGHT - 2 * this.spessoreBordi);
         var rightNetRow = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli - 2 * this.spessoreBordi - this.spessoreBordi / 2, this.spessoreBordi, this.spessoreBordi / 2 + 1, SET_HEIGHT - 2 * this.spessoreBordi);
 
-        var borders = Array(highSide, lowSide, leftSide, rightSide);
+        var porta11 = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli / 2, SET_HEIGHT / 2 - this.raggioAngoli / 3 + this.spessoreBordi, 2, this.raggioAngoli / 2);
+        var porta12 = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli - this.spessoreBordi * 2, SET_HEIGHT / 2 - this.raggioAngoli / 2, this.raggioAngoli / 2 + this.spessoreBordi, 2);
+        var porta13 = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli - this.spessoreBordi * 2, SET_HEIGHT / 2 + this.raggioAngoli / 2, this.raggioAngoli / 2 + this.spessoreBordi, 2);
+        var porta21 = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli / 2 - this.spessoreBordi * 2, SET_HEIGHT / 2 - this.raggioAngoli / 3 + this.spessoreBordi, 2, this.raggioAngoli / 2);
+        var porta22 = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli, SET_HEIGHT / 2 - this.raggioAngoli / 2, this.raggioAngoli / 2 + this.spessoreBordi, 2);
+        var porta23 = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli, SET_HEIGHT / 2 - this.raggioAngoli / 2 + this.raggioAngoli, this.raggioAngoli / 2 + this.spessoreBordi, 2);
+
+        var borders = Array(highSide, lowSide, leftSide, rightSide, porta11, porta12, porta13, porta21, porta22, porta23);
 
         //lati porte solidi
-        borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli / 2, SET_HEIGHT / 2 - this.raggioAngoli / 3 + this.spessoreBordi, 2, this.raggioAngoli / 2));
+        /*borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli / 2, SET_HEIGHT / 2 - this.raggioAngoli / 3 + this.spessoreBordi, 2, this.raggioAngoli / 2));
         borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli - this.spessoreBordi * 2, SET_HEIGHT / 2 - this.raggioAngoli / 2, this.raggioAngoli / 2 + this.spessoreBordi, 2));
         borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli - this.spessoreBordi * 2, SET_HEIGHT / 2 + this.raggioAngoli / 2, this.raggioAngoli / 2 + this.spessoreBordi, 2));
         borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli / 2 - this.spessoreBordi * 2, SET_HEIGHT / 2 - this.raggioAngoli / 3 + this.spessoreBordi, 2, this.raggioAngoli / 2));
         borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli, SET_HEIGHT / 2 - this.raggioAngoli / 2, this.raggioAngoli / 2 + this.spessoreBordi, 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli, SET_HEIGHT / 2 - this.raggioAngoli / 2 + this.raggioAngoli, this.raggioAngoli / 2 + this.spessoreBordi, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli, SET_HEIGHT / 2 - this.raggioAngoli / 2 + this.raggioAngoli, this.raggioAngoli / 2 + this.spessoreBordi, 2)); */
 
         this.addBorderCollider(borders)
 
@@ -199,6 +217,14 @@ export default class Game extends Phaser.Scene {
         }
     }
 
+    resetPuck() {
+        this.puck.beingShoot = false;
+        this.puck.player.addCollider();
+        this.puck.player = null;
+        this.puck.setPosition(SET_WIDTH / 2, SET_HEIGHT / 2);
+        this.puck.body.setVelocity(0, 0);
+    }
+
     /**
      * Questo metodo viene richiamato da Phaser in automatico 
      * a ogni ciclo di gioco, dentro questo metodo richiamiamo 
@@ -231,11 +257,15 @@ export default class Game extends Phaser.Scene {
             }
 
             //riavvia il puck e rimette i collider
-            this.puck.beingShoot = false;
-            this.puck.player.addCollider();
-            this.puck.player = null;
-            this.puck.setPosition(SET_WIDTH / 2, SET_HEIGHT / 2);
-            this.puck.body.setVelocity(0, 0);
+            //this.puck.destroy();
+            //this.createPuck();
+            this.resetPuck();
+            //for(var i = 0; i < this.teams.length; i++){
+            //    for(var j = 0; j < this.teams[i].players.length; j++){
+            //        var puckCollider = this.physics.add.collider(this.teams[i].players[j], this.puck, this.changePuckOwner);
+            //        this.teams[i].players[j].setPuckCollider(puckCollider);
+            //    }
+            //}
 
             //riavvia le posizioni dei player
             for (let i = 0; i < this.teams.length; i++) {

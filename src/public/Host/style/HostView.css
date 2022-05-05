@@ -32,6 +32,8 @@ body {
     text-align: center;
 }
 
-ol {
-    text-align: left;
+.reset {
+    position: absolute;
+    bottom: 1%;
+    left: 1%;
 }

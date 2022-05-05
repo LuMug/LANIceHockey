@@ -20,13 +20,7 @@ wss.on('connection', (ws, req) => {
             host.send("new;" + ws._socket.remoteAddress + ";" + data.toString().split(";")[1]);
             clients.push(new Array(ws, ws._socket.remoteAddress));
             console.log(clients.length);
-        } /*else if (data.toString() == "shoot") {
-            host.send(data + ";" + ws._socket.remoteAddress);
-        } else if (data.toString() == "team") {
-            host.send(data + ";" + ws._socket.remoteAddress);
-        } else if(data.toString() = "speed"){
-            host.send(data + ";" + ws._socket.remoteAddress)
-        }*/ else {
+        } else {
             host.send(data + ";" + ws._socket.remoteAddress);
         }
     });
