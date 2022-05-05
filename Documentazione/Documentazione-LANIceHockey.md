@@ -69,7 +69,7 @@
 
 ### Scopo
 
-Lo scopo di questo progetto è di creare un videogioco sull'hockey su ghiaccio, il gioco è in una LAN a se stante, per giocare bisogna quindi collegarsi al router apposito, il campo sarà sul monitor della macchina che ospita la partita, e il controller sarà sui telefoni delle persone che si uniscono alla partita. Non ci sono limiti su quanti giocatori possono entrare in partita, non ci sono presenti neanche le regole che sono normalmente presenti in una partita di hockey. Il controller permette all'utente di muoversi, tirare e cambiare squadra. È anche presente una classifica dove si vedono i 10 giocatori che hanno segnato più goal.
+Lo scopo di questo progetto è di creare un videogioco di hockey su ghiaccio, il gioco è ospitabile in una LAN, per giocare bisogna quindi collegarsi alla stessa rete della macchina server, il campo sarà sul monitor della macchina che ospita la partita, e il controller sarà sui telefoni delle persone che si uniscono alla partita. Non ci sono limiti su quanti giocatori possono entrare in partita, non ci sono presenti neanche le regole che sono normalmente presenti in una partita di hockey. Il controller permette all'utente di muoversi, tirare, scattare e cambiare squadra. È anche presente una classifica dove si vedono i 10 giocatori che hanno segnato più goal.
 
 ## Analisi
 
@@ -267,40 +267,43 @@ Design dell'interfaccia del controller:
 
 ## Implementazione
 
-Installare nodejs.
+### Requisiti
+
+Avere installato nodejs ed avere il comando 'node' nelle variabili d'ambiente
 
 ### Classi
 #### Player
-Questa classe rappresenta i singoli giocatori che partecipano al gioco, ed estende Phaser.GameObjects.Ellipse perché nel campo vengono rappresentati appunto come ellipse ovvero degli ellissi.
+Questa classe rappresenta un giocatore, estende Phaser.GameObjects.Ellipse, che gli permette di essere un GameObject con forma di ellisse.
 ##### Attributi:
-- scene: è la scena a cui appartiene ovvero serve a far sapere a Phaser dove farlo rappresentare nella scena di gioco.
+- scene: è la scena a cui appartiene, serve al player per auto-disegnarsi nel campo da gioco.
 - name: è il nome con cui il giocatore decide di giocare.
-- scoredGoals: che rappresenta il numero di reti segnate dal giocatore.
-- angle: è la direzione in cui il giocatore punta il joystick, rappresenta l'angolo in cui l'ellipse punta per muoversi.
-- intensity: rappresenta la forza con cui il player si sposta, ovvero la velocità. Questa viene calcolata rispetto a quanto il joystick è spostato rispetto al centro.
-- ip: serve a salvare l'indirizzo di rete degi dispositivi che si connettono,appunto un player è mosso dal proprio dispositivo.
-- followText: serve a creare e salvare l'oggetto di phaser che serve per rendere visibile a schermo il nome.
-- lastVelocityX: si salva l'ultima componente orizontale della velocità, serve a calcolare la direzione del puck una volta tirato.
+- scoredGoals: rappresenta il numero di reti segnate dal giocatore.
+- angle: è la direzione in cui il giocatore punta il joystick, serve a muovere il player nella direzione desiderata.
+- intensity: rappresenta la forza con cui il player si sposta, ovvero la velocità. Questa viene calcolata rispetto a quanto il joystick è spostato dalla posizione di riposo (il centro).
+- ip: è l'indirizzo di rete del dispositivo corrispondente al giocatore.
+- followText: contiene l'oggetto di phaser che serve per rendere visibile a schermo il nome.
+- lastVelocityX: si salva l'ultima componente orizzontale della velocità e a calcolare la direzione del puck una volta tirato.
 - puckCollider: è l'attributo che contiene il collider con il puck, ovvero ciò che permette al player di raccogliere il disco.
-- lastVelocityY: si salva l'ultima componente verticale della velocità, serve a calcolare la direzione del puck una volta tirato.
-- constVelocity: serve come moltiplicatore della forza ricevuta dal joystick.
+- lastVelocityY: si salva l'ultima componente verticale della velocità e a calcolare la direzione del puck una volta tirato.
+- constVelocity: è moltiplicatore della forza ricevuta dal joystick, settata di default a 4.
 ##### Metodi:
-- constructor(scene, name, posX, posY, ip, team): questo metodo è il costruttore, invoca il costruttore della classe ellipse, setta la posizione di partenza, nome, indirizzo ip e creiamo il testo con scritto il nome che segue il giocatore. Abilitiamo anche la fisica e aggiungiamo sia player che scritta alla scena.
-- setAngle(angle): questo metodo prende l'angolo passato come argomento e lo assegna all'attributo angle.
-- setIntensity(intensity): questo metodo una volta passata un'intensità la assegnerà all'attributo intensity.
-- setColor(team): questo metodo una volta passato un team colora il player del colore del team.
+- constructor(scene, name, posX, posY, ip, team): questo metodo è il costruttore, invoca il supercostruttore della classe ellipse, setta la posizione di partenza, nome, indirizzo ip e crea il testo con scritto il nome che segue il giocatore. Abilita la fisica e auto-disegna all'interno del campo sia il player, che il testo che lo segue.
+- setAngle(angle): questo metodo riceve l'angolo passato come argomento e lo assegna all'attributo angle.
+- setIntensity(intensity): questo metodo riceve l'intensità e la assegna all'attributo intensity.
+- setColor(team): questo metodo riceve un team e colora il player del colore del team.
 - addCollider(): questo metodo serve ad attivare un collider tra il puck e il player.
-- setPuckCollider(collider): questo metodo una volta passato collider lo assegna all'attributo puckCollider.
-- removeCollider(): questo metodo serve per disattivare il collider e dunque fare in modo che il disco venga tirato dal player, se ciò non succedesse il player appena lo tira lo riprende dunque non sarebbe giocabile.
-- update(): questo metodo viene invocato da noi tramite il metodo automatico di Phaser e permettere di fare delle azioni ad ogni ciclo di gioco. Noi lo utiliziamo per calcolare la velocità angolare del player in maniera da farlo muovere seguendo il joystick e assegnamo anche la nuova posizione del nome del giocatore in maniera da seguire il player. Assegnamo anche lastVelocityX e lastVelocityY.
-- speed(): Questo metodo serve a duplicare la velocità di movimento per un tempo predefinito.
+- setPuckCollider(collider): questo assegna il collider ricevuto all'attributo puckCollider.
+- removeCollider(): questo metodo serve per disattivare il collider e dunque fare in modo che esso non interferisca con il lancio del disco, se questo metodo non venisse eseguito quando necessario, il player proverebbe a tirare ma riacquisirebbe immediatamente il puck.
+- update(): questo metodo viene invocato da noi tramite il metodo eseguito in automatico di Phaser, omonimo e presente in game, e permettere di fare delle azioni ad ogni ciclo di gioco. Viene utilizzato per calcolare il moto del player e aggiorniamo la posizione per permettere al testo rappresentante il nome di seguire il player.
+Aggiorniamo anche lastVelocityX e lastVelocityY.
+- speed(): Questo metodo serve a duplicare la velocità di movimento per un tempo limitato, è invocato dal giocatore tramite il tasto "speed up".
 
 #### Team
-Questa classe rappresenta i team come lista di player e ulteriori attributi assegnati per rappresentare una squadra.
+Questa classe rappresenta un team
 ##### Attributi:
-- players: qesto attributo contiene una lista di tutti i player che giocano per il team.
-- name: questo attributo contiene il nome del team.
-- color: questo attributo contiene il colore del team in esadecimale, serve per colorare i player.
+- players: qesto attributo contiene una lista di tutti i player fanno parte del team.
+- name: contiene il nome del team.
+- color: contiene il colore del team in esadecimale, serve per colorare i player.
 - score: serve per sapere quanti goal ha fatto il team.
 ##### Metodi:
 - constructor(name, color): una volta passato il nome e il colore del team questo viene generato, ovviamene senza players.
@@ -308,45 +311,44 @@ Questa classe rappresenta i team come lista di player e ulteriori attributi asse
 - removePlayer(player): questo metodo serve a rimuovere un player dalla lista di player.
 
 #### Puck
-La classe puck rappresenta il disco della partita. Estende Phaser.GameObjects.Ellipse in modo da disegnarlo com ellisse nel gioco.
+La classe puck rappresenta il disco della partita. Estende Phaser.GameObjects.Ellipse in modo da disegnarlo com ellisse.
 ##### Attributi:
-- player: si salva il giocatore che ha il disco momentaneamente.
-- beingShoot: rappresenta il fatto che se è stato tirato oppure no.
-- bounced: questo attributo conta su quante pareti è rimbalzato, da quando viene lanciato.
-- scoredRight && scoredLeft: sono gli attributi che servono a sapere in che porta si ha segnato, e servono a riazzerare il campo.
-- rightRowScore && leftRowScore: servono per salvarsi le istanze di Phaser delle linee di porta.
+- player: contiene il giocatore che ha il possesso del disco.
+- beingShoot: se è stato tirato contiene true, altrimenti false.
+- bounced: utilizzato per contare su quante pareti è rimbalzato da quando viene lanciato.
+- scoredRight && scoredLeft: sono gli attributi che servono a sapere in che porta si ha segnato, e servono a triggerare l'evento di riposizionamento degli elementi nel campo, oltre all'aggionamento del punteggio.
+- rightRowScore && leftRowScore: contengono le istanze delle linee di porta.
 ##### Metodi:
-- constructor(scene, posX, posY, size = 35, color = 0x202020): il costruttore serve ad istanziare un nuovo puck, viene richiamato il costruttore di ellipse in maniera da effettivamente farlo diventare tale. Si abilita la fisica dell'oggetto, si genera nella scena e viene loggata la creazione.
+- constructor(scene, posX, posY, size = 35, color = 0x202020): il costruttore serve ad istanziare un nuovo puck, viene richiamato il supercostruttore di ellipse. Si abilita la fisica dell'oggetto e si auto-genera nella scena.
 - setPlayer(player): questo metodo serve a riassegnare il player che possiede il puck, player è il nuovo player.
-- update(): questo metodo è richiamato da noi tramite il metodo automatico di Phaser in automatico ad ogni ciclo di gioco, serve per posizionare il puck al centro del player che lo possiede, ovviamente se non è stato tirato.
+- update(): questo metodo è richiamato da noi tramite il metodo automatico di Phaser in automatico ad ogni ciclo di gioco, serve per posizionare il puck al centro del player che lo possiede, ovviamente se è posseduto da un player.
 
 #### Game
-La classe Game rappresenta e gestisce la partita, estende la classe Phaser.Scene infatti è ciò che viene raffigurato a schermo. Vengono importarte le classi che abbiamo scritto: Player, Team e Puck, inoltre anche Host da hostconnection.
-Inoltre anche delle costanti da main.js che servono per conoscere altezza e larghezza del campo.
+La classe Game rappresenta e gestisce la partita, estende la classe Phaser.Scene, infatti è ciò che viene raffigurato a schermo. Vengono importate le classi che abbiamo scritto: Player, Team e Puck, la classe Host da hostconnection e delle costanti da main.js che servono per conoscere altezza e larghezza del campo.
 ##### Attributi:
-- teams: questo attributo contiene i team della partita, che sono 2.
+- teams: questo attributo contiene un array con i team della partita, che sono 2.
 - bordersGroup: contiene il gruppo di bordi di tipo Phaser.Physics.Arcade.StaticBorders, che serve a delimitare il campo e creare i collider con le porte.
-- puck: questo attributo serve a salvarsi il puck della partita.
+- puck: contiene il puck della partita.
 - raggioAngoli: serve a disegnare il campo, è quanto è lungo il raggio delle curve degli angoli.(viene anche utilizato per altre formule nei disegni).
 - spessoreBordi: serve a disegnare il campo, è quanto e spesso il bordo.(viene anche utilizato per altre formule nei disegni).
 ##### Metodi:
-- constructor(): questo metodo serve ad istanziare una nuova partita, richiama il costruttore della superclasse, crea due player di default (in futuro si potrebbero rendere customizabili) e infine creo l'Host della partita.
-- preload(): questo metodo viene richiamato da Phaser appena prima del create, serve a preimpostare delle cose, noi preimpostiamo il canvas in una posizione più facile da raggiungere, non è necessario ma è più comodo da usare.
-- create(): questo metodo viene richiamato da Phaser alla creazione dell'oggetto, lo utiliziamo per disegnare il campo e creare il puck invocando i metodi appositi.
-- createPlayGround(): questo metodo viene incocato da create(), e serve a disegnare gli elementi del campo, al suo intermo richiamiamo anche il metodo che permette di aggiungere i collider ai bordi e alle porte.
-- addBorderCollider(borders): questo metodo una volta passato l'array di bordi gli attiva la fisica e li aggiunge alla lista bordersGroup e assegna a questo gruppo il collider a tutti i player a quel momento generati, teoricamente nessuno.
-- update(time, delta): questo metodo viene richiamato da Phaser in automatico a ogni ciclo di gioco, dentro questo metodo richiamiamo l'update di tutti i player e del puck. inoltre controlla i flag del puck per assegnare eventuali goal e se ciò succede bisogna riportare la partita alla situazione iniziale ovvero puck al centro e giocatori nella loro metà campo.
-- createPlayer(name, ip): dato nome e ip questo metodo crea un nuovo player e lo assegna autonomamente al team con meno giocatori. Inoltre assegna il collider con i bordi.
-- changePuckOwner(player, puck): dato il puck e il player riassegna il player del puck e setta i valori all'interno del puck in maniera che risulti che il player abbia il disco. Viene anche riaggiunto il collider del disco al player che possedeva precedentemento il puck.
-- createPuck(): questa funzione permette di creare il puck all'interno del game, genera anche le righe delle porte e gli assegna gli overlap in maniera da poi assegnare i goal. Aggiunge i collider dei bordi e assegna il bounce a 0.5, dunque ogni volta che rimbalza il puck esso dimezza la propria velocità.
-- puckBorderCollide(puck, borders): questo metodo permette di contare i rimbalzi del puck cambiandone l'attributo. Questa funzione viene invocata dai collider con i bordi.
-- updateLeaderboard(): questo metodo serve ad aggiornare la leaderboard e il risultato. Per farlo va a cercare nell'HTML gli elementi predisposti, poi li riempie.
-- switchTeam(player): dato un player gli cambia il team, si controlla a che team appartine, da quello lo rimuove e poi lo aggiunge nell'altro.
+- constructor(): serve ad istanziare una nuova partita, richiama il costruttore della superclasse, crea due teams di default (in futuro si potrebbero rendere customizabili) e infine crea l'Host della partita per la connessione.
+- preload(): viene richiamato da Phaser appena prima del create, serve a preimpostare delle cose, noi preimpostiamo il canvas in una posizione più facile da raggiungere, non è necessario ma è più comodo da usare.
+- create(): viene richiamato da Phaser alla creazione dell'oggetto, lo utiliziamo per disegnare il campo e creare il puck invocando i metodi appositi.
+- createPlayGround():  viene incocato da create(), e serve a disegnare gli elementi del campo, al suo intermo richiamiamo anche il metodo che permette di aggiungere i collider ai bordi e alle porte.
+- addBorderCollider(borders):  una volta passato l'array di bordi attiva la fisica e li aggiunge alla lista bordersGroup e assegna a questo gruppo il collider a tutti i player a quel momento generati, teoricamente nessuno.
+- update(time, delta): questo metodo viene richiamato da Phaser in automatico ad ogni ciclo di gioco, dentro questo metodo richiamiamo l'update di tutti i player e del puck. inoltre controlla i flag del puck per assegnare eventuali goal e se ciò succede bisogna riportare la partita alla situazione iniziale ovvero puck al centro e giocatori nella loro metà campo.
+- createPlayer(name, ip): dato nome e ip, questo metodo crea un nuovo player e lo assegna autonomamente al team con meno giocatori. Inoltre assegna il collider con i bordi.
+- changePuckOwner(player, puck): dato il puck e il player riassegna il player del puck e setta i valori all'interno del puck in maniera che risulti che il nuovo player possegga il disco. Viene riaggiunto il collider del disco al player che possedeva precedentemento il puck dopo pochi millisecondi, per permettere una dinamica di scambio del puck più pulita.
+- createPuck():  permette di creare il puck all'interno del game, genera anche le righe delle porte ed assegna gli overlap che richiamano la funzione di goal. Aggiunge i collider dei bordi e ogni volta che ci rimbalza addosso la velocità dimezza
+- puckBorderCollide(puck, borders): questo metodo permette di contare i rimbalzi del puck cambiandone l'attributo. Questa funzione viene invocata dall'evento collide tra puck e bordi.
+- updateLeaderboard(): serve ad aggiornare la leaderboard e il risultato. Per farlo va a cercare nell'HTML gli elementi predisposti, poi li riempie.
+- switchTeam(player): dato un player, cambia il team di esso, si controlla a che team appartine, da quello lo rimuove e poi lo aggiunge nell'altro.
 - autoSetTeam(): questo metodo di aiuto serve a scoprire quale team ha meno player, serve alla creazione dei nuovi player.
-- scoreLeft(puck, net): questa è la funzione invocata dall'evento di quando si segna nella rete di sinistra. Serve a settare il flag scoredLeft a true, ciò permette al metodo update di far segnare il team di destra.
-- scoreRight(puck, net): questa è la funzione invocata dall'evento di quando si segna nella rete di destra. Serve a settare il flag scoredRight a true, ciò permette al metodo update di far segnare il team di sinistra.
+- scoreLeft(puck, net): invocata dall'evento di quando si segna nella rete di sinistra. Serve a settare il flag scoredLeft a true, ciò permette al metodo update di far segnare il team di destra.
+- scoreRight(puck, net): invocata dall'evento di quando si segna nella rete di destra. Serve a settare il flag scoredRight a true, ciò permette al metodo update di far segnare il team di sinistra.
 - getPlayerByIp(ip): dato l'indirizzo ip di un player viene cercato all'interno di tutti i team e lo ritorna.
-- shoot(): questo metodo permette di far tirare il puck, se non è già stato tirato gli viene impostata la velocità del player per 2, serve per non poter riprendere subito il disco.
+- shoot(): permette di tirare il puck solo se non è già stato tirato, gli viene impostata la velocità del player moltiplicata per due.
 
 ### Scripts
 
