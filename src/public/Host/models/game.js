@@ -26,6 +26,12 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
+        this.createPlayGround();
+
+        this.createPuck();
+    }
+
+    createPlayGround(){
         this.spessoreBordi = 8;
         this.raggioAngoli = 85;
         var highSide = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli, 0, SET_WIDTH - 2 * this.raggioAngoli, this.spessoreBordi);
@@ -36,14 +42,6 @@ export default class Game extends Phaser.Scene {
         var leftThird = new Phaser.GameObjects.Rectangle(this, (SET_WIDTH - this.raggioAngoli * 2) / 4 + this.raggioAngoli, this.spessoreBordi, this.spessoreBordi, SET_HEIGHT - this.spessoreBordi * 2);
         var rightThird = new Phaser.GameObjects.Rectangle(this, (SET_WIDTH - this.raggioAngoli * 2) / 4 * 3 + this.raggioAngoli, this.spessoreBordi, this.spessoreBordi, SET_HEIGHT - this.spessoreBordi * 2);
 
-        /*var angleA = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli / 2, this.raggioAngoli / 2, 50, 1);
-        angleA.setAngle(45);
-        var angleB = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli / 2, this.raggioAngoli / 2, 50, 1);
-        angleB.setAngle(135);
-        var angleC = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli / 2, SET_HEIGHT - this.raggioAngoli / 2, 50, 1);
-        angleC.setAngle(135);
-        var angleD = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli / 2, SET_HEIGHT - this.raggioAngoli / 2, 50, 1);
-        angleD.setAngle(45);*/
 
         var leftNetRow = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli, this.spessoreBordi, this.spessoreBordi / 2 + 1, SET_HEIGHT - 2 * this.spessoreBordi);
         var rightNetRow = new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli - 2 * this.spessoreBordi - this.spessoreBordi / 2, this.spessoreBordi, this.spessoreBordi / 2 + 1, SET_HEIGHT - 2 * this.spessoreBordi);
@@ -58,23 +56,7 @@ export default class Game extends Phaser.Scene {
         borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli, SET_HEIGHT / 2 - this.raggioAngoli / 2, this.raggioAngoli / 2 + this.spessoreBordi, 2));
         borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli, SET_HEIGHT / 2 - this.raggioAngoli / 2 + this.raggioAngoli, this.raggioAngoli / 2 + this.spessoreBordi, 2));
 
-        this.bordersGroup = this.physics.add.staticGroup();
-        for (var i = 0; i < borders.length; i++) {
-            this.physics.add.existing(borders[i], true);
-            this.physics.world.enable(borders[i]);
-            if (i < 2) {
-                borders[i].body.setSize(borders[i].width * 2, borders[i].height, false);
-            } else {
-                borders[i].body.setSize(borders[i].width, borders[i].height * 2, false);
-            }
-            this.bordersGroup.add(borders[i]);
-        }
-
-        for (let i = 0; i < this.teams.length; i++) {
-            for (let j = 0; j < this.teams[i].players.length; j++) {
-                this.physics.add.collider(this.teams[i].players[j], this.bordersGroup);
-            }
-        }
+        this.addBorderCollider(borders)
 
         var graphics = this.add.graphics({ fillStyle: { color: 0x000000 } });
 
@@ -164,15 +146,32 @@ export default class Game extends Phaser.Scene {
         //disegno porte
         graphics.lineStyle(this.spessoreBordi, 0x000000, 1);
         graphics.beginPath();
-        var leftNet = graphics.arc(this.raggioAngoli, SET_HEIGHT / 2, this.raggioAngoli / 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
+        graphics.arc(this.raggioAngoli, SET_HEIGHT / 2, this.raggioAngoli / 2, 1.5 * Math.PI, 0.5 * Math.PI, true);
         graphics.strokePath();
         graphics.beginPath();
-        var rightNet = graphics.arc(SET_WIDTH - this.raggioAngoli - this.spessoreBordi * 2 + 1, SET_HEIGHT / 2, this.raggioAngoli / 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
+        graphics.arc(SET_WIDTH - this.raggioAngoli - this.spessoreBordi * 2 + 1, SET_HEIGHT / 2, this.raggioAngoli / 2, 0.5 * Math.PI, 1.5 * Math.PI, true);
         graphics.strokePath();
-
-        this.createPuck();
     }
 
+    addBorderCollider(borders){
+        this.bordersGroup = this.physics.add.staticGroup();
+        for (var i = 0; i < borders.length; i++) {
+            this.physics.add.existing(borders[i], true);
+            this.physics.world.enable(borders[i]);
+            if (i < 2) {
+                borders[i].body.setSize(borders[i].width * 2, borders[i].height, false);
+            } else {
+                borders[i].body.setSize(borders[i].width, borders[i].height * 2, false);
+            }
+            this.bordersGroup.add(borders[i]);
+        }
+
+        for (let i = 0; i < this.teams.length; i++) {
+            for (let j = 0; j < this.teams[i].players.length; j++) {
+                this.physics.add.collider(this.teams[i].players[j], this.bordersGroup);
+            }
+        }
+    }
 
     update(time, delta) {
         //aggiorna le posizioni dei player

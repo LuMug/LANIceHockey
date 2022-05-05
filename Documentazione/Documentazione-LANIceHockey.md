@@ -347,20 +347,22 @@ Questa classe rappresenta i singoli giocatori che partecipano al gioco, ed esten
 - scoredGoals: che rappresenta il numero di reti segnate dal giocatore.
 - angle: è la direzione in cui il giocatore punta il joystick, rappresenta l'angolo in cui l'ellipse punta per muoversi.
 - intensity: rappresenta la forza con cui il player si sposta, ovvero la velocità. Questa viene calcolata rispetto a quanto il joystick è spostato rispetto al centro.
-- team: rappresenta il team per cui il player gioca.
 - ip: serve a salvare l'indirizzo di rete degi dispositivi che si connettono,appunto un player è mosso dal proprio dispositivo.
 - followText: serve a creare e salvare l'oggetto di phaser che serve per rendere visibile a schermo il nome.
 - lastVelocityX: si salva l'ultima componente orizontale della velocità, serve a calcolare la direzione del puck una volta tirato.
 - puckCollider: è l'attributo che contiene il collider con il puck, ovvero ciò che permette al player di raccogliere il disco.
 - lastVelocityY: si salva l'ultima componente verticale della velocità, serve a calcolare la direzione del puck una volta tirato.
+- constVelocity: serve come moltiplicatore della forza ricevuta dal joystick.
 ##### metodi:
 - constructor(scene, name, posX, posY, ip, team): questo metodo è il costruttore, invoca il costruttore della classe ellipse, setta la posizione di partenza, nome, indirizzo ip e creiamo il testo con scritto il nome che segue il giocatore. Abilitiamo anche la fisica e aggiungiamo sia player che scritta alla scena.
 - setAngle(angle): questo metodo prende l'angolo passato come argomento e lo assegna all'attributo angle.
 - setIntensity(intensity): questo metodo una volta passata un'intensità la assegnerà all'attributo intensity.
 - setColor(team): questo metodo una volta passato un team colora il player del colore del team.
 - addCollider(): questo metodo serve ad attivare un collider tra il puck e il player.
+- setPuckCollider(collider): questo metodo una volta passato collider lo assegna all'attributo puckCollider.
 - removeCollider(): questo metodo serve per disattivare il collider e dunque fare in modo che il disco venga tirato dal player, se ciò non succedesse il player appena lo tira lo riprende dunque non sarebbe giocabile.
-- update(): questo metodo viene invocato automaticamente dal motore di Phaser e permettere di fare delle azioni ad ogni ciclo di gioco. Noi lo utiliziamo per calcolare la velocità angolare del player in maniera da farlo muovere seguendo il joystick e assegnamo anche la nuova posizione del nome del giocatore in maniera da seguire il player. Assegnamo anche lastVelocityX e lastVelocityY.
+- update(): questo metodo viene invocato da noi tramite il metodo automatico di Phaser e permettere di fare delle azioni ad ogni ciclo di gioco. Noi lo utiliziamo per calcolare la velocità angolare del player in maniera da farlo muovere seguendo il joystick e assegnamo anche la nuova posizione del nome del giocatore in maniera da seguire il player. Assegnamo anche lastVelocityX e lastVelocityY.
+- speed(): Questo metodo serve a duplicare la velocità di movimento per un tempo predefinito.
 
 #### Team
 Questa classe rappresenta i team come lista di player e ulteriori attributi assegnati per rappresentare una squadra.
@@ -371,18 +373,24 @@ Questa classe rappresenta i team come lista di player e ulteriori attributi asse
 - score: serve per sapere quanti goal ha fatto il team.
 ##### metodi:
 - constructor(name, color): una volta passato il nome e il colore del team questo viene generato, ovviamene senza players.
-- addPlayer(player): serve ad aggiungere un player alla lista di player.
-- removePlayer(player): serve a rimuovere un player dalla lista di player.
+- addPlayer(player): questo metodo serve ad aggiungere un player alla lista di player.
+- removePlayer(player): questo metodo serve a rimuovere un player dalla lista di player.
 
 #### Puck
-la classe puck rappresenta il disco della partita.
+La classe puck rappresenta il disco della partita. Estende Phaser.GameObjects.Ellipse in modo da disegnarlo com ellisse nel gioco.
 ##### attributi:
 - player: si salva il giocatore che ha il disco momentaneamente.
 - beingShoot: rappresenta il fatto che se è stato tirato oppure no.
+- bounced: questo attributo conta su quante pareti è rimbalzato, da quando viene lanciato.
 - scoredRight && scoredLeft: sono gli attributi che servono a sapere in che porta si ha segnato, e servono a riazzerare il campo.
-- rightRowScore:
+- rightRowScore && leftRowScore: servono per salvarsi le istanze di Phaser delle linee di porta.
 ##### metodi:
+- constructor(scene, posX, posY, size = 35, color = 0x202020): il costruttore serve ad istanziare un nuovo puck, viene richiamato il costruttore di ellipse in maniera da effettivamente farlo diventare tale. Si abilita la fisica dell'oggetto, si genera nella scena e viene loggata la creazione.
+- setPlayer(player): questo metodo serve a riassegnare il player che possiede il puck, player è il nuovo player.
+- update(): questo metodo è richiamato da noi tramite il metodo automatico di Phaser in automatico ad ogni ciclo di gioco, serve per posizionare il puck al centro del player che lo possiede, ovviamente se non è stato tirato.
 
+#### Game
+La classe Game rappresenta la partita, estende la classe Phaser.Scene
 ## Test
 
 ### Protocollo di test
