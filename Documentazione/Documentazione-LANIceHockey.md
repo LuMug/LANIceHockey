@@ -415,7 +415,13 @@ Questa classe riceve i dati dal socket server e si occupa di renderizzare il gio
 - ws.addEventListener("open", ...): alla connessione dell'host manda un messaggio al socket server per farsi riconoscere come host e crea il listener per la ricezione di messaggi.
   - ws.onmessage: alla ricezione dei messaggi da parte del socket (che ha ricevuto i segnali da clientConnection) controlla il tipo di segnale e agisce in base all'azione desiderata da parte del player.
 
+#### Interfacce
 
+##### Client
+Contiene un joystick importato dalla libreria NippleJS, due bottoni per lanciare il puck e per attivare lo scatto e un bottone per cambiare team.
+
+##### Host
+Contiene il campo da gioco aggiornato in tempo reale da Phaser, una leaderboard contenente i giocatori ordinati per goal fatti, il punteggio delle due squadre e un tasto per resettare la posizione del puck in caso di problemi.
 
 ## Test
 
@@ -495,7 +501,7 @@ Questa classe riceve i dati dal socket server e si occupa di renderizzare il gio
 
 |Test Case      | TC-009                               |
 |---------------|--------------------------------------|
-|**Nome**       |Controllare che il nome sia scelto dall’utente ma che non lo possa cambiare a partita in corso.|
+|**Nome**       |Collegamenti alle pagine funzionanti|
 |**Riferimento**|<ul><li>REQ-010</li><li>REQ-011</li><li>REQ-012</li></ul>|
 |**Descrizione**|Una volta collegati guarderemo lo schermino del telefono e vedremo i controlli, una volta guardato il monitor dell’host vedremo invece il campo visto dall’alto con i giocatori che si muovono.|
 |**Prerequisiti**|TC-003|
@@ -533,25 +539,24 @@ Questa classe riceve i dati dal socket server e si occupa di renderizzare il gio
 
 | Test      | Risultato                               |
 |---------------|--------------------------------------|
-|**TC-001**       |  |
-|**TC-002**       |  |
-|**TC-003**       |  |
-|**TC-004**       |  |
-|**TC-005**       |  |
-|**TC-006**       |  |
-|**TC-007**       |  |
-|**TC-008**       |  |
-|**TC-009**       |  |
-|**TC-010**       |  |
-|**TC-011**       |  |
-|**TC-012**       |  |
+|**TC-001**       | Esito positivo. |
+|**TC-002**       | Esito positivo. |
+|**TC-003**       | Esito positivo. |
+|**TC-004**       | Esito positivo. |
+|**TC-005**       | Esito positivo. |
+|**TC-006**       | Esito positivo. |
+|**TC-007**       | Esito positivo. |
+|**TC-008**       | Esito positivo. |
+|**TC-009**       | Esito positivo. |
+|**TC-010**       | Esito positivo. |
+|**TC-011**       | Esito positivo. |
+|**TC-012**       | Esito positivo. |
 
 ### Mancanze/limitazioni conosciute
 
-Descrizione con motivazione di eventuali elementi mancanti o non
-completamente implementati, al di fuori dei test case. Non devono essere
-riportati gli errori e i problemi riscontrati e poi risolti durante il
-progetto.
+- È necessario connettersi inserendo l'ip della macchina invece di un url, questo perchè non è stato possibile utilizzare un DNS per tradurre i nomi.
+- Se si cambia ambiente di rete è necessario cambiare gli ip a livello di codice in HostConnection, ClientConnection e in settings.json perchè nei primi due file non è consentito fare il require di settings.json.
+- Non è possibile tirare o scattare mentre ci si sta muovendo, quindi bisogna fermarsi per ogni altra azione che si vuole eseguire, questo perchè NippleJS (la classe implementata per il joystick) non permette di utilizzare il multitouch.
 
 ## Consuntivo
 
@@ -562,6 +567,8 @@ progetto.
 
 ### Sviluppi futuri
   Rendere il progetto accessibile dalla rete scolastica, e che sia sempre accessibile. 
+  Attualmente si può avere una solo partita, si potrebbe far sì che possano esistere più partite in contemporanea, e gli utenti possono scegliere a quale partita unirsi.
+  Rendere il gioco più realistico, non avendo implementato nessuna delle regole presenti nell'hockey su ghiaccio, questo renderebbe il gioco più competitivo e gradibile agli utenti.
 
 ### Considerazioni personali
 
