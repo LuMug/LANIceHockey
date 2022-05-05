@@ -1,8 +1,8 @@
 //import "https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js";
 //import "./../modules/phaser/phaser.js";
-import "./../modules/phaser/phaser-arcade-physics.min.js";
+import "../modules/phaser/phaser-arcade-physics.min.js";
 
-import Game from './../models/game.js';
+import Game from '../models/game.js';
 
 export var SET_WIDTH = document.getElementById("playground").width;
 export var SET_HEIGHT = document.getElementById("playground").height;

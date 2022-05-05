@@ -413,7 +413,12 @@ Questa classe è il socket server, lo si avvia all'inizio per ricevere e mandare
 - host: contiene il WebSocket di host, serve per avere il riferimento a cui mandare i dati
 ##### eventi
 - wss.on('connection', ...): ogni volta che un client si connette attiva gli eventListener per quel client
-- ws.on('message', ...): ogni volta che il socket server riceve un messaggio, se è un segnale di connessione inoltra all'host il segnale e lo mette nell'array di client, nel caso richiedesse la connessione host salviamo il webSocket di host
+  - ws.on('message', ...): ogni volta che il socket server riceve un messaggio, se è un segnale di connessione inoltra all'host il segnale e lo mette nell'array di client, nel caso richiedesse la connessione host salviamo il webSocket di host, nel caso mandasse un messaggio generico lo inoltra direttamente all'host allegandoci anche l'ip del client.
+  - ws.on('close', ...): manda all'host il segnale di disconnessione.
+##### metodi
+- removeWithWSFromClients(ws): rimuove dall'array clients il client corrispondente all'WebSocket passato tramite argomento.
+
+#### HostConnection
 
 #### Game
 La classe Game rappresenta e gestisce la partita, estende la classe Phaser.Scene infatti è ciò che viene raffigurato a schermo. Vengono importarte le classi che abbiamo scritto: Player, Team e Puck, inoltre anche Host da hostconnection.
