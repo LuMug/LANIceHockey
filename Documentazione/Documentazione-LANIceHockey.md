@@ -550,7 +550,7 @@ Contiene il campo da gioco aggiornato in tempo reale da Phaser, una leaderboard 
 ### Considerazioni personali
 
   ##### Xavier Horisberger:
-  - 
+  - Devo dire che questo progetto mi è piaciuto, finalmente ho imparato qualcosa di nuovo, diversamente dal mio progetto scorso. Abbiamo imparato a usare i websocket, e quindi fare un sito client-server e a fare un gioco usando phaser. Il tempo non l'abbiamo gestito veramente bene, distraendoci anche spesso, e il gantt preventivo non è risultato accurato, per nulla, probabilmente ancora dovuto alla mancanza di esperienza, ma nonostante tutto, abbiamo portato a termine il progetto, ottenendo anche un risultato più che soddisfacente.
 
   ##### Nathan Ferrari:
   - 
