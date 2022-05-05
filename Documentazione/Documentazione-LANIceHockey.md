@@ -405,15 +405,6 @@ Questa classe è importante per la comunicazione tra client e host, manda le inf
 - shoot() : quando il giocatore clicca il tasto per lanciare il disco, mandiamo al socket server il segnale.
 - speed() : quando il giocatore clicca il tasto per scattare, mandiamo il segnale al socket server, disabilitiamo il tasto per scattare e usiamo una funzione asincrona che riattiva il tasto dopo un tempo predefinito.
 
-#### Socket
-Questa classe è il socket server, lo si avvia all'inizio per ricevere e mandare i dati necessari.
-##### variabili
-- wss: è un'istanza di WebSocket.Server
-- clients: è un array che contiene tutti i client connessi
-- host: contiene il WebSocket di host, serve per avere il riferimento a cui mandare i dati
-##### eventi
-- wss.on('connection', ...): ogni volta che un client si connette attiva gli eventListener per quel client
-- ws.on('message', ...): ogni volta che il socket server riceve un messaggio, se è un segnale di connessione inoltra all'host il segnale e lo mette nell'array di client, nel caso richiedesse la connessione host salviamo il webSocket di host
 
 #### Game
 La classe Game rappresenta e gestisce la partita, estende la classe Phaser.Scene infatti è ciò che viene raffigurato a schermo. Vengono importarte le classi che abbiamo scritto: Player, Team e Puck, inoltre anche Host da hostconnection.
@@ -426,8 +417,34 @@ Inoltre anche delle costanti da main.js che servono per conoscere altezza e larg
 - spessoreBordi: serve a disegnare il campo, è quanto e spesso il bordo.(viene anche utilizato per altre formule nei disegni).
 ##### metodi:
 - constructor(): questo metodo serve ad istanziare una nuova partita, richiama il costruttore della superclasse, crea due player di default (in futuro si potrebbero rendere customizabili) e infine creo l'Host della partita.
-- preload(): 
-- create(): questo metodo viene richiamato da Phaser alla creazione dell'oggetto, lo utiliziamo per disegnare il campo e creare il puck.
+- preload(): questo metodo viene richiamato da Phaser appena prima del create, serve a preimpostare delle cose, noi preimpostiamo il canvas in una posizione più facile da raggiungere, non è necessario ma è più comodo da usare.
+- create(): questo metodo viene richiamato da Phaser alla creazione dell'oggetto, lo utiliziamo per disegnare il campo e creare il puck invocando i metodi appositi.
+- createPlayGround(): questo metodo viene incocato da create(), e serve a disegnare gli elementi del campo, al suo intermo richiamiamo anche il metodo che permette di aggiungere i collider ai bordi e alle porte.
+- addBorderCollider(borders): questo metodo una volta passato l'array di bordi gli attiva la fisica e li aggiunge alla lista bordersGroup e assegna a questo gruppo il collider a tutti i player a quel momento generati, teoricamente nessuno.
+- update(time, delta): questo metodo viene richiamato da Phaser in automatico a ogni ciclo di gioco, dentro questo metodo richiamiamo l'update di tutti i player e del puck. inoltre controlla i flag del puck per assegnare eventuali goal e se ciò succede bisogna riportare la partita alla situazione iniziale ovvero puck al centro e giocatori nella loro metà campo.
+- createPlayer(name, ip): dato nome e ip questo metodo crea un nuovo player e lo assegna autonomamente al team con meno giocatori. Inoltre assegna il collider con i bordi.
+- changePuckOwner(player, puck): dato il puck e il player riassegna il player del puck e setta i valori all'interno del puck in maniera che risulti che il player abbia il disco. Viene anche riaggiunto il collider del disco al player che possedeva precedentemento il puck.
+- createPuck(): questa funzione permette di creare il puck all'interno del game, genera anche le righe delle porte e gli assegna gli overlap in maniera da poi assegnare i goal. Aggiunge i collider dei bordi e assegna il bounce a 0.5, dunque ogni volta che rimbalza il puck esso dimezza la propria velocità. 
+- puckBorderCollide(puck, borders): questo metodo permette di contare i rimbalzi del puck cambiandone l'attributo. Questa funzione viene invocata dai collider con i bordi.
+- updateLeaderboard(): questo metodo serve ad aggiornare la leaderboard e il risultato. Per farlo va a cercare nell'HTML gli elementi predisposti, poi li riempie.
+- switchTeam(player): dato un player gli cambia il team, si controlla a che team appartine, da quello lo rimuove e poi lo aggiunge nell'altro.
+- autoSetTeam(): questo metodo di aiuto serve a scoprire quale team ha meno player, serve alla creazione dei nuovi player.
+- scoreLeft(puck, net): questa è la funzione invocata dall'evento di quando si segna nella rete di sinistra. Serve a settare il flag scoredLeft a true, ciò permette al metodo update di far segnare il team di destra.
+- scoreRight(puck, net): questa è la funzione invocata dall'evento di quando si segna nella rete di destra. Serve a settare il flag scoredRight a true, ciò permette al metodo update di far segnare il team di sinistra.
+- getPlayerByIp(ip): dato l'indirizzo ip di un player viene cercato all'interno di tutti i team e lo ritorna.
+- shoot(): questo metodo permette di far tirare il puck, se non è già stato tirato gli viene impostata la velocità del player per 2, serve per non poter riprendere subito il disco.
+
+### Script
+
+#### Socket
+Questa classe è il socket server, lo si avvia all'inizio per ricevere e mandare i dati necessari.
+##### variabili
+- wss: è un'istanza di WebSocket.Server
+- clients: è un array che contiene tutti i client connessi
+- host: contiene il WebSocket di host, serve per avere il riferimento a cui mandare i dati
+##### eventi
+- wss.on('connection', ...): ogni volta che un client si connette attiva gli eventListener per quel client
+- ws.on('message', ...): ogni volta che il socket server riceve un messaggio, se è un segnale di connessione inoltra all'host il segnale e lo mette nell'array di client, nel caso richiedesse la connessione host salviamo il webSocket di host
 ## Test
 
 ### Protocollo di test

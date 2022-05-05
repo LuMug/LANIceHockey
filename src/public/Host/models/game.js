@@ -13,7 +13,7 @@ export default class Game extends Phaser.Scene {
     spessoreBordi;
 
     /**
-     * questo metodo serve ad istanziare una nuova partita, 
+     * Questo metodo serve ad istanziare una nuova partita, 
      * richiama il costruttore della superclasse, crea due 
      * player di default (in futuro si potrebbero rendere customizabili) 
      * e infine creo l'Host della partita.
@@ -24,12 +24,18 @@ export default class Game extends Phaser.Scene {
         new Host(this);
     }
 
+    /**
+     * Questo metodo viene richiamato da Phaser appena prima del 
+     * create, serve a preimpostare delle cose, noi preimpostiamo 
+     * il canvas in una posizione più facile da raggiungere, non 
+     * è necessario ma è più comodo da usare.
+     */
     preload() {
         this.canvas = this.sys.game.canvas;
     }
 
     /**
-     * questo metodo viene richiamato da Phaser alla 
+     * Questo metodo viene richiamato da Phaser alla 
      * creazione dell'oggetto, lo utiliziamo per disegnare 
      * il campo e creare il puck.
      */
@@ -39,6 +45,12 @@ export default class Game extends Phaser.Scene {
         this.createPuck();
     }
 
+    /**
+     * Questo metodo viene incocato da create(), e serve a 
+     * disegnare gli elementi del campo, al suo intermo 
+     * richiamiamo anche il metodo che permette di aggiungere 
+     * i collider ai bordi e alle porte.
+     */
     createPlayGround() {
         this.spessoreBordi = 8;
         this.raggioAngoli = 85;
@@ -161,6 +173,12 @@ export default class Game extends Phaser.Scene {
         graphics.strokePath();
     }
 
+    /**
+     * Questo metodo una volta passato l'array di bordi gli 
+     * attiva la fisica e li aggiunge alla lista bordersGroup 
+     * e assegna a questo gruppo il collider a tutti i player 
+     * a quel momento generati, teoricamente nessuno.
+     */
     addBorderCollider(borders) {
         this.bordersGroup = this.physics.add.staticGroup();
         for (var i = 0; i < borders.length; i++) {
@@ -181,17 +199,24 @@ export default class Game extends Phaser.Scene {
         }
     }
 
+    /**
+     * Questo metodo viene richiamato da Phaser in automatico 
+     * a ogni ciclo di gioco, dentro questo metodo richiamiamo 
+     * l'update di tutti i player e del puck. inoltre controlla 
+     * i flag del puck per assegnare eventuali goal e se ciò 
+     * succede bisogna riportare la partita alla situazione 
+     * iniziale ovvero puck al centro e giocatori nella loro metà 
+     * campo.
+     */
     update(time, delta) {
         //aggiorna le posizioni dei player
         for (let i = 0; i < this.teams.length; i++) {
             for (let j = 0; j < this.teams[i].players.length; j++) {
                 this.teams[i].players[j].update();
-                this.physics.world.collide(this.teams[i].players[j], this.borders);
             }
         }
 
-        // If the player scored in the enemy net add a point to the player
-        // if not remove a point from the player
+        // gestione autogol
         if (this.puck.scoredLeft || this.puck.scoredRight) {
             if (this.puck.scoredLeft) {
                 if (this.puck.player.team == this.teams[1]) {
@@ -206,19 +231,11 @@ export default class Game extends Phaser.Scene {
             }
 
             //riavvia il puck e rimette i collider
-            //this.puck.destroy();
-            //this.createPuck();
             this.puck.beingShoot = false;
             this.puck.player.addCollider();
             this.puck.player = null;
             this.puck.setPosition(SET_WIDTH / 2, SET_HEIGHT / 2);
             this.puck.body.setVelocity(0, 0);
-            //for(var i = 0; i < this.teams.length; i++){
-            //    for(var j = 0; j < this.teams[i].players.length; j++){
-            //        var puckCollider = this.physics.add.collider(this.teams[i].players[j], this.puck, this.changePuckOwner);
-            //        this.teams[i].players[j].setPuckCollider(puckCollider);
-            //    }
-            //}
 
             //riavvia le posizioni dei player
             for (let i = 0; i < this.teams.length; i++) {
@@ -238,7 +255,12 @@ export default class Game extends Phaser.Scene {
         this.puck.update();
     }
 
-    //crea un player, invocato quando un player si connette
+    /**
+     * dato nome e ip questo metodo crea un nuovo 
+     * player e lo assegna autonomamente al team 
+     * con meno giocatori. Inoltre assegna il 
+     * collider con i bordi.
+     */
     createPlayer(name, ip) {
         var team = this.autoSetTeam();
         var x;
@@ -251,16 +273,21 @@ export default class Game extends Phaser.Scene {
             x = (SET_WIDTH / 4) * 3;
             y = SET_HEIGHT / 2;
         }
-        var p = new Player(this, name, x, y, ip, team);
-        team.addPlayer(p);
+        var player = new Player(this, name, x, y, ip, team);
+        team.addPlayer(player);
         console.debug('new player added ' + name);
-        p.addCollider();
-        this.physics.add.collider(p, this.bordersGroup);
+        player.addCollider();
+        this.physics.add.collider(player, this.bordersGroup);
     }
 
-
-    //quando il puck viene preso da un altro giocatore, invoca questo metodo
-    //si occupa di rimettere il collider al giocatore che aveva il puck e toglierlo al giocatore che lo riceve
+    /**
+     * dato il puck e il player riassegna il player 
+     * del puck e setta i valori all'interno del puck 
+     * in maniera che risulti che il player abbia il 
+     * disco. Viene anche riaggiunto il collider 
+     * del disco al player che possedeva precedentemento 
+     * il puck.
+     */
     changePuckOwner(player, puck) {
         puck.bounced = 0;
         var prePlayer = puck.player;
@@ -276,7 +303,13 @@ export default class Game extends Phaser.Scene {
         }, 150);
     }
 
-    //crea il puck all'interno del campo, setta i collider e gli overlap che il puck possiede
+    /**
+     * questa funzione permette di creare il puck all'interno del game, 
+     * genera anche le righe delle porte e gli assegna gli overlap in
+     *  maniera da poi assegnare i goal. Aggiunge i collider dei bordi 
+     * e assegna il bounce a 0.5, dunque ogni volta che rimbalza il puck 
+     * esso dimezza la propria velocità. 
+     */
     createPuck() {
         this.puck = new Puck(this, SET_WIDTH / 2, SET_HEIGHT / 2);
         //crea le reti
@@ -293,6 +326,11 @@ export default class Game extends Phaser.Scene {
         this.puck.body.setBounce(0.5, 0.5);
     }
 
+    /**
+     * Questo metodo permette di contare i rimbalzi del puck 
+     * cambiandone l'attributo. Questa funzione viene invocata 
+     * dai collider con i bordi.
+     */
     puckBorderCollide(puck, borders) {
         puck.bounced++;
         if (puck.beingShoot && puck.bounced <= 1) {
@@ -300,6 +338,10 @@ export default class Game extends Phaser.Scene {
         }
     }
 
+    /**
+     * Questo metodo serve ad aggiornare la leaderboard e il risultato.
+     * Per farlo va a cercare nell'HTML gli elementi predisposti, poi li riempie.
+     */
     updateLeaderboard() {
         //aggiorno lo score di entrambe le squadre
         document.getElementById('team1').innerHTML = this.teams[0].score;
@@ -335,8 +377,11 @@ export default class Game extends Phaser.Scene {
         document.getElementById("leaderBoard").innerHTML = theExport;
     }
 
-    //cambia team ad un player
-    switchTeam(player) { // TODO change color player (this.fillColor is not a function player.js:42)
+    /**
+     * dato un player gli cambia il team, si controlla a che team appartine, 
+     * da quello lo rimuove e poi lo aggiunge nell'altro.
+     */
+    switchTeam(player) {
         if (this.teams[0].players.indexOf(player) != -1) {
             this.teams[0].removePlayer(player);
             this.teams[1].addPlayer(player);
@@ -348,7 +393,10 @@ export default class Game extends Phaser.Scene {
         }
     }
 
-    //ritorna il team con meno player
+    /**
+     * questo metodo di aiuto serve a scoprire quale team ha 
+     * meno player, serve alla creazione dei nuovi player.
+     */
     autoSetTeam() {
         if (this.teams[0].players.length > this.teams[1].players.length) {
             return this.teams[1];
@@ -356,19 +404,30 @@ export default class Game extends Phaser.Scene {
         return this.teams[0];
     }
 
-    //evento scatenato se si segna a sinistra
+    /**
+     * Questa è la funzione invocata dall'evento di quando si segna 
+     * nella rete di sinistra. Serve a settare il flag scoredLeft a 
+     * true, ciò permette al metodo update di far segnare il team di destra.
+     */
     scoreLeft(puck, net) {
         puck.scoredLeft = true;
         console.log("il puck è entrato nella porta sinistra");
     }
 
-    //evento scatenato se si segna a destra
+    /**
+     * questa è la funzione invocata dall'evento di quando si segna nella 
+     * rete di destra. Serve a settare il flag scoredRight a true, ciò 
+     * permette al metodo update di far segnare il team di sinistra.
+     */
     scoreRight(puck, net) {
         puck.scoredRight = true;
         console.log("il puck è entrato nella porta destra");
     }
 
-    //tramite l'ip ritorna un player
+    /**
+     * Dato l'indirizzo ip di un player viene cercato all'interno di 
+     * tutti i team e lo ritorna.
+     */
     getPlayerByIp(ip) {
         for (let i = 0; i < this.teams.length; i++) {
             for (let j = 0; j < this.teams[i].players.length; j++) {
@@ -379,7 +438,10 @@ export default class Game extends Phaser.Scene {
         }
     }
 
-    //metodo invocato quando il player lancia il puck
+    /**
+     * questo metodo permette di far tirare il puck, se non è già stato tirato gli viene 
+     * impostata la velocità del player per 2, serve per non poter riprendere subito il disco.
+     */
     shoot() {
         if (!this.puck.beingShoot) {
             console.log("puck shooted");
