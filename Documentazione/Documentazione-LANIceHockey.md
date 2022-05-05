@@ -416,7 +416,18 @@ Questa classe è il socket server, lo si avvia all'inizio per ricevere e mandare
 - ws.on('message', ...): ogni volta che il socket server riceve un messaggio, se è un segnale di connessione inoltra all'host il segnale e lo mette nell'array di client, nel caso richiedesse la connessione host salviamo il webSocket di host
 
 #### Game
-La classe Game rappresenta la partita, estende la classe Phaser.Scene
+La classe Game rappresenta e gestisce la partita, estende la classe Phaser.Scene infatti è ciò che viene raffigurato a schermo. Vengono importarte le classi che abbiamo scritto: Player, Team e Puck, inoltre anche Host da hostconnection.
+Inoltre anche delle costanti da main.js che servono per conoscere altezza e larghezza del campo.
+##### attributi: 
+- teams: questo attributo contiene i team della partita, che sono 2.
+- bordersGroup: contiene il gruppo di bordi di tipo Phaser.Physics.Arcade.StaticBorders, che serve a delimitare il campo e creare i collider con le porte.
+- puck: questo attributo serve a salvarsi il puck della partita.
+- raggioAngoli: serve a disegnare il campo, è quanto è lungo il raggio delle curve degli angoli.(viene anche utilizato per altre formule nei disegni).
+- spessoreBordi: serve a disegnare il campo, è quanto e spesso il bordo.(viene anche utilizato per altre formule nei disegni).
+##### metodi:
+- constructor(): questo metodo serve ad istanziare una nuova partita, richiama il costruttore della superclasse, crea due player di default (in futuro si potrebbero rendere customizabili) e infine creo l'Host della partita.
+- preload(): 
+- create(): questo metodo viene richiamato da Phaser alla creazione dell'oggetto, lo utiliziamo per disegnare il campo e creare il puck.
 ## Test
 
 ### Protocollo di test
