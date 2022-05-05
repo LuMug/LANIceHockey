@@ -9,15 +9,18 @@ export default class Game extends Phaser.Scene {
     teams;
     bordersGroup;
     puck;
-    goalScored = false;
     raggioAngoli;
     spessoreBordi;
 
+    /**
+     * questo metodo serve ad istanziare una nuova partita, 
+     * richiama il costruttore della superclasse, crea due 
+     * player di default (in futuro si potrebbero rendere customizabili) 
+     * e infine creo l'Host della partita.
+     */
     constructor() {
         super({ key: 'Game' });
         this.teams = new Array(new Team("Green", 0x05871b), new Team("Yellow", 0xf0d31a));
-        console.log("done");
-        console.log(this.teams[0].color);
         var conn = new Host(this);
     }
 
@@ -25,12 +28,18 @@ export default class Game extends Phaser.Scene {
         this.canvas = this.sys.game.canvas;
     }
 
+    /**
+     * questo metodo viene richiamato da Phaser alla 
+     * creazione dell'oggetto, lo utiliziamo per disegnare 
+     * il campo e creare il puck.
+     */
     create() {
         this.createPlayGround();
 
         this.createPuck();
     }
 
+    
     createPlayGround(){
         this.spessoreBordi = 8;
         this.raggioAngoli = 85;
