@@ -539,9 +539,8 @@ progetto.
 
 ## Consuntivo
 
-Consuntivo del tempo di lavoro effettivo e considerazioni riguardo le
-differenze rispetto alla pianificazione (cap 1.7) (ad esempio Gannt
-consuntivo).
+![Gantt Consuntivo](Assets/Img-GanttConsuntivo.PNG)
+> Gantt Consuntivo
 
 ## Conclusioni
 
