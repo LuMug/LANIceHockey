@@ -550,11 +550,20 @@ Questa classe riceve i dati dal socket server e si occupa di renderizzare il gio
 
 ### Risultati test
 
-Tabella riassuntiva in cui si inseriscono i test riusciti e non del
-prodotto finale. Se un test non riesce e viene corretto l’errore, questo
-dovrà risultare nel documento finale come riuscito (la procedura della
-correzione apparirà nel diario), altrimenti dovrà essere descritto
-l’errore con eventuali ipotesi di correzione.
+| Test      | Risultato                               |
+|---------------|--------------------------------------|
+|**TC-001**       |  |
+|**TC-002**       |  |
+|**TC-003**       |  |
+|**TC-004**       |  |
+|**TC-005**       |  |
+|**TC-006**       |  |
+|**TC-007**       |  |
+|**TC-008**       |  |
+|**TC-009**       |  |
+|**TC-010**       |  |
+|**TC-011**       |  |
+|**TC-012**       |  |
 
 ### Mancanze/limitazioni conosciute
 
@@ -570,17 +579,10 @@ progetto.
 
 ## Conclusioni
 
-Quali sono le implicazioni della mia soluzione? Che impatto avrà?
-Cambierà il mondo? È un successo importante? È solo un’aggiunta
-marginale o è semplicemente servita per scoprire che questo percorso è
-stato una perdita di tempo? I risultati ottenuti sono generali,
-facilmente generalizzabili o sono specifici di un caso particolare? ecc
-
 ### Sviluppi futuri
-  Migliorie o estensioni che possono essere sviluppate sul prodotto.
+  Rendere il progetto accessibile dalla rete scolastica, e che sia sempre accessibile. 
 
 ### Considerazioni personali
-  Cosa ho imparato in questo progetto? ecc
 
   ##### Xavier Horisberger:
   - 
@@ -590,8 +592,6 @@ facilmente generalizzabili o sono specifici di un caso particolare? ecc
 
   ##### Andrea Masciocchi:
   - 
-  
-
 
 ## Bibliografia
 
