@@ -17,11 +17,16 @@
   - [Use case](#use-case)
 
   - [Pianificazione](#pianificazione)
+
 3. [Progettazione](#progettazione)
 
   - [Design dell’architettura del sistema](#design-dell’architettura-del-sistema)
 
   - [Design dei dati e database](#design-dei-dati-e-database)
+  
+  - [Design delle interfacce](#Design-delle-interfacce)
+
+  - [Design procedurale](#Design-procedurale)
 
 4. [Implementazione](#implementazione)
 
@@ -42,6 +47,8 @@
   - [Considerazioni personali](#considerazioni-personali)
 
 8. [Bibliografia](#bibliografia)
+
+  - [Sitografia](#sitografia)
 
 9. [Allegati](#allegati)
 
@@ -196,19 +203,6 @@ Abbiamo scelto una pianificazione waterfall:
 
 ### Analisi dei mezzi
 
-Elencare e *descrivere* i mezzi disponibili per la realizzazione del
-progetto. Ricordarsi di sempre descrivere nel dettaglio le versioni e il
-modello di riferimento.
-
-SDK, librerie, tools utilizzati per la realizzazione del progetto e
-eventuali dipendenze.
-
-Su quale piattaforma dovrà essere eseguito il prodotto? Che hardware
-particolare è coinvolto nel progetto? Che particolarità e limitazioni
-presenta? Che hw sarà disponibile durante lo sviluppo?
-
-L'idea è quella di poter utilizzare questo gioco su qualsiasi rete
-
 #### Hardware
 - Computer1:
   - Processore: Intel(R) Core(TM) i5-7360U CPU @ 2.30GHz
@@ -271,24 +265,7 @@ Design dell'interfaccia del controller:
 
 ## Implementazione
 
-In questo capitolo dovrà essere mostrato come è stato realizzato il
-lavoro. Questa parte può differenziarsi dalla progettazione in quanto il
-risultato ottenuto non per forza può essere come era stato progettato.
-
-Sulla base di queste informazioni il lavoro svolto dovrà essere
-riproducibile.
-
-In questa parte è richiesto l’inserimento di codice sorgente/print
-screen di maschere solamente per quei passaggi particolarmente
-significativi e/o critici.
-
-Inoltre dovranno essere descritte eventuali varianti di soluzione o
-scelte di prodotti con motivazione delle scelte.
-
-Non deve apparire nessuna forma di guida d’uso di librerie o di
-componenti utilizzati. Eventualmente questa va allegata.
-
-Per eventuali dettagli si possono inserire riferimenti ai diari.
+Installare nodejs.
 
 ### Classi
 #### Player
