@@ -320,18 +320,20 @@ export default class Game extends Phaser.Scene {
      * il puck.
      */
     changePuckOwner(player, puck) {
-        puck.bounced = 0;
-        var prePlayer = puck.player;
-        puck.beingShoot = false;
-        puck.setPlayer(player);
-        puck.player.removeCollider();
-        puck.body.setVelocity(0, 0);
+        if (puck.beingShoot || puck.player == null || puck.player != player) {
+            puck.bounced = 0;
+            var prePlayer = puck.player;
+            puck.beingShoot = false;
+            puck.setPlayer(player);
+            puck.player.removeCollider();
+            puck.body.setVelocity(0, 0);
 
-        setTimeout(() => {
-            if (prePlayer != null && prePlayer != puck.player) {
-                prePlayer.addCollider();
-            }
-        }, 150);
+            setTimeout(() => {
+                if (prePlayer != null && prePlayer != puck.player) {
+                    prePlayer.addCollider();
+                }
+            }, 150);
+        }
     }
 
     /**
