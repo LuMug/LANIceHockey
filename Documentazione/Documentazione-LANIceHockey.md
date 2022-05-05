@@ -409,19 +409,6 @@ Questa classe è importante per la comunicazione tra client e host, manda le inf
 - shoot() : quando il giocatore clicca il tasto per lanciare il disco, mandiamo al socket server il segnale.
 - speed() : quando il giocatore clicca il tasto per scattare, mandiamo il segnale al socket server, disabilitiamo il tasto per scattare e usiamo una funzione asincrona che riattiva il tasto dopo un tempo predefinito.
 
-#### Socket
-Questa classe è il socket server, lo si avvia all'inizio per ricevere e mandare i dati necessari.
-##### variabili
-- wss: è un'istanza di WebSocket.Server
-- clients: è un array che contiene tutti i client connessi
-- host: contiene il WebSocket di host, serve per avere il riferimento a cui mandare i dati
-##### eventi
-- wss.on('connection', ...): ogni volta che un client si connette attiva gli eventListener per quel client
-  - ws.on('message', ...): ogni volta che il socket server riceve un messaggio, se è un segnale di connessione inoltra all'host il segnale e lo mette nell'array di client, nel caso richiedesse la connessione host salviamo il webSocket di host, nel caso mandasse un messaggio generico lo inoltra direttamente all'host allegandoci anche l'ip del client.
-  - ws.on('close', ...): manda all'host il segnale di disconnessione.
-##### metodi
-- removeWithWSFromClients(ws): rimuove dall'array clients il client corrispondente all'WebSocket passato tramite argomento.
-
 #### HostConnection
 Questa classe riceve i dati dal socket server e si occupa di renderizzare il gioco.
 ##### variabil
@@ -468,7 +455,11 @@ Questa classe è il socket server, lo si avvia all'inizio per ricevere e mandare
 - host: contiene il WebSocket di host, serve per avere il riferimento a cui mandare i dati
 ##### eventi
 - wss.on('connection', ...): ogni volta che un client si connette attiva gli eventListener per quel client
-- ws.on('message', ...): ogni volta che il socket server riceve un messaggio, se è un segnale di connessione inoltra all'host il segnale e lo mette nell'array di client, nel caso richiedesse la connessione host salviamo il webSocket di host
+  - ws.on('message', ...): ogni volta che il socket server riceve un messaggio, se è un segnale di connessione inoltra all'host il segnale e lo mette nell'array di client, nel caso richiedesse la connessione host salviamo il webSocket di host, nel caso mandasse un messaggio generico lo inoltra direttamente all'host allegandoci anche l'ip del client.
+  - ws.on('close', ...): manda all'host il segnale di disconnessione.
+##### metodi
+- removeWithWSFromClients(ws): rimuove dall'array clients il client corrispondente all'WebSocket passato tramite argomento.
+
 ## Test
 
 ### Protocollo di test
