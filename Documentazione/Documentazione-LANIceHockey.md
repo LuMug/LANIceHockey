@@ -423,6 +423,12 @@ Questa classe è il socket server, lo si avvia all'inizio per ricevere e mandare
 - removeWithWSFromClients(ws): rimuove dall'array clients il client corrispondente all'WebSocket passato tramite argomento.
 
 #### HostConnection
+Questa classe riceve i dati dal socket server e si occupa di renderizzare il gioco.
+##### variabil
+- ws: è un'istanza di WebSocket, serve per connettersi al socket server e comunicare con i client e il server stesso.
+##### eventi
+- ws.addEventListener("open", ...): alla connessione dell'host manda un messaggio al socket server per farsi riconoscere come host e crea il listener per la ricezione di messaggi.
+  - ws.onmessage: alla ricezione dei messaggi da parte del socket (che ha ricevuto i segnali da clientConnection) controlla il tipo di segnale e agisce in base all'azione desiderata da parte del player.
 
 #### Game
 La classe Game rappresenta e gestisce la partita, estende la classe Phaser.Scene infatti è ciò che viene raffigurato a schermo. Vengono importarte le classi che abbiamo scritto: Player, Team e Puck, inoltre anche Host da hostconnection.
