@@ -597,6 +597,8 @@ Contiene il campo da gioco aggiornato in tempo reale da Phaser, una leaderboard 
 
 ### Sviluppi futuri
   Rendere il progetto accessibile dalla rete scolastica, e che sia sempre accessibile. 
+  Attualmente si può avere una solo partita, si potrebbe far sì che possano esistere più partite in contemporanea, e gli utenti possono scegliere a quale partita unirsi.
+  Rendere il gioco più realistico, non avendo implementato nessuna delle regole presenti nell'hockey su ghiaccio, questo renderebbe il gioco più competitivo e gradibile agli utenti.
 
 ### Considerazioni personali
 
