@@ -17,11 +17,16 @@
   - [Use case](#use-case)
 
   - [Pianificazione](#pianificazione)
+
 3. [Progettazione](#progettazione)
 
   - [Design dell’architettura del sistema](#design-dell’architettura-del-sistema)
 
   - [Design dei dati e database](#design-dei-dati-e-database)
+  
+  - [Design delle interfacce](#Design-delle-interfacce)
+
+  - [Design procedurale](#Design-procedurale)
 
 4. [Implementazione](#implementazione)
 
@@ -42,6 +47,8 @@
   - [Considerazioni personali](#considerazioni-personali)
 
 8. [Bibliografia](#bibliografia)
+
+  - [Sitografia](#sitografia)
 
 9. [Allegati](#allegati)
 
