@@ -4,8 +4,8 @@ import "../modules/phaser/phaser-arcade-physics.min.js";
 
 import Game from '../models/game.js';
 
-export var SET_WIDTH = document.getElementById("playground").width;
-export var SET_HEIGHT = document.getElementById("playground").height;
+export const SET_WIDTH = document.getElementById("playground").width;
+export const SET_HEIGHT = document.getElementById("playground").height;
 
 const config = {
     // For more settings see <https://github.com/photonstorm/phaser/blob/master/src/boot/Config.js>
