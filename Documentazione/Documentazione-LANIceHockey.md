@@ -558,8 +558,11 @@ Contiene il campo da gioco aggiornato in tempo reale da Phaser, una leaderboard 
   - Questo progetto mi è piaciuto, purtroppo abbiamo gestito male il tempo e siamo arrivati in ritardo rispetto alla nostra progettazione, all'inizio non avevamo bene le idee in chiaro su come fare il game loop e ci abbiamo messo un po' di tempo a capire come utilizzare i socket. Devo dire che comunque ho più conoscenze rispetto all'inizio e che il risultato finale tutto sommato non è male, di sicuro è migliorabile ma come tutto.
 
   ##### Andrea Masciocchi:
-  -
-
+  - Mi è complessivamente piaciuto, già dall'inizio mi aspettavo che la produzione del risultato sarebbe stata così appagante, probabilmente per via della natura ludica del progetto, ma alla conclusione mi sono reso conto che oltre al divertimento c'è da tenere in considerazione anche la parte didattica di questo percorso.
+  Ho acquisito molte conoscenze che mi serviranno sicuramente in futuro, è stato difficile ma è stato anche molto interessante imparare ad usare i WebSockets, Phaser eccetera.
+  Sicuramente ci sono state anche cose negative, come la maldestra gestione del tempo a nostra disposizione e dei compiti all'interno del gruppo, o la pianificazione veramente poco accurata rispetto alla realtà che si è poi sviluppata.
+  Questi errori sono dati probabilmente dalla poca esperienza nel gestire un progetto, ma ora che ho imparato dagli errori so per certo che i prossimi lavori saranno migliori.
+  In generale, sono soddisfatto del risultato, nelle nozioni apprese e dei miei colleghi (nonostante ci siamo distratti fin troppo).
 ## Bibliografia
 
 ### Sitografia
