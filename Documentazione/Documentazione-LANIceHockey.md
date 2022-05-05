@@ -531,7 +531,7 @@ Contiene il campo da gioco aggiornato in tempo reale da Phaser, una leaderboard 
 
 |Test Case      | TC-009                               |
 |---------------|--------------------------------------|
-|**Nome**       |Controllare che il nome sia scelto dall’utente ma che non lo possa cambiare a partita in corso.|
+|**Nome**       |Collegamenti alle pagine funzionanti|
 |**Riferimento**|<ul><li>REQ-010</li><li>REQ-011</li><li>REQ-012</li></ul>|
 |**Descrizione**|Una volta collegati guarderemo lo schermino del telefono e vedremo i controlli, una volta guardato il monitor dell’host vedremo invece il campo visto dall’alto con i giocatori che si muovono.|
 |**Prerequisiti**|TC-003|
@@ -569,18 +569,18 @@ Contiene il campo da gioco aggiornato in tempo reale da Phaser, una leaderboard 
 
 | Test      | Risultato                               |
 |---------------|--------------------------------------|
-|**TC-001**       |  |
-|**TC-002**       |  |
-|**TC-003**       |  |
-|**TC-004**       |  |
-|**TC-005**       |  |
-|**TC-006**       |  |
-|**TC-007**       |  |
-|**TC-008**       |  |
-|**TC-009**       |  |
-|**TC-010**       |  |
-|**TC-011**       |  |
-|**TC-012**       |  |
+|**TC-001**       | Esito positivo. |
+|**TC-002**       | Esito positivo. |
+|**TC-003**       | Esito positivo. |
+|**TC-004**       | Esito positivo. |
+|**TC-005**       | Esito positivo. |
+|**TC-006**       | Esito positivo. |
+|**TC-007**       | Esito positivo. |
+|**TC-008**       | Esito positivo. |
+|**TC-009**       | Esito positivo. |
+|**TC-010**       | Esito positivo. |
+|**TC-011**       | Esito positivo. |
+|**TC-012**       | Esito positivo. |
 
 ### Mancanze/limitazioni conosciute
 
