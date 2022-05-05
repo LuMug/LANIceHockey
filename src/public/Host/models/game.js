@@ -44,16 +44,17 @@ export default class Game extends Phaser.Scene {
 
         this.createPuck();
 
-        var resetPuckFunc = function rPuck(puck = this.puck) {
-            puck.beingShoot = false;
-            if (puck.player != null) {
-                puck.player.addCollider();
+        var puckForFunc = this.puck;
+
+        document.getElementById('resetPuck').addEventListener('click', function rPuck() {
+            puckForFunc.beingShoot = false;
+            if (puckForFunc.player != null) {
+                puckForFunc.player.addCollider();
             }
-            puck.player = null;
-            puck.setPosition(SET_WIDTH / 2, SET_HEIGHT / 2);
-            puck.body.setVelocity(0, 0);
-        };
-        document.getElementById('resetPuck').onclick = resetPuckFunc;
+            puckForFunc.player = null;
+            puckForFunc.setPosition(SET_WIDTH / 2, SET_HEIGHT / 2);
+            puckForFunc.body.setVelocity(0, 0);
+        }, false);
     }
 
     /**
