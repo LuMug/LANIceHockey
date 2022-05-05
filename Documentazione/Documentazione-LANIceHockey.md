@@ -396,27 +396,6 @@ La classe puck rappresenta il disco della partita. Estende Phaser.GameObjects.El
 - setPlayer(player): questo metodo serve a riassegnare il player che possiede il puck, player è il nuovo player.
 - update(): questo metodo è richiamato da noi tramite il metodo automatico di Phaser in automatico ad ogni ciclo di gioco, serve per posizionare il puck al centro del player che lo possiede, ovviamente se non è stato tirato.
 
-#### ClientConnection
-Questa classe è importante per la comunicazione tra client e host, manda le informazioni al socket server.
-##### variabili
-- manager: crea il joystick in base alle impostazioni definite nella variabile "options"
-##### eventi
-- manager.on('move', ...): ascolta il movimento del joystick e manda i dettagli importanti per il movimento del player al socket server.
-- manager.on('end', ...): ascolta quando il player smette di muovere il joystick, e manda il segnale di stop al socket server.
-- ws.addEventListener('open', ...): quando il client si connette manda al socket server la richiesta di connessione, se il nome non è valido lo rimanda alla pagina index. 
-##### metodi
-- teamChanged(): quando il giocatore vuole cambiare team, mandiamo al socket server il segnale.
-- shoot() : quando il giocatore clicca il tasto per lanciare il disco, mandiamo al socket server il segnale.
-- speed() : quando il giocatore clicca il tasto per scattare, mandiamo il segnale al socket server, disabilitiamo il tasto per scattare e usiamo una funzione asincrona che riattiva il tasto dopo un tempo predefinito.
-
-#### HostConnection
-Questa classe riceve i dati dal socket server e si occupa di renderizzare il gioco.
-##### variabil
-- ws: è un'istanza di WebSocket, serve per connettersi al socket server e comunicare con i client e il server stesso.
-##### eventi
-- ws.addEventListener("open", ...): alla connessione dell'host manda un messaggio al socket server per farsi riconoscere come host e crea il listener per la ricezione di messaggi.
-  - ws.onmessage: alla ricezione dei messaggi da parte del socket (che ha ricevuto i segnali da clientConnection) controlla il tipo di segnale e agisce in base all'azione desiderata da parte del player.
-
 #### Game
 La classe Game rappresenta e gestisce la partita, estende la classe Phaser.Scene infatti è ciò che viene raffigurato a schermo. Vengono importarte le classi che abbiamo scritto: Player, Team e Puck, inoltre anche Host da hostconnection.
 Inoltre anche delle costanti da main.js che servono per conoscere altezza e larghezza del campo.
@@ -445,7 +424,7 @@ Inoltre anche delle costanti da main.js che servono per conoscere altezza e larg
 - getPlayerByIp(ip): dato l'indirizzo ip di un player viene cercato all'interno di tutti i team e lo ritorna.
 - shoot(): questo metodo permette di far tirare il puck, se non è già stato tirato gli viene impostata la velocità del player per 2, serve per non poter riprendere subito il disco.
 
-### Script
+### Connection
 
 #### Socket
 Questa classe è il socket server, lo si avvia all'inizio per ricevere e mandare i dati necessari.
@@ -459,6 +438,28 @@ Questa classe è il socket server, lo si avvia all'inizio per ricevere e mandare
   - ws.on('close', ...): manda all'host il segnale di disconnessione.
 ##### metodi
 - removeWithWSFromClients(ws): rimuove dall'array clients il client corrispondente all'WebSocket passato tramite argomento.
+
+#### ClientConnection
+Questa classe è importante per la comunicazione tra client e host, manda le informazioni al socket server.
+##### variabili
+- manager: crea il joystick in base alle impostazioni definite nella variabile "options"
+##### eventi
+- manager.on('move', ...): ascolta il movimento del joystick e manda i dettagli importanti per il movimento del player al socket server.
+- manager.on('end', ...): ascolta quando il player smette di muovere il joystick, e manda il segnale di stop al socket server.
+- ws.addEventListener('open', ...): quando il client si connette manda al socket server la richiesta di connessione, se il nome non è valido lo rimanda alla pagina index. 
+##### metodi
+- teamChanged(): quando il giocatore vuole cambiare team, mandiamo al socket server il segnale.
+- shoot() : quando il giocatore clicca il tasto per lanciare il disco, mandiamo al socket server il segnale.
+- speed() : quando il giocatore clicca il tasto per scattare, mandiamo il segnale al socket server, disabilitiamo il tasto per scattare e usiamo una funzione asincrona che riattiva il tasto dopo un tempo predefinito.
+
+#### HostConnection
+Questa classe riceve i dati dal socket server e si occupa di renderizzare il gioco.
+##### variabil
+- ws: è un'istanza di WebSocket, serve per connettersi al socket server e comunicare con i client e il server stesso.
+##### eventi
+- ws.addEventListener("open", ...): alla connessione dell'host manda un messaggio al socket server per farsi riconoscere come host e crea il listener per la ricezione di messaggi.
+  - ws.onmessage: alla ricezione dei messaggi da parte del socket (che ha ricevuto i segnali da clientConnection) controlla il tipo di segnale e agisce in base all'azione desiderata da parte del player.
+
 
 ## Test
 
