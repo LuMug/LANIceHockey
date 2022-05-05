@@ -397,8 +397,8 @@ Questa classe è importante per la comunicazione tra client e host, manda le inf
 ##### variabili
 - manager: crea il joystick in base alle impostazioni definite nella variabile "options"
 ##### eventi
-- manager.on('move', function(){...}): ascolta il movimento del joystick e manda i dettagli importanti per il movimento del player al socket server.
-- manager.on('end', function(){...}): ascolta quando il player smette di muovere il joystick, e manda il segnale di stop al socket server.
+- manager.on('move', ...): ascolta il movimento del joystick e manda i dettagli importanti per il movimento del player al socket server.
+- manager.on('end', ...): ascolta quando il player smette di muovere il joystick, e manda il segnale di stop al socket server.
 - ws.addEventListener('open', ...): quando il client si connette manda al socket server la richiesta di connessione, se il nome non è valido lo rimanda alla pagina index. 
 ##### metodi
 - teamChanged(): quando il giocatore vuole cambiare team, mandiamo al socket server il segnale.
@@ -406,10 +406,28 @@ Questa classe è importante per la comunicazione tra client e host, manda le inf
 - speed() : quando il giocatore clicca il tasto per scattare, mandiamo il segnale al socket server, disabilitiamo il tasto per scattare e usiamo una funzione asincrona che riattiva il tasto dopo un tempo predefinito.
 
 #### Socket
-Questa classe è il socket server, lo si avvia all'inizio per ricevere e mandare i dati
+Questa classe è il socket server, lo si avvia all'inizio per ricevere e mandare i dati necessari.
+##### variabili
+- wss: è un'istanza di WebSocket.Server
+- clients: è un array che contiene tutti i client connessi
+- host: contiene il WebSocket di host, serve per avere il riferimento a cui mandare i dati
+##### eventi
+- wss.on('connection', ...): ogni volta che un client si connette attiva gli eventListener per quel client
+- ws.on('message', ...): ogni volta che il socket server riceve un messaggio, se è un segnale di connessione inoltra all'host il segnale e lo mette nell'array di client, nel caso richiedesse la connessione host salviamo il webSocket di host
 
 #### Game
-La classe Game rappresenta la partita, estende la classe Phaser.Scene
+La classe Game rappresenta e gestisce la partita, estende la classe Phaser.Scene infatti è ciò che viene raffigurato a schermo. Vengono importarte le classi che abbiamo scritto: Player, Team e Puck, inoltre anche Host da hostconnection.
+Inoltre anche delle costanti da main.js che servono per conoscere altezza e larghezza del campo.
+##### attributi: 
+- teams: questo attributo contiene i team della partita, che sono 2.
+- bordersGroup: contiene il gruppo di bordi di tipo Phaser.Physics.Arcade.StaticBorders, che serve a delimitare il campo e creare i collider con le porte.
+- puck: questo attributo serve a salvarsi il puck della partita.
+- raggioAngoli: serve a disegnare il campo, è quanto è lungo il raggio delle curve degli angoli.(viene anche utilizato per altre formule nei disegni).
+- spessoreBordi: serve a disegnare il campo, è quanto e spesso il bordo.(viene anche utilizato per altre formule nei disegni).
+##### metodi:
+- constructor(): questo metodo serve ad istanziare una nuova partita, richiama il costruttore della superclasse, crea due player di default (in futuro si potrebbero rendere customizabili) e infine creo l'Host della partita.
+- preload(): 
+- create(): questo metodo viene richiamato da Phaser alla creazione dell'oggetto, lo utiliziamo per disegnare il campo e creare il puck.
 ## Test
 
 ### Protocollo di test
