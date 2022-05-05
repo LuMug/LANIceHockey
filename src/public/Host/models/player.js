@@ -44,7 +44,7 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     update() {
         var x = (this.intensity * Math.cos(this.angle * Math.PI / 180)) * this.constVelocity;
         var y = -(this.intensity * Math.sin(this.angle * Math.PI / 180)) * this.constVelocity;
-        if(x != 0 && y != 0){
+        if (x != 0 && y != 0) {
             this.lastVelocityX = x;
             this.lastVelocityY = y;
         }
@@ -61,8 +61,8 @@ export default class Player extends Phaser.GameObjects.Ellipse {
         this.setPuckCollider(coll);
     }
 
-    speed(){
+    speed() {
         this.constVelocity = 8;
-        setTimeout(() => { this.constVelocity = 4; }, 500);
+        setTimeout(() => { this.constVelocity = 4; }, 800);
     }
 }

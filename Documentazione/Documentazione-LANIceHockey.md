@@ -247,9 +247,12 @@ L'idea è quella di poter utilizzare questo gioco su qualsiasi rete
   - Processore: Intel Xeon (R) CPU E3-1240 V2 @ 3.40GHz x 8
   - RAM: 8 GB
 - Router:
-  - Linksys
+  - Model: Linksys EA6350  
+  - Wifi name: Linksys10206
+  - Wifi password: LANIceHockey
+  - Ip address: 10.90.1.1
 - Switch:
-  - boh
+  - Model: Allied Telesis AT-FS708
 
 #### Software
 - OS Computer1: Windows 10 Enterprise versione 20H2 (build SO 19042.1586)
@@ -375,13 +378,29 @@ Questa classe rappresenta i team come lista di player e ulteriori attributi asse
 - removePlayer(player): serve a rimuovere un player dalla lista di player.
 
 #### Puck
-la classe puck rappresenta il disco della partita.
+La classe puck rappresenta il disco della partita.
 ##### attributi:
 - player: si salva il giocatore che ha il disco momentaneamente.
 - beingShoot: rappresenta il fatto che se è stato tirato oppure no.
 - scoredRight && scoredLeft: sono gli attributi che servono a sapere in che porta si ha segnato, e servono a riazzerare il campo.
 - rightRowScore:
 ##### metodi:
+
+#### ClientConnection
+Questa classe è importante per la comunicazione tra client e host, manda le informazioni al socket server.
+##### variabili
+- manager: crea il joystick in base alle impostazioni definite nella variabile "options"
+##### eventi
+- manager.on('move', function(){...}): ascolta il movimento del joystick e manda i dettagli importanti per il movimento del player al socket server.
+- manager.on('end', function(){...}): ascolta quando il player smette di muovere il joystick, e manda il segnale di stop al socket server.
+- ws.addEventListener('open', ...): quando il client si connette manda al socket server la richiesta di connessione, se il nome non è valido lo rimanda alla pagina index. 
+##### metodi
+- teamChanged(): quando il giocatore vuole cambiare team, mandiamo al socket server il segnale.
+- shoot() : quando il giocatore clicca il tasto per lanciare il disco, mandiamo al socket server il segnale.
+- speed() : quando il giocatore clicca il tasto per scattare, mandiamo il segnale al socket server, disabilitiamo il tasto per scattare e usiamo una funzione asincrona che riattiva il tasto dopo un tempo predefinito.
+
+#### Socket
+Questa classe è il socket server, lo si avvia all'inizio per ricevere e mandare i dati
 
 ## Test
 
