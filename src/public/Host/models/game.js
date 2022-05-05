@@ -243,7 +243,7 @@ export default class Game extends Phaser.Scene {
             }
         }
 
-        // gestione autogol
+        // gestione goal 
         if (this.puck.scoredLeft || this.puck.scoredRight) {
             if (this.puck.scoredLeft) {
                 if (this.puck.player.team == this.teams[1]) {

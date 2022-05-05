@@ -267,18 +267,6 @@ L'idea è quella di poter utilizzare questo gioco su qualsiasi rete
 
 ### Design dell’architettura del sistema
 
-Descrive:
-
--   La struttura del programma/sistema lo schema di rete...
-
--   Gli oggetti/moduli/componenti che lo compongono.
-
--   I flussi di informazione in ingresso ed in uscita e le
-    relative elaborazioni. Può utilizzare *diagrammi di flusso dei
-    dati* (DFD).
-
--   Eventuale sitemap
-
 Rete:
 ![Diagramma di rete](Assets/DiagrammaDiRete.PNG)
 > Diagramma di rete
@@ -308,22 +296,9 @@ Design dell'interfaccia del controller:
 
 ### Design procedurale
 
-Descrive i concetti dettagliati dell’architettura/sviluppo utilizzando
-ad esempio:
+![Design Procedurale](Assets/DesignProcedurale.PNG)
+> Design Procedurale
 
--   Diagrammi di flusso e Nassi.
-
--   Tabelle.
-
--   Classi e metodi.
-
--   Tabelle di routing
-
--   Diritti di accesso a condivisioni …
-
-Questi documenti permetteranno di rappresentare i dettagli procedurali
-per la realizzazione del prodotto.
- 
 ## Implementazione
 
 In questo capitolo dovrà essere mostrato come è stato realizzato il
