@@ -258,15 +258,7 @@ export default class Game extends Phaser.Scene {
             }
 
             //riavvia il puck e rimette i collider
-            //this.puck.destroy();
-            //this.createPuck();
             this.resetPuck();
-            //for(var i = 0; i < this.teams.length; i++){
-            //    for(var j = 0; j < this.teams[i].players.length; j++){
-            //        var puckCollider = this.physics.add.collider(this.teams[i].players[j], this.puck, this.changePuckOwner);
-            //        this.teams[i].players[j].setPuckCollider(puckCollider);
-            //    }
-            //}
 
             //riavvia le posizioni dei player
             for (let i = 0; i < this.teams.length; i++) {
@@ -389,7 +381,7 @@ export default class Game extends Phaser.Scene {
         for (var i = 0; i < this.teams[1].players.length; i++) {
             allPlayers.push(this.teams[1].players[i]);
         }
-        allPlayers.sort(function(a, b) { return b - a });
+        allPlayers = allPlayers.sort(function(a, b) { return b.scoredGoals - a.scoredGoals });
 
         //leaderboard contiene al massimo 10 players
         var max = 0;

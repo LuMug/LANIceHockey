@@ -1,8 +1,7 @@
-//const json = require('./../../../settings.json');
-
 export default class Host {
-    ws = new WebSocket("ws://10.90.1.117:2389");
+    //ws = new WebSocket("ws://10.90.1.117:2389");
     //ws = new WebSocket("ws://127.0.0.1:2389");
+    ws = new WebSocket("ws://192.168.1.115:2389");
     constructor(game) {
         this.ws.addEventListener("open", () => {
             console.log("We are connected!");
@@ -16,11 +15,6 @@ export default class Host {
                     let name = str[2];
                     let ip = str[1];
                     console.log('new player connecting ' + name);
-
-                    /*if (name == null) {
-                        name = "player" + game.playerNum;
-                    }
-                    game.playerNum++;*/
                     game.createPlayer(name, ip);
                 } else if (str[0] == "close") {
                     game.getPlayerByIp(str[1]).followText.destroy();

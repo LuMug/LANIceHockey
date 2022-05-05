@@ -23,7 +23,7 @@
   - [Design dell’architettura del sistema](#design-dell’architettura-del-sistema)
 
   - [Design dei dati e database](#design-dei-dati-e-database)
-  
+
   - [Design delle interfacce](#Design-delle-interfacce)
 
   - [Design procedurale](#Design-procedurale)
@@ -76,9 +76,11 @@ Lo scopo di questo progetto è di creare un videogioco sull'hockey su ghiaccio, 
 ### Analisi del dominio
 
   Il prodotto può essere utilizzato su qualsiasi piattaforma, ma bisogna essere collegati ad un router appositamente usato per questo progetto. Una volta connessi al router si cerca il sito apposito, una volta sul sito del prodotto si può scegliere se essere l'host o se essere un giocatore. Può esserci un solo host e i giocatori possono connettersi alla partita solo se è già presente un host.
+  Per quanto riguarda il client è consigliabile utilizzare il browser firefox, che dopo vari test abbiamo notato avere una velocità di reazione nettamente maggiore rispetto ad altri browsers.
+  Come abbiamo specificato nelle limitazioni, siamo costretti a rimuovere il dito dal joystick per tirare, ed è ulteriormente limitante una velocità di reazione bassa da parte del browser.
 
 ### Analisi e specifica dei requisiti
-  
+
 |**ID:** | **REQ-001**|
 |-|-|
 |**Nome**      |Rappresentazione semi-reale di una partita di Hockey|
@@ -211,7 +213,7 @@ Abbiamo scelto una pianificazione waterfall:
   - Processore: Intel Xeon (R) CPU E3-1240 V2 @ 3.40GHz x 8
   - RAM: 8 GB
 - Router:
-  - Model: Linksys EA6350  
+  - Model: Linksys EA6350
   - Wifi name: Linksys10206
   - Wifi password: LANIceHockey
   - Ip address: 10.90.1.1
@@ -321,7 +323,7 @@ La classe puck rappresenta il disco della partita. Estende Phaser.GameObjects.El
 #### Game
 La classe Game rappresenta e gestisce la partita, estende la classe Phaser.Scene infatti è ciò che viene raffigurato a schermo. Vengono importarte le classi che abbiamo scritto: Player, Team e Puck, inoltre anche Host da hostconnection.
 Inoltre anche delle costanti da main.js che servono per conoscere altezza e larghezza del campo.
-##### Attributi: 
+##### Attributi:
 - teams: questo attributo contiene i team della partita, che sono 2.
 - bordersGroup: contiene il gruppo di bordi di tipo Phaser.Physics.Arcade.StaticBorders, che serve a delimitare il campo e creare i collider con le porte.
 - puck: questo attributo serve a salvarsi il puck della partita.
@@ -336,7 +338,7 @@ Inoltre anche delle costanti da main.js che servono per conoscere altezza e larg
 - update(time, delta): questo metodo viene richiamato da Phaser in automatico a ogni ciclo di gioco, dentro questo metodo richiamiamo l'update di tutti i player e del puck. inoltre controlla i flag del puck per assegnare eventuali goal e se ciò succede bisogna riportare la partita alla situazione iniziale ovvero puck al centro e giocatori nella loro metà campo.
 - createPlayer(name, ip): dato nome e ip questo metodo crea un nuovo player e lo assegna autonomamente al team con meno giocatori. Inoltre assegna il collider con i bordi.
 - changePuckOwner(player, puck): dato il puck e il player riassegna il player del puck e setta i valori all'interno del puck in maniera che risulti che il player abbia il disco. Viene anche riaggiunto il collider del disco al player che possedeva precedentemento il puck.
-- createPuck(): questa funzione permette di creare il puck all'interno del game, genera anche le righe delle porte e gli assegna gli overlap in maniera da poi assegnare i goal. Aggiunge i collider dei bordi e assegna il bounce a 0.5, dunque ogni volta che rimbalza il puck esso dimezza la propria velocità. 
+- createPuck(): questa funzione permette di creare il puck all'interno del game, genera anche le righe delle porte e gli assegna gli overlap in maniera da poi assegnare i goal. Aggiunge i collider dei bordi e assegna il bounce a 0.5, dunque ogni volta che rimbalza il puck esso dimezza la propria velocità.
 - puckBorderCollide(puck, borders): questo metodo permette di contare i rimbalzi del puck cambiandone l'attributo. Questa funzione viene invocata dai collider con i bordi.
 - updateLeaderboard(): questo metodo serve ad aggiornare la leaderboard e il risultato. Per farlo va a cercare nell'HTML gli elementi predisposti, poi li riempie.
 - switchTeam(player): dato un player gli cambia il team, si controlla a che team appartine, da quello lo rimuove e poi lo aggiunge nell'altro.
@@ -378,7 +380,7 @@ Questa classe è importante per la comunicazione tra client e host, manda le inf
 ##### Eventi
 - manager.on('move', ...): ascolta il movimento del joystick e manda i dettagli importanti per il movimento del player al socket server.
 - manager.on('end', ...): ascolta quando il player smette di muovere il joystick, e manda il segnale di stop al socket server.
-- ws.addEventListener('open', ...): quando il client si connette manda al socket server la richiesta di connessione, se il nome non è valido lo rimanda alla pagina index. 
+- ws.addEventListener('open', ...): quando il client si connette manda al socket server la richiesta di connessione, se il nome non è valido lo rimanda alla pagina index.
 ##### Metodi
 - teamChanged(): quando il giocatore vuole cambiare team, mandiamo al socket server il segnale.
 - shoot() : quando il giocatore clicca il tasto per lanciare il disco, mandiamo al socket server il segnale.
@@ -543,7 +545,7 @@ Contiene il campo da gioco aggiornato in tempo reale da Phaser, una leaderboard 
 ## Conclusioni
 
 ### Sviluppi futuri
-  Rendere il progetto accessibile dalla rete scolastica, e che sia sempre accessibile. 
+  Rendere il progetto accessibile dalla rete scolastica, e che sia sempre accessibile.
   Attualmente si può avere una solo partita, si potrebbe far sì che possano esistere più partite in contemporanea, e gli utenti possono scegliere a quale partita unirsi.
   Rendere il gioco più realistico, non avendo implementato nessuna delle regole presenti nell'hockey su ghiaccio, questo renderebbe il gioco più competitivo e gradibile agli utenti.
 
@@ -553,10 +555,10 @@ Contiene il campo da gioco aggiornato in tempo reale da Phaser, una leaderboard 
   - Devo dire che questo progetto mi è piaciuto, finalmente ho imparato qualcosa di nuovo, diversamente dal mio progetto scorso. Abbiamo imparato a usare i websocket, e quindi fare un sito client-server e a fare un gioco usando phaser. Il tempo non l'abbiamo gestito veramente bene, distraendoci anche spesso, e il gantt preventivo non è risultato accurato, per nulla, probabilmente ancora dovuto alla mancanza di esperienza, ma nonostante tutto, abbiamo portato a termine il progetto, ottenendo anche un risultato più che soddisfacente.
 
   ##### Nathan Ferrari:
-  - Questo progetto mi è piaciuto, purtroppo abbiamo gestito male il tempo e siamo arrivati in ritardo rispetto alla ostra progettazione, all'inizio non avevamo bene le idee in chiaro su come fare il game loop e ci abbiamo messo un po' di tempo a capire come utilizzare i socket. Devo dire che comunque ho più conoscenze rispetto all'inizio e che il risultato finale tutto sommato non è male, di sicuro è migliorabile ma come tutto.
+  - Questo progetto mi è piaciuto, purtroppo abbiamo gestito male il tempo e siamo arrivati in ritardo rispetto alla nostra progettazione, all'inizio non avevamo bene le idee in chiaro su come fare il game loop e ci abbiamo messo un po' di tempo a capire come utilizzare i socket. Devo dire che comunque ho più conoscenze rispetto all'inizio e che il risultato finale tutto sommato non è male, di sicuro è migliorabile ma come tutto.
 
   ##### Andrea Masciocchi:
-  - 
+  -
 
 ## Bibliografia
 

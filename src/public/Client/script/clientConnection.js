@@ -1,7 +1,6 @@
-//const json = require('./../../../settings.json');
-
-const ws = new WebSocket("ws://10.90.1.117:2389");
+//const ws = new WebSocket("ws://10.90.1.117:2389");
 //const ws = new WebSocket("ws://127.0.0.1:2389");
+const ws = new WebSocket("ws://192.168.1.115:2389");
 
 ws.addEventListener("open", () => {
     console.log("We are connected!");
@@ -29,8 +28,6 @@ function speed() {
     setTimeout(() => { document.getElementById('bs').disabled = false; }, 15000);
 }
 
-// var x = 100;
-// var y = 100;
 var options = {
     zone: document.getElementById('joyDiv'),
     mode: "static",
@@ -50,4 +47,4 @@ manager.on('move', function(evt, data) {
 
 manager.on('end', function(evt, data) {
     ws.send(0 + ";" + 0);
-})
+});
