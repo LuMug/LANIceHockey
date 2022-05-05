@@ -553,7 +553,7 @@ Contiene il campo da gioco aggiornato in tempo reale da Phaser, una leaderboard 
   - Devo dire che questo progetto mi è piaciuto, finalmente ho imparato qualcosa di nuovo, diversamente dal mio progetto scorso. Abbiamo imparato a usare i websocket, e quindi fare un sito client-server e a fare un gioco usando phaser. Il tempo non l'abbiamo gestito veramente bene, distraendoci anche spesso, e il gantt preventivo non è risultato accurato, per nulla, probabilmente ancora dovuto alla mancanza di esperienza, ma nonostante tutto, abbiamo portato a termine il progetto, ottenendo anche un risultato più che soddisfacente.
 
   ##### Nathan Ferrari:
-  - 
+  - Questo progetto mi è piaciuto, purtroppo abbiamo gestito male il tempo e siamo arrivati in ritardo rispetto alla ostra progettazione, all'inizio non avevamo bene le idee in chiaro su come fare il game loop e ci abbiamo messo un po' di tempo a capire come utilizzare i socket. Devo dire che comunque ho più conoscenze rispetto all'inizio e che il risultato finale tutto sommato non è male, di sicuro è migliorabile ma come tutto.
 
   ##### Andrea Masciocchi:
   - 
