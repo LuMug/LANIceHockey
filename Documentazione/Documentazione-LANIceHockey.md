@@ -279,6 +279,10 @@ Descrive:
 
 -   Eventuale sitemap
 
+Rete:
+![Diagramma di rete](Assets/DiagrammaDiRete.PNG)
+> Diagramma di rete
+
 Diagramma delle classi che compongono il nostro progetto:
 ![Diagramma delle classi](Assets/DiagrammaDelleClassi.PNG)
 > Diagramma delle classi
@@ -574,9 +578,8 @@ progetto.
 
 ## Consuntivo
 
-Consuntivo del tempo di lavoro effettivo e considerazioni riguardo le
-differenze rispetto alla pianificazione (cap 1.7) (ad esempio Gannt
-consuntivo).
+![Gantt Consuntivo](Assets/Img-GanttConsuntivo.PNG)
+> Gantt Consuntivo
 
 ## Conclusioni
 
@@ -613,6 +616,12 @@ facilmente generalizzabili o sono specifici di un caso particolare? ecc
 - https://favicon.io/emoji-favicons/ice-hockey/, *favicon.io - favicon.io*, 17-02-2022
 - https://media.istockphoto.com/vectors/ice-hockey-crossed-sticks-and-puck-icon-black-silhouette-isolated-on-vector-id1207437659?k=20&m=1207437659&s=170667a&w=0&h=EOxTs6V_YZeujFtrG8GkFv9zSVpUk5jwYu5Ubh9Uf4U=, 17-02-2022
 - https://getcssscan.com/css-buttons-examples, *84 Beautiful CSS buttons examples - CSS Scan*, 24-02-2022
+- https://github.com/geo-petrini/phaserasteroids/blob/main/js/scenes/gamescene.js, 24-03-2022
+- https://phaser.discourse.group/t/is-it-possible-to-have-game-add-text-follow-a-sprite/6027, 07.04.2022
+- https://www.cloudsavvyit.com/12277/how-to-use-multi-threaded-processing-in-bash-scripts/, 07.04.2022
+- https://phaser.io/examples/v3/view/physics/arcade/remove-collider, 14.04.2022
+- https://phaser.io/examples/v3/view/physics/arcade/sprite-overlap-group#, 14-04-2022
+- https://phaser.io/examples/v3/view/physics/arcade/collider-1#, 14-04-2022
 
 ## Allegati
 
