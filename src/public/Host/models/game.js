@@ -9,7 +9,6 @@ export default class Game extends Phaser.Scene {
     teams;
     bordersGroup;
     puck;
-    goalScored = false;
     raggioAngoli;
     spessoreBordi;
 
@@ -18,7 +17,7 @@ export default class Game extends Phaser.Scene {
         this.teams = new Array(new Team("Green", 0x05871b), new Team("Yellow", 0xf0d31a));
         console.log("done");
         console.log(this.teams[0].color);
-        var conn = new Host(this);
+        new Host(this);
     }
 
     preload() {
@@ -31,7 +30,7 @@ export default class Game extends Phaser.Scene {
         this.createPuck();
     }
 
-    createPlayGround(){
+    createPlayGround() {
         this.spessoreBordi = 8;
         this.raggioAngoli = 85;
         var highSide = new Phaser.GameObjects.Rectangle(this, this.raggioAngoli, 0, SET_WIDTH - 2 * this.raggioAngoli, this.spessoreBordi);
@@ -153,7 +152,7 @@ export default class Game extends Phaser.Scene {
         graphics.strokePath();
     }
 
-    addBorderCollider(borders){
+    addBorderCollider(borders) {
         this.bordersGroup = this.physics.add.staticGroup();
         for (var i = 0; i < borders.length; i++) {
             this.physics.add.existing(borders[i], true);
@@ -247,10 +246,9 @@ export default class Game extends Phaser.Scene {
         team.addPlayer(p);
         console.debug('new player added ' + name);
         p.addCollider();
-        this.physics.add.collider(p, this.bordersGroup, this.createBorderCollide);
+        this.physics.add.collider(p, this.bordersGroup);
     }
 
-    createBorderCollide(player, border) {}
 
     //quando il puck viene preso da un altro giocatore, invoca questo metodo
     //si occupa di rimettere il collider al giocatore che aveva il puck e toglierlo al giocatore che lo riceve
@@ -374,10 +372,12 @@ export default class Game extends Phaser.Scene {
 
     //metodo invocato quando il player lancia il puck
     shoot() {
-        console.log("puck shooted");
-        this.puck.beingShoot = true;
-        //la direzione del puck dipende dall'ultimo movimento fatto dal player
-        this.puck.body.setVelocity(this.puck.player.lastVelocityX * 2, this.puck.player.lastVelocityY * 2);
+        if (!this.puck.beingShoot) {
+            console.log("puck shooted");
+            this.puck.beingShoot = true;
+            //la direzione del puck dipende dall'ultimo movimento fatto dal player
+            this.puck.body.setVelocity(this.puck.player.lastVelocityX * 2, this.puck.player.lastVelocityY * 2);
+        }
     }
 
 
