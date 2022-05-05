@@ -399,6 +399,16 @@ Inoltre anche delle costanti da main.js che servono per conoscere altezza e larg
 - getPlayerByIp(ip): dato l'indirizzo ip di un player viene cercato all'interno di tutti i team e lo ritorna.
 - shoot(): questo metodo permette di far tirare il puck, se non è già stato tirato gli viene impostata la velocità del player per 2, serve per non poter riprendere subito il disco.
 
+### Scripts
+
+#### Main
+Questo script si occupa di creare il Phaser.Game.
+##### variabili
+- config: la variabile contiene le impostazioni di phaser, con le quali viene istanziato il Phaser.Game.
+- SET_WIDTH: costante che determina la larghezza del campo da gioco.
+- SET_HEIGHT: costante che determina l'altezza del campo da gioco.
+- game: contiene la nuova istanza di Phaser.Game, principale motivo dell'esistenza di questo script.
+
 ### Connection
 
 #### Socket
@@ -434,6 +444,7 @@ Questa classe riceve i dati dal socket server e si occupa di renderizzare il gio
 ##### eventi
 - ws.addEventListener("open", ...): alla connessione dell'host manda un messaggio al socket server per farsi riconoscere come host e crea il listener per la ricezione di messaggi.
   - ws.onmessage: alla ricezione dei messaggi da parte del socket (che ha ricevuto i segnali da clientConnection) controlla il tipo di segnale e agisce in base all'azione desiderata da parte del player.
+
 
 
 ## Test
