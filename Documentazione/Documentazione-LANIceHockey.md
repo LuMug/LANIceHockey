@@ -53,27 +53,22 @@
 - Allievi coinvolti nel progetto: Nathan Ferrari, Andrea Masciocchi, Xavier Horisberger
 - Classe: I3AA Scuola Arti e Mestieri Trevano, sezione Informatica.
 - Docenti responsabili: Luca Muggiasca.
-- Data inizio: 27 gennario 2022
+- Data inizio: 27 gennaio 2022
 - Data di fine: 05 maggio 2022.
 
 ### Abstract
 
-> *Have you ever wanted to play a simple game with your friends to have some fun, but didn't know what game to play? LANIceHockey enables you to play a simplefied version of ice hockey with your 
-friends, and there are no limits to how many players can enter the match, everyone can play. You all connect yourselfs to the same network, a main computer with a sufficiantly big monitor will host 
-the game, on it there will be the ice hockey field, meanwhile the controller to interact with your avatar will be on your phone. Now you and your friends can easily play together and have a good time.*
+> *Have you ever wanted to play a simple game with your friends to have some fun, but didn't know what game to play? LANIceHockey enables you to play a simplefied version of ice hockey with your friends, and there are no limits to how many players can enter the match, everyone can play. You all connect yourselfs to the same network, a main computer with a sufficiantly big monitor will host the game, on it there will be the ice hockey field, meanwhile the controller to interact with your avatar will be on your phone. Now you and your friends can easily play together and have a good time.*
 
 ### Scopo
 
-Lo scopo di questo progetto è di creare un videogioco sull'hockey su ghiaccio, il gioco è in una LAN a se stante, per giocare bisogna quindi collegarsi al router apposito, il campo sarà sul monitor dalla macchina
-che ospita la partita, e il controller sarà sui telefoni delle persone che si uniscono alla partita. Non ci sono limiti su quanti giocatori possono entrare in partita, non ci sono presenti neanche le regole che sono normalmente
-presenti in una partita di hockey. Il controller permette all'utente di muoversi, tirare e cambiare squadra. È anche presente una classifica dove si vedono i 10 giocatori che hanno segnato più goal.
+Lo scopo di questo progetto è di creare un videogioco sull'hockey su ghiaccio, il gioco è in una LAN a se stante, per giocare bisogna quindi collegarsi al router apposito, il campo sarà sul monitor della macchina che ospita la partita, e il controller sarà sui telefoni delle persone che si uniscono alla partita. Non ci sono limiti su quanti giocatori possono entrare in partita, non ci sono presenti neanche le regole che sono normalmente presenti in una partita di hockey. Il controller permette all'utente di muoversi, tirare e cambiare squadra. È anche presente una classifica dove si vedono i 10 giocatori che hanno segnato più goal.
 
 ## Analisi
 
 ### Analisi del dominio
 
-  Il prodotto può essere utilizzato su qualsiasi piattaforma, ma bisogna essere collegati ad un router appositamente usato per questo progetto. 
-  Una volta connessi al router si cerca il sito apposito, una volta sul sito del prodotto si può scegliere se essere l'host o se essere un giocatore. Può esserci un solo host e i giocatori possono connettersi alla partita solo se è già presente un host.
+  Il prodotto può essere utilizzato su qualsiasi piattaforma, ma bisogna essere collegati ad un router appositamente usato per questo progetto. Una volta connessi al router si cerca il sito apposito, una volta sul sito del prodotto si può scegliere se essere l'host o se essere un giocatore. Può esserci un solo host e i giocatori possono connettersi alla partita solo se è già presente un host.
 
 ### Analisi e specifica dei requisiti
   
@@ -97,7 +92,7 @@ presenti in una partita di hockey. Il controller permette all'utente di muoversi
 
 |**ID:** | **REQ-004**|
 |-|-|
-|**Nome**      |Gli utenti devono poter muovere il loro giocatore telefono in LAN|
+|**Nome**      |Gli utenti devono poter muovere il loro giocatore in LAN|
 |**Priorità**  | 1                                  |
 |**Versione**  | 1.0                                  |
 
@@ -163,7 +158,7 @@ presenti in una partita di hockey. Il controller permette all'utente di muoversi
 
 |**ID:** | **REQ-015**|
 |-|-|
-|**Nome**      |Disco rimbalza contro le pareti|
+|**Nome**      |Il disco rimbalza contro le pareti|
 |**Priorità**  | 2                                  |
 |**Versione**  | 1.0                                  |
 
@@ -265,10 +260,10 @@ Design dell'interfaccia del controller:
 
 Installare nodejs.
 
-### classi
+### Classi
 #### Player
 Questa classe rappresenta i singoli giocatori che partecipano al gioco, ed estende Phaser.GameObjects.Ellipse perché nel campo vengono rappresentati appunto come ellipse ovvero degli ellissi.
-##### attributi:
+##### Attributi:
 - scene: è la scena a cui appartiene ovvero serve a far sapere a Phaser dove farlo rappresentare nella scena di gioco.
 - name: è il nome con cui il giocatore decide di giocare.
 - scoredGoals: che rappresenta il numero di reti segnate dal giocatore.
@@ -280,7 +275,7 @@ Questa classe rappresenta i singoli giocatori che partecipano al gioco, ed esten
 - puckCollider: è l'attributo che contiene il collider con il puck, ovvero ciò che permette al player di raccogliere il disco.
 - lastVelocityY: si salva l'ultima componente verticale della velocità, serve a calcolare la direzione del puck una volta tirato.
 - constVelocity: serve come moltiplicatore della forza ricevuta dal joystick.
-##### metodi:
+##### Metodi:
 - constructor(scene, name, posX, posY, ip, team): questo metodo è il costruttore, invoca il costruttore della classe ellipse, setta la posizione di partenza, nome, indirizzo ip e creiamo il testo con scritto il nome che segue il giocatore. Abilitiamo anche la fisica e aggiungiamo sia player che scritta alla scena.
 - setAngle(angle): questo metodo prende l'angolo passato come argomento e lo assegna all'attributo angle.
 - setIntensity(intensity): questo metodo una volta passata un'intensità la assegnerà all'attributo intensity.
@@ -293,25 +288,25 @@ Questa classe rappresenta i singoli giocatori che partecipano al gioco, ed esten
 
 #### Team
 Questa classe rappresenta i team come lista di player e ulteriori attributi assegnati per rappresentare una squadra.
-##### attributi:
+##### Attributi:
 - players: qesto attributo contiene una lista di tutti i player che giocano per il team.
 - name: questo attributo contiene il nome del team.
 - color: questo attributo contiene il colore del team in esadecimale, serve per colorare i player.
 - score: serve per sapere quanti goal ha fatto il team.
-##### metodi:
+##### Metodi:
 - constructor(name, color): una volta passato il nome e il colore del team questo viene generato, ovviamene senza players.
 - addPlayer(player): questo metodo serve ad aggiungere un player alla lista di player.
 - removePlayer(player): questo metodo serve a rimuovere un player dalla lista di player.
 
 #### Puck
 La classe puck rappresenta il disco della partita. Estende Phaser.GameObjects.Ellipse in modo da disegnarlo com ellisse nel gioco.
-##### attributi:
+##### Attributi:
 - player: si salva il giocatore che ha il disco momentaneamente.
 - beingShoot: rappresenta il fatto che se è stato tirato oppure no.
 - bounced: questo attributo conta su quante pareti è rimbalzato, da quando viene lanciato.
 - scoredRight && scoredLeft: sono gli attributi che servono a sapere in che porta si ha segnato, e servono a riazzerare il campo.
 - rightRowScore && leftRowScore: servono per salvarsi le istanze di Phaser delle linee di porta.
-##### metodi:
+##### Metodi:
 - constructor(scene, posX, posY, size = 35, color = 0x202020): il costruttore serve ad istanziare un nuovo puck, viene richiamato il costruttore di ellipse in maniera da effettivamente farlo diventare tale. Si abilita la fisica dell'oggetto, si genera nella scena e viene loggata la creazione.
 - setPlayer(player): questo metodo serve a riassegnare il player che possiede il puck, player è il nuovo player.
 - update(): questo metodo è richiamato da noi tramite il metodo automatico di Phaser in automatico ad ogni ciclo di gioco, serve per posizionare il puck al centro del player che lo possiede, ovviamente se non è stato tirato.
@@ -319,13 +314,13 @@ La classe puck rappresenta il disco della partita. Estende Phaser.GameObjects.El
 #### Game
 La classe Game rappresenta e gestisce la partita, estende la classe Phaser.Scene infatti è ciò che viene raffigurato a schermo. Vengono importarte le classi che abbiamo scritto: Player, Team e Puck, inoltre anche Host da hostconnection.
 Inoltre anche delle costanti da main.js che servono per conoscere altezza e larghezza del campo.
-##### attributi: 
+##### Attributi: 
 - teams: questo attributo contiene i team della partita, che sono 2.
 - bordersGroup: contiene il gruppo di bordi di tipo Phaser.Physics.Arcade.StaticBorders, che serve a delimitare il campo e creare i collider con le porte.
 - puck: questo attributo serve a salvarsi il puck della partita.
 - raggioAngoli: serve a disegnare il campo, è quanto è lungo il raggio delle curve degli angoli.(viene anche utilizato per altre formule nei disegni).
 - spessoreBordi: serve a disegnare il campo, è quanto e spesso il bordo.(viene anche utilizato per altre formule nei disegni).
-##### metodi:
+##### Metodi:
 - constructor(): questo metodo serve ad istanziare una nuova partita, richiama il costruttore della superclasse, crea due player di default (in futuro si potrebbero rendere customizabili) e infine creo l'Host della partita.
 - preload(): questo metodo viene richiamato da Phaser appena prima del create, serve a preimpostare delle cose, noi preimpostiamo il canvas in una posizione più facile da raggiungere, non è necessario ma è più comodo da usare.
 - create(): questo metodo viene richiamato da Phaser alla creazione dell'oggetto, lo utiliziamo per disegnare il campo e creare il puck invocando i metodi appositi.
@@ -348,7 +343,7 @@ Inoltre anche delle costanti da main.js che servono per conoscere altezza e larg
 
 #### Main
 Questo script si occupa di creare il Phaser.Game.
-##### variabili
+##### Variabili
 - config: la variabile contiene le impostazioni di phaser, con le quali viene istanziato il Phaser.Game.
 - SET_WIDTH: costante che determina la larghezza del campo da gioco.
 - SET_HEIGHT: costante che determina l'altezza del campo da gioco.
@@ -358,35 +353,35 @@ Questo script si occupa di creare il Phaser.Game.
 
 #### Socket
 Questa classe è il socket server, lo si avvia all'inizio per ricevere e mandare i dati necessari.
-##### variabili
+##### Variabili
 - wss: è un'istanza di WebSocket.Server
 - clients: è un array che contiene tutti i client connessi
 - host: contiene il WebSocket di host, serve per avere il riferimento a cui mandare i dati
-##### eventi
+##### Eventi
 - wss.on('connection', ...): ogni volta che un client si connette attiva gli eventListener per quel client
   - ws.on('message', ...): ogni volta che il socket server riceve un messaggio, se è un segnale di connessione inoltra all'host il segnale e lo mette nell'array di client, nel caso richiedesse la connessione host salviamo il webSocket di host, nel caso mandasse un messaggio generico lo inoltra direttamente all'host allegandoci anche l'ip del client.
   - ws.on('close', ...): manda all'host il segnale di disconnessione.
-##### metodi
+##### Metodi
 - removeWithWSFromClients(ws): rimuove dall'array clients il client corrispondente all'WebSocket passato tramite argomento.
 
 #### ClientConnection
 Questa classe è importante per la comunicazione tra client e host, manda le informazioni al socket server.
-##### variabili
+##### Variabili
 - manager: crea il joystick in base alle impostazioni definite nella variabile "options"
-##### eventi
+##### Eventi
 - manager.on('move', ...): ascolta il movimento del joystick e manda i dettagli importanti per il movimento del player al socket server.
 - manager.on('end', ...): ascolta quando il player smette di muovere il joystick, e manda il segnale di stop al socket server.
 - ws.addEventListener('open', ...): quando il client si connette manda al socket server la richiesta di connessione, se il nome non è valido lo rimanda alla pagina index. 
-##### metodi
+##### Metodi
 - teamChanged(): quando il giocatore vuole cambiare team, mandiamo al socket server il segnale.
 - shoot() : quando il giocatore clicca il tasto per lanciare il disco, mandiamo al socket server il segnale.
 - speed() : quando il giocatore clicca il tasto per scattare, mandiamo il segnale al socket server, disabilitiamo il tasto per scattare e usiamo una funzione asincrona che riattiva il tasto dopo un tempo predefinito.
 
 #### HostConnection
 Questa classe riceve i dati dal socket server e si occupa di renderizzare il gioco.
-##### variabil
+##### Variabil
 - ws: è un'istanza di WebSocket, serve per connettersi al socket server e comunicare con i client e il server stesso.
-##### eventi
+##### Eventi
 - ws.addEventListener("open", ...): alla connessione dell'host manda un messaggio al socket server per farsi riconoscere come host e crea il listener per la ricezione di messaggi.
   - ws.onmessage: alla ricezione dei messaggi da parte del socket (che ha ricevuto i segnali da clientConnection) controlla il tipo di segnale e agisce in base all'azione desiderata da parte del player.
 
