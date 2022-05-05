@@ -445,7 +445,13 @@ Questa classe riceve i dati dal socket server e si occupa di renderizzare il gio
 - ws.addEventListener("open", ...): alla connessione dell'host manda un messaggio al socket server per farsi riconoscere come host e crea il listener per la ricezione di messaggi.
   - ws.onmessage: alla ricezione dei messaggi da parte del socket (che ha ricevuto i segnali da clientConnection) controlla il tipo di segnale e agisce in base all'azione desiderata da parte del player.
 
+#### Interfacce
 
+##### Client
+Contiene un joystick importato dalla libreria NippleJS, due bottoni per lanciare il puck e per attivare lo scatto e un bottone per cambiare team.
+
+##### Host
+Contiene il campo da gioco aggiornato in tempo reale da Phaser, una leaderboard contenente i giocatori ordinati per goal fatti, il punteggio delle due squadre e un tasto per resettare la posizione del puck in caso di problemi.
 
 ## Test
 
