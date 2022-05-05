@@ -584,10 +584,9 @@ Contiene il campo da gioco aggiornato in tempo reale da Phaser, una leaderboard 
 
 ### Mancanze/limitazioni conosciute
 
-Descrizione con motivazione di eventuali elementi mancanti o non
-completamente implementati, al di fuori dei test case. Non devono essere
-riportati gli errori e i problemi riscontrati e poi risolti durante il
-progetto.
+- È necessario connettersi inserendo l'ip della macchina invece di un url, questo perchè non è stato possibile utilizzare un DNS per tradurre i nomi.
+- Se si cambia ambiente di rete è necessario cambiare gli ip a livello di codice in HostConnection, ClientConnection e in settings.json perchè nei primi due file non è consentito fare il require di settings.json.
+- Non è possibile tirare o scattare mentre ci si sta muovendo, quindi bisogna fermarsi per ogni altra azione che si vuole eseguire, questo perchè NippleJS (la classe implementata per il joystick) non permette di utilizzare il multitouch.
 
 ## Consuntivo
 
