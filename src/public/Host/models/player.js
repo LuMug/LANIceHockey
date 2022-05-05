@@ -70,7 +70,7 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     update() {
         var x = (this.intensity * Math.cos(this.angle * Math.PI / 180)) * this.constVelocity;
         var y = -(this.intensity * Math.sin(this.angle * Math.PI / 180)) * this.constVelocity;
-        if(x != 0 && y != 0){
+        if (x != 0 && y != 0) {
             this.lastVelocityX = x;
             this.lastVelocityY = y;
         }
@@ -83,7 +83,7 @@ export default class Player extends Phaser.GameObjects.Ellipse {
      *  ciò non succedesse il player appena lo tira lo riprende 
      *  dunque non sarebbe giocabile.
      */
-      removeCollider() {
+    removeCollider() {
         this.scene.physics.world.removeCollider(this.puckCollider);
     }
 
@@ -98,8 +98,8 @@ export default class Player extends Phaser.GameObjects.Ellipse {
     /** Questo metodo serve a duplicare la velocità di movimento 
      *  per mezzo secondo.
      */
-    speed(){
+    speed() {
         this.constVelocity = 8;
-        setTimeout(() => { this.constVelocity = 4; }, 500);
+        setTimeout(() => { this.constVelocity = 4; }, 800);
     }
 }

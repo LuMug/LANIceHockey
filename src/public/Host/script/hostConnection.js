@@ -1,9 +1,8 @@
 //const json = require('./../../../settings.json');
 
 export default class Host {
-    //ws = new WebSocket("ws://10.90.1.117:2389");
-    ws = new WebSocket("ws://127.0.0.1:2389");
-
+    ws = new WebSocket("ws://10.90.1.117:2389");
+    //ws = new WebSocket("ws://127.0.0.1:2389");
     constructor(game) {
         this.ws.addEventListener("open", () => {
             console.log("We are connected!");
@@ -32,9 +31,9 @@ export default class Host {
                 } else if (str[0] == "team") {
                     var ip = str[1];
                     game.switchTeam(game.getPlayerByIp(ip));
-                } else if(str[0] == "speed"){
+                } else if (str[0] == "speed") {
                     game.getPlayerByIp(str[1]).speed();
-                }else{
+                } else {
                     var num = Number(str[0]);
                     var intensity = Number(str[1]);
                     var ip = str[2];

@@ -17,7 +17,7 @@ export default class Game extends Phaser.Scene {
         super({ key: 'Game' });
         this.teams = new Array(new Team("Green", 0x05871b), new Team("Yellow", 0xf0d31a));
         console.log("done");
-        console.log(this.teams);
+        console.log(this.teams[0].color);
         var conn = new Host(this);
     }
 
@@ -49,10 +49,10 @@ export default class Game extends Phaser.Scene {
         var borders = Array(highSide, lowSide, leftSide, rightSide);
 
         //lati porte solidi
-        borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli / 2, SET_HEIGHT / 2 - this.raggioAngoli/3 + this.spessoreBordi, 2, this.raggioAngoli / 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli - this.spessoreBordi*2, SET_HEIGHT / 2 - this.raggioAngoli / 2, this.raggioAngoli / 2 + this.spessoreBordi, 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli - this.spessoreBordi*2, SET_HEIGHT / 2 + this.raggioAngoli / 2, this.raggioAngoli / 2 + this.spessoreBordi, 2));
-        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli / 2 - this.spessoreBordi*2, SET_HEIGHT / 2 - this.raggioAngoli/3 + this.spessoreBordi, 2, this.raggioAngoli / 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli / 2, SET_HEIGHT / 2 - this.raggioAngoli / 3 + this.spessoreBordi, 2, this.raggioAngoli / 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli - this.spessoreBordi * 2, SET_HEIGHT / 2 - this.raggioAngoli / 2, this.raggioAngoli / 2 + this.spessoreBordi, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, this.raggioAngoli - this.spessoreBordi * 2, SET_HEIGHT / 2 + this.raggioAngoli / 2, this.raggioAngoli / 2 + this.spessoreBordi, 2));
+        borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli / 2 - this.spessoreBordi * 2, SET_HEIGHT / 2 - this.raggioAngoli / 3 + this.spessoreBordi, 2, this.raggioAngoli / 2));
         borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli, SET_HEIGHT / 2 - this.raggioAngoli / 2, this.raggioAngoli / 2 + this.spessoreBordi, 2));
         borders.push(new Phaser.GameObjects.Rectangle(this, SET_WIDTH - this.raggioAngoli, SET_HEIGHT / 2 - this.raggioAngoli / 2 + this.raggioAngoli, this.raggioAngoli / 2 + this.spessoreBordi, 2));
 
@@ -184,14 +184,14 @@ export default class Game extends Phaser.Scene {
 
         // If the player scored in the enemy net add a point to the player
         // if not remove a point from the player
-        if(this.puck.scoredLeft || this.puck.scoredRight){
-            if(this.puck.scoredLeft){
-                if(this.puck.player.team == this.teams[1]){
+        if (this.puck.scoredLeft || this.puck.scoredRight) {
+            if (this.puck.scoredLeft) {
+                if (this.puck.player.team == this.teams[1]) {
                     this.puck.player.scoredGoals++;
                 }
                 this.teams[1].score++;
-            }else{
-                if(this.puck.player.team == this.teams[0]){
+            } else {
+                if (this.puck.player.team == this.teams[0]) {
                     this.puck.player.scoredGoals++;
                 }
                 this.teams[0].score++;
@@ -203,8 +203,8 @@ export default class Game extends Phaser.Scene {
             this.puck.beingShoot = false;
             this.puck.player.addCollider();
             this.puck.player = null;
-            this.puck.setPosition(SET_WIDTH/2, SET_HEIGHT/2);
-            this.puck.body.setVelocity(0,0);
+            this.puck.setPosition(SET_WIDTH / 2, SET_HEIGHT / 2);
+            this.puck.body.setVelocity(0, 0);
             //for(var i = 0; i < this.teams.length; i++){
             //    for(var j = 0; j < this.teams[i].players.length; j++){
             //        var puckCollider = this.physics.add.collider(this.teams[i].players[j], this.puck, this.changePuckOwner);
@@ -215,10 +215,10 @@ export default class Game extends Phaser.Scene {
             //riavvia le posizioni dei player
             for (let i = 0; i < this.teams.length; i++) {
                 for (let j = 0; j < this.teams[i].players.length; j++) {
-                    if(i == 0){
-                        this.teams[i].players[j].setPosition(SET_WIDTH/4, SET_HEIGHT/2);
-                    }else{
-                        this.teams[i].players[j].setPosition((SET_WIDTH/4)*3, SET_HEIGHT/2);
+                    if (i == 0) {
+                        this.teams[i].players[j].setPosition(SET_WIDTH / 4, SET_HEIGHT / 2);
+                    } else {
+                        this.teams[i].players[j].setPosition((SET_WIDTH / 4) * 3, SET_HEIGHT / 2);
                     }
                 }
             }
@@ -236,12 +236,12 @@ export default class Game extends Phaser.Scene {
         var x;
         var y;
         //le posizioni dei player sono fatte in base al team
-        if(team == this.teams[0]){
-            x = SET_WIDTH/4;
-            y = SET_HEIGHT/2;
-        }else{
-            x = (SET_WIDTH/4)*3;
-            y = SET_HEIGHT/2;
+        if (team == this.teams[0]) {
+            x = SET_WIDTH / 4;
+            y = SET_HEIGHT / 2;
+        } else {
+            x = (SET_WIDTH / 4) * 3;
+            y = SET_HEIGHT / 2;
         }
         var p = new Player(this, name, x, y, ip, team);
         team.addPlayer(p);
@@ -260,7 +260,7 @@ export default class Game extends Phaser.Scene {
         puck.beingShoot = false;
         puck.setPlayer(player);
         puck.player.removeCollider();
-        puck.body.setVelocity(0,0);
+        puck.body.setVelocity(0, 0);
 
         setTimeout(() => {
             if (prePlayer != null && prePlayer != puck.player) {
@@ -283,12 +283,12 @@ export default class Game extends Phaser.Scene {
         this.physics.add.overlap(this.puck, this.puck.rightRowScore, this.scoreRight);
         this.physics.add.overlap(this.puck, this.puck.leftRowScore, this.scoreLeft);
         //ogni rimbalzo dimezza la velocità
-        this.puck.body.setBounce(0.5,0.5);
+        this.puck.body.setBounce(0.5, 0.5);
     }
 
-    puckBorderCollide(puck, borders){
+    puckBorderCollide(puck, borders) {
         puck.bounced++;
-        if(puck.beingShoot && puck.bounced <= 1){
+        if (puck.beingShoot && puck.bounced <= 1) {
             puck.player.addCollider();
         }
     }
@@ -307,7 +307,7 @@ export default class Game extends Phaser.Scene {
         for (var i = 0; i < this.teams[1].players.length; i++) {
             allPlayers.push(this.teams[1].players[i]);
         }
-        allPlayers.sort(function(a,b){return b-a});
+        allPlayers.sort(function(a, b) { return b - a });
 
         //leaderboard contiene al massimo 10 players
         var max = 0;
@@ -377,8 +377,8 @@ export default class Game extends Phaser.Scene {
         console.log("puck shooted");
         this.puck.beingShoot = true;
         //la direzione del puck dipende dall'ultimo movimento fatto dal player
-        this.puck.body.setVelocity(this.puck.player.lastVelocityX *2, this.puck.player.lastVelocityY *2);
+        this.puck.body.setVelocity(this.puck.player.lastVelocityX * 2, this.puck.player.lastVelocityY * 2);
     }
 
-    
+
 }
