@@ -323,7 +323,7 @@ ad esempio:
 
 Questi documenti permetteranno di rappresentare i dettagli procedurali
 per la realizzazione del prodotto.
-
+ 
 ## Implementazione
 
 In questo capitolo dovrà essere mostrato come è stato realizzato il
