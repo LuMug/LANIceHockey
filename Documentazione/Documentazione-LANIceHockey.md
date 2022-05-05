@@ -604,17 +604,8 @@ Elenco degli allegati, esempio:
 
 -   Diari di lavoro
 
--   Codici sorgente/documentazione macchine virtuali
+-   Codici sorgente
 
--   Istruzioni di installazione del prodotto (con credenziali
-    di accesso) e/o di eventuali prodotti terzi
+-   Documentazione di [NippleJS](../src/public/Client/modules/node_modules/nipplejs/README.md), [NodeJS](https://nodejs.org/docs/latest-v12.x/api/all.html) e [Phaser](https://photonstorm.github.io/phaser3-docs/)
 
--   Documentazione di prodotti di terzi
-
--   Eventuali guide utente / Manuali di utilizzo
-
--   Mandato e/o Qdc
-
--   Prodotto
-
--   …
+-   Qdc
