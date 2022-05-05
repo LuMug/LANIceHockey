@@ -15,8 +15,6 @@ export default class Game extends Phaser.Scene {
     constructor() {
         super({ key: 'Game' });
         this.teams = new Array(new Team("Green", 0x05871b), new Team("Yellow", 0xf0d31a));
-        console.log("done");
-        console.log(this.teams[0].color);
         new Host(this);
     }
 
